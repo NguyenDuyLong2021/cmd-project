@@ -92,7 +92,7 @@ class Detail extends Component {
     render() {
         let data = this.getDetailData();
         if (data !== null) {
-            console.log("chi tiết nè ", data)
+            console.log("chi tiết nè ", data.data.data.nameCretor)
             return (
                 <div data-v-77bf6b9c className="el-dialog__wrapper custom-dialog todo-detail-dialog" style={{ zIndex: 2055 }}>
                     <div role="dialog" aria-modal="true" aria-label="dialog" className="el-dialog" style={{ marginTop: '15vh' }}>
@@ -134,7 +134,7 @@ class Detail extends Component {
                                                                         <label data-v-77bf6b9c className="text-solid-gray-1">Mã công việc:</label>
                                                                     </div>
                                                                     <div data-v-77bf6b9c className="vs-col text-black vs-xs- vs-sm- vs-lg-" style={{ marginLeft: '0%', width: '66.6667%' }}>
-                                                                        {data.data.id}
+                                                                        {data.data.data.id}
                                                                     </div>
                                                                 </div>
                                                                 <div data-v-77bf6b9c className="vs-row mb-1" style={{ display: 'flex', width: '100%' }}>
@@ -142,7 +142,7 @@ class Detail extends Component {
                                                                         <label data-v-77bf6b9c className="text-solid-gray-1">Tên công việc:</label>
                                                                     </div>
                                                                     <div data-v-77bf6b9c className="vs-col text-black vs-xs- vs-sm- vs-lg-" style={{ marginLeft: '0%', width: '66.6667%' }}>
-                                                                        {data.data.nameTask}
+                                                                        {data.data.data.nameTask}
                                                                     </div>
                                                                 </div>
                                                                 <div data-v-77bf6b9c className="vs-row mb-1" style={{ display: 'flex', width: '100%' }}>
@@ -152,9 +152,9 @@ class Detail extends Component {
                                                                     <div data-v-77bf6b9c className="vs-col text-black vs-xs- vs-sm- vs-lg-" style={{ marginLeft: '0%', width: '66.6667%' }}>
                                                                         <i data-v-77bf6b9c className="nucleo nucleo-single-01-2" />
                                                                         &#160;
-                                                                        {data.data.nameCretor}
+                                                                        {data.data.data.nameCretor}
                                                                         &#160;
-                                                                        [{data.data.idCreator}]
+                                                                        [{data.data.data.idCreator}]
                                                                     </div>
                                                                 </div>
                                                                 <div data-v-77bf6b9c className="vs-row mb-1" style={{ display: 'flex', width: '100%' }}>
@@ -165,7 +165,7 @@ class Detail extends Component {
                                                                         <div data-v-77bf6b9c>
                                                                             <div data-v-77bf6b9c className="break-words flex flex-col">
                                                                                 {
-                                                                                    data.data.employees.map(item =>
+                                                                                    data.data.data.employees.map(item =>
                                                                                         <span>
                                                                                             <div className="inline-block">
                                                                                                 <div className="item-relation">
@@ -187,7 +187,7 @@ class Detail extends Component {
                                                                     </div>
                                                                     <div data-v-77bf6b9c className="vs-col vs-xs- vs-sm- vs-lg-" style={{ marginLeft: '0%', width: '66.6667%' }}>
                                                                         <div data-v-77bf6b9c className="flex items-center h-full">
-                                                                            <span data-v-77bf6b9c>{data.data.prioritizeTask}</span>
+                                                                            <span data-v-77bf6b9c>{data.data.data.prioritizeTask}</span>
                                                                             <i data-v-77bf6b9c className="nucleo-priority-S3 ml-2 nucleo text-xl text-gray-3" />
                                                                         </div>
                                                                     </div>
@@ -197,7 +197,7 @@ class Detail extends Component {
                                                                         <label data-v-77bf6b9c className="text-solid-gray-1">Trạng thái:</label>
                                                                     </div>
                                                                     <div data-v-77bf6b9c className="vs-col vs-xs- vs-sm- vs-lg-" style={{ marginLeft: '0%', width: '66.6667%' }}>
-                                                                        {this.returnNameStatus(data.data.status)}
+                                                                        {this.returnNameStatus(data.data.data.status)}
                                                                     </div>
                                                                 </div>
                                                                 <div data-v-77bf6b9c className="vs-row mb-1" style={{ display: 'flex', width: '100%' }}>
@@ -233,7 +233,7 @@ class Detail extends Component {
                                                         <div data-v-77bf6b9c className="ql-editor p-6 pb-0">
                                                             {/* <p>Hai đứa hỗ trợ anh kiểm tra hệ thống nước thải thay phiên nhau 3 ngày/lần giúp anh nhé.</p>
                                                             <p>Báo cáo trên phần bình luận của công việc này luôn.</p> */}
-                                                            {data.data.decripstionTask}
+                                                            {data.data.data.decripstionTask}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -255,7 +255,7 @@ class Detail extends Component {
                                                                     <label data-v-77bf6b9c className="text-solid-gray-1">Thời điểm bắt đầu:</label>
                                                                 </div>
                                                                 <div data-v-77bf6b9c className="vs-col text-black vs-xs- vs-sm- vs-lg-" style={{ marginLeft: '0%', width: '66.6667%' }}>
-                                                                    {data.data.dateStart.split("T")[0]}       {data.data.dateStart.split("T")[1].split(".")[0]}
+                                                                    {data.data.data.dateStart.split("T")[0]}       {data.data.data.dateStart.split("T")[1].split(".")[0]}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -274,8 +274,8 @@ class Detail extends Component {
                                                 <div role="tabpanel" aria-hidden="true" aria-labelledby="el-collapse-head-3761" id="el-collapse-content-3761" className="el-collapse-item__wrap" style={this.state.showHistory ? { display: 'none' } : null}>
                                                     <div className="el-collapse-item__content">
                                                         {
-                                                            data.data.historyTask.length === 0 ? <h6 data-v-77bf6b9c className="text-center px-6 py-3">Không có dữ liệu</h6> :
-                                                            data.data.historyTask.map(item =>
+                                                            data.data.data.historyTask.length === 0 ? <h6 data-v-77bf6b9c className="text-center px-6 py-3">Không có dữ liệu</h6> :
+                                                            data.data.data.historyTask.map(item =>
                                                                     <div data-v-77bf6b9c className="px-6 py-3">
                                                                         <div data-v-77bf6b9c className="flex flex-wrap justify-between">
                                                                             <h6 data-v-77bf6b9c className="font-bold">{item.nameEmployee}</h6>

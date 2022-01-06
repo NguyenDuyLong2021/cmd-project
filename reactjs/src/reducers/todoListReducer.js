@@ -13,7 +13,7 @@ const todoListReducer = (state = initialState, action) => {
     switch (action.type) {
         // dispatch tat ca cac cong viec
         case types.DISPATCH_TASK_BY_STATUS:{
-            return { ...state, listTaskFilter: action.tasks.data, allTask: action.tasks.pagination._totalItem };
+            return { ...state, listTaskFilter: action.tasks.data.data, allTask: action.tasks.data.pagination._totalItem };
         }
         case types.DISPATCH_ALL_TASK:
             return { ...state, allTask: action.tasks };
@@ -71,7 +71,7 @@ const todoListReducer = (state = initialState, action) => {
             return { ...state, taskDetail: action.task };
         // dispatch danh sach nhan vien duoc tim kiem
         case types.DISPATCH_LIST_EMPLOYEE_SEARCH:
-            return { ...state, listEmployeeSearch: action.data };
+            return { ...state, listEmployeeSearch: action.data.data };
         //hiển thị dropdown menu
         case types.SHOW_DROP_DOWN_MENU:
             return { ...state, showDropDownMenu: !state.showDropDownMenu }
@@ -95,11 +95,11 @@ const todoListReducer = (state = initialState, action) => {
             return { ...state, department: action.data };
         // dispatch cong viec tiem kiem
         case types.DISPATCH_TASK_SEARCH: {
-            return { ...state, listTaskFilter: action.data.data , allTask: action.data.pagination._totalItem };
+            return { ...state, listTaskFilter: action.data.data.data , allTask: action.data.data.pagination._totalItem };
         }
         // dispatch tat ca cac cong viec
         case types.DISPATCH_TASK_BY_FILTER_ADVANCED:
-            return { ...state, listTaskFilter: action.tasks.data, allTask: action.tasks.pagination._totalItem  };
+            return { ...state, listTaskFilter: action.tasks.data.data, allTask: action.tasks.data.pagination._totalItem  };
         default:
             return state;
 

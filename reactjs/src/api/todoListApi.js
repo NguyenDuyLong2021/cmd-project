@@ -1,6 +1,6 @@
 import axiosClient from "./axiosClient"
 
-const baseUrl = "http://localhost:3031/tasks"
+const baseUrl = "/tasks"
 const todoListApi = {
     // get all tack of to do list
     getAllTask: (params) => {
@@ -12,7 +12,7 @@ const todoListApi = {
         let url = `${baseUrl}/${params.id}`;
         return axiosClient.get(url)
     },
-    getTaskLimited: (params) => {
+    getTaskLimited: async (params) => {
         //cai nay dung de phan trang
         let url = `${baseUrl}?_page=${params.page}&_limit=10`
         if (params.filter.length > 0) {
@@ -52,7 +52,7 @@ const todoListApi = {
                 url += element
             })
         }
-        return axiosClient.get(url, { params })
+        return await axiosClient.get(url, { params })
     },
     //search by params
     searchByParams: (params) => {
@@ -60,8 +60,8 @@ const todoListApi = {
         return axiosClient.get(url)
     },
     newtTask: (params) => {
-        const url = `${baseUrl}`
-        axiosClient.post(url, params)
+        const url = "/tasks"
+        axiosClient.post(url, params).then(q=>console.log(q))
     }
 
 }

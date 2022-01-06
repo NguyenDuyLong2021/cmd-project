@@ -48,9 +48,8 @@ class TodoList extends Component {
     }
     // render list công việc
     renderListTask = () => {
-        console.log("list item", this.props.status.listTaskFilter)
         if (this.props.status.listTaskFilter !== undefined) {
-            return this.props.status.listTaskFilter.map((item) => {
+            return this.props.status.listTaskFilter.map((item, id) => {
                 let status = "";
                 switch (item.status) {
                     case 1:
@@ -78,7 +77,7 @@ class TodoList extends Component {
                         status = "Qúa hạn"
                         break;
                 }
-                return <ItemTask Status={status} nameTask={item.nameTask} id={item.id} dateEnd={item.dateEnd} employees={item.employees} />
+                return <ItemTask  Status={status} nameTask={item.nameTask} id={item.id} dateEnd={item.dateEnd} employees={item.employees} />
             })
         }
     }
@@ -192,13 +191,7 @@ class TodoList extends Component {
                                                     <tr>{/**/}</tr>
                                                 </thead>
                                                 <div>
-                                                    {this.props.status.listTaskFilter === undefined ?
-
-                                                        <div data-v-763f102e className="el-dialog__wrapper custom-dialog todo-list-form-sidebar" style={{ zIndex: 2003 }}>
-                                                            <img src="https://icon-library.com/images/loading-icon-animated-gif/loading-icon-animated-gif-19.jpg" alt="" style={{ width: "200px", height: "200px", margin: "auto" }} />
-                                                        </div>
-                                                        : this.renderListTask()
-                                                    }
+                                                    {this.renderListTask()}
                                                 </div>
                                             </table>
                                         </div>

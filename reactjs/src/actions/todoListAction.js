@@ -6,6 +6,7 @@ export const dispatchLimitedTaskRequest = (data) => {
         const fetchTasksList = async () => {
             try {
                 const response = await todoListApi.getTaskLimited(data)//getTaskLimited() function using to load data task with data limited a page is 10 task
+               console.log("rp", response)
                 dispatch(dispatchTaskByFilterStatus(response))
             } catch (error) {
                 console.log("Can not load...!", error)
@@ -76,6 +77,7 @@ export const searchByParams = (params) => {
         const fetchSearchByParams = async () => {
             try {
                 const response = await todoListApi.searchByParams(params)//getDetailTask() function using to load data task with data limited a page is 10 task
+                console.log(response.data)
                 dispatch(dispatchEmployeeSearch(response.data))
             } catch (error) {
                 console.log("Can not load...!", error)
