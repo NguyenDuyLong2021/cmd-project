@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en" class="vuesax-app-is-ltr"
+    style="--vs-primary:43,89,178; --vs-success:40,199,111; --vs-danger:234,84,85; --vs-warning:255,159,67; --vs-dark:30,30,30;">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Cảnh Báo Sớm" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/style.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/base.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/newStyle.css">
+    <!-- <script src="%PUBLIC_URL%/assets/test.js"></script> -->
+    <!--
+        manifest.json provides metadata used when your web app is installed on a
+        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+      -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+        Notice the use of %PUBLIC_URL% in the tags above.
+        It will be replaced with the URL of the `public` folder during the build.
+        Only files inside the `public` folder can be referenced from the HTML.
+  
+        Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+        work correctly both with client-side routing and a non-root public URL.
+        Learn how to configure a non-root public URL by running `npm run build`.
+      -->
+    <style type="text/css">
+        .vue-slider-dot {
+            position: absolute;
+            will-change: transform;
+            -webkit-transition: all 0s;
+            transition: all 0s;
+            z-index: 5
+        }
+
+        .vue-slider-dot-tooltip {
+            position: absolute;
+            visibility: hidden
+        }
+
+        .vue-slider-dot-tooltip-show {
+            visibility: visible
+        }
+
+        .vue-slider-dot-tooltip-top {
+            top: -10px;
+            left: 50%;
+            -webkit-transform: translate(-50%, -100%);
+            transform: translate(-50%, -100%)
+        }
+
+        .vue-slider-dot-tooltip-bottom {
+            bottom: -10px;
+            left: 50%;
+            -webkit-transform: translate(-50%, 100%);
+            transform: translate(-50%, 100%)
+        }
+
+        .vue-slider-dot-tooltip-left {
+            left: -10px;
+            top: 50%;
+            -webkit-transform: translate(-100%, -50%);
+            transform: translate(-100%, -50%)
+        }
+
+        .vue-slider-dot-tooltip-right {
+            right: -10px;
+            top: 50%;
+            -webkit-transform: translate(100%, -50%);
+            transform: translate(100%, -50%)
+        }
+    </style>
+    <style type="text/css">
+        .vue-slider-marks {
+            position: relative;
+            width: 100%;
+            height: 100%
+        }
+
+        .vue-slider-mark {
+            position: absolute;
+            z-index: 1
+        }
+
+        .vue-slider-ltr .vue-slider-mark,
+        .vue-slider-rtl .vue-slider-mark {
+            width: 0;
+            height: 100%;
+            top: 50%
+        }
+
+        .vue-slider-ltr .vue-slider-mark-step,
+        .vue-slider-rtl .vue-slider-mark-step {
+            top: 0
+        }
+
+        .vue-slider-ltr .vue-slider-mark-label,
+        .vue-slider-rtl .vue-slider-mark-label {
+            top: 100%;
+            margin-top: 10px
+        }
+
+        .vue-slider-ltr .vue-slider-mark {
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%)
+        }
+
+        .vue-slider-ltr .vue-slider-mark-step {
+            left: 0
+        }
+
+        .vue-slider-ltr .vue-slider-mark-label {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%)
+        }
+
+        .vue-slider-rtl .vue-slider-mark {
+            -webkit-transform: translate(50%, -50%);
+            transform: translate(50%, -50%)
+        }
+
+        .vue-slider-rtl .vue-slider-mark-step {
+            right: 0
+        }
+
+        .vue-slider-rtl .vue-slider-mark-label {
+            right: 50%;
+            -webkit-transform: translateX(50%);
+            transform: translateX(50%)
+        }
+
+        .vue-slider-btt .vue-slider-mark,
+        .vue-slider-ttb .vue-slider-mark {
+            width: 100%;
+            height: 0;
+            left: 50%
+        }
+
+        .vue-slider-btt .vue-slider-mark-step,
+        .vue-slider-ttb .vue-slider-mark-step {
+            left: 0
+        }
+
+        .vue-slider-btt .vue-slider-mark-label,
+        .vue-slider-ttb .vue-slider-mark-label {
+            left: 100%;
+            margin-left: 10px
+        }
+
+        .vue-slider-btt .vue-slider-mark {
+            -webkit-transform: translate(-50%, 50%);
+            transform: translate(-50%, 50%)
+        }
+
+        .vue-slider-btt .vue-slider-mark-step {
+            top: 0
+        }
+
+        .vue-slider-btt .vue-slider-mark-label {
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%)
+        }
+
+        .vue-slider-ttb .vue-slider-mark {
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%)
+        }
+
+        .vue-slider-ttb .vue-slider-mark-step {
+            bottom: 0
+        }
+
+        .vue-slider-ttb .vue-slider-mark-label {
+            bottom: 50%;
+            -webkit-transform: translateY(50%);
+            transform: translateY(50%)
+        }
+
+        .vue-slider-mark-label,
+        .vue-slider-mark-step {
+            position: absolute
+        }
+    </style>
+    <style type="text/css">
+        .vue-slider {
+            position: relative;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            display: block;
+            -ms-touch-action: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+        }
+
+        .vue-slider-disabled {
+            pointer-events: none
+        }
+
+        .vue-slider-rail {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            -webkit-transition-property: width, height, left, right, top, bottom;
+            transition-property: width, height, left, right, top, bottom
+        }
+
+        .vue-slider-process {
+            position: absolute;
+            z-index: 1
+        }
+
+        .vue-slider-sr-only {
+            clip: rect(1px, 1px, 1px, 1px);
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            position: absolute !important
+        }
+    </style>
+    <style type="text/css">
+        /* component style */
+        .vue-slider-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* rail style */
+        .vue-slider-rail {
+            background-color: #ccc;
+            border-radius: 15px;
+        }
+
+        /* process style */
+        .vue-slider-process {
+            background-color: #3498db;
+            border-radius: 15px;
+        }
+
+        /* mark style */
+        .vue-slider-mark {
+            z-index: 4;
+        }
+
+        .vue-slider-mark:first-child .vue-slider-mark-step,
+        .vue-slider-mark:last-child .vue-slider-mark-step {
+            display: none;
+        }
+
+        .vue-slider-mark-step {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.16);
+        }
+
+        .vue-slider-mark-label {
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        /* dot style */
+        .vue-slider-dot-handle {
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #fff;
+            box-sizing: border-box;
+            box-shadow: 0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.32);
+        }
+
+        .vue-slider-dot-handle-focus {
+            box-shadow: 0px 0px 1px 2px rgba(52, 152, 219, 0.36);
+        }
+
+        .vue-slider-dot-handle-disabled {
+            cursor: not-allowed;
+            background-color: #ccc;
+        }
+
+        .vue-slider-dot-tooltip-inner {
+            font-size: 14px;
+            white-space: nowrap;
+            padding: 2px 5px;
+            min-width: 20px;
+            text-align: center;
+            color: #fff;
+            border-radius: 5px;
+            border-color: #3498db;
+            background-color: #3498db;
+            box-sizing: content-box;
+        }
+
+        .vue-slider-dot-tooltip-inner::after {
+            content: "";
+            position: absolute;
+        }
+
+        .vue-slider-dot-tooltip-inner-top::after {
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            height: 0;
+            width: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px;
+            border-top-color: inherit;
+        }
+
+        .vue-slider-dot-tooltip-inner-bottom::after {
+            bottom: 100%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            height: 0;
+            width: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px;
+            border-bottom-color: inherit;
+        }
+
+        .vue-slider-dot-tooltip-inner-left::after {
+            left: 100%;
+            top: 50%;
+            transform: translate(0, -50%);
+            height: 0;
+            width: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px;
+            border-left-color: inherit;
+        }
+
+        .vue-slider-dot-tooltip-inner-right::after {
+            right: 100%;
+            top: 50%;
+            transform: translate(0, -50%);
+            height: 0;
+            width: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px;
+            border-right-color: inherit;
+        }
+
+        .vue-slider-dot-tooltip-wrapper {
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .vue-slider-dot-tooltip-wrapper-show {
+            opacity: 1;
+        }
+    </style>
+    <style type="text/css">
+        .Main__controls_1d7bsga8[data-v-e9185a48] {
+            width: 100%;
+            max-width: 510px;
+            position: fixed;
+            padding: 0px 11px;
+            user-select: none;
+            z-index: 10000000;
+            background: white;
+            border: 2px solid black;
+            display: flex;
+            flex-direction: row;
+            align-items: center
+        }
+
+        .Main__controls_1d7bsga8 .Main__play-btn-wrap_x5pQSEfb[data-v-e9185a48] {
+            margin: 0 0px
+        }
+
+        .Main__controls_1d7bsga8 .Main__play-btn-wrap_x5pQSEfb div[data-v-e9185a48] {
+            cursor: pointer;
+            height: 32px;
+            width: 30px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center
+        }
+
+        .Main__controls_1d7bsga8 .Main__play-btn-wrap_x5pQSEfb svg[data-v-e9185a48] {
+            width: 14px;
+            height: auto;
+            cursor: pointer
+        }
+
+        .Main__controls_1d7bsga8 .Main__controls-wrap_3U3nEvol[data-v-e9185a48] {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            padding: 8px 0;
+            align-items: center
+        }
+
+        .Main__controls_1d7bsga8 .Main__controls-wrap_3U3nEvol .Main__time_IdhjO9hP[data-v-e9185a48] {
+            white-space: nowrap;
+            margin-right: 10px;
+            margin-left: 2px;
+            font-size: 10px;
+            font-family: "Didact Gothic"
+        }
+
+        .Main__controls_1d7bsga8 .Main__controls-wrap_3U3nEvol .Main__progress_PWbxBj3c[data-v-e9185a48] {
+            margin: 0 5px;
+            max-width: 343px;
+            flex-shrink: unset;
+            width: 100%
+        }
+
+        .Main__controls_1d7bsga8 .Main__controls-wrap_3U3nEvol .Main__duration_2uU0QLly[data-v-e9185a48] {
+            margin-left: 5px;
+            margin-right: 5px;
+            font-size: 10px;
+            font-family: "Didact Gothic"
+        }
+
+        .Main__controls_1d7bsga8 .Main__controls-wrap_3U3nEvol .Main__volume_2sFz3dVC[data-v-e9185a48] {
+            flex-shrink: unset;
+            margin: 0 5px;
+            width: 100px
+        }
+
+        .Main__tl_2eCs-W85[data-v-e9185a48] {
+            top: 15%;
+            right: calc(100% - 38px);
+            padding-right: 3px
+        }
+
+        .Main__tl_2eCs-W85 .Main__play-btn-wrap_x5pQSEfb div[data-v-e9185a48] {
+            margin-left: 5px
+        }
+
+        .Main__tl_2eCs-W85[data-v-e9185a48]:hover {
+            right: unset;
+            left: -4px;
+            padding-right: 11px;
+            padding-left: 0px
+        }
+
+        .Main__tl_2eCs-W85:hover .Main__play-btn-wrap_x5pQSEfb[data-v-e9185a48] {
+            order: 0
+        }
+
+        .Main__tl_2eCs-W85:hover .Main__play-btn-wrap_x5pQSEfb div[data-v-e9185a48] {
+            padding-left: 5px;
+            margin-left: unset
+        }
+
+        .Main__tl_2eCs-W85 .Main__play-btn-wrap_x5pQSEfb[data-v-e9185a48] {
+            order: 1
+        }
+
+        .Main__bl_3NKsjgYi[data-v-e9185a48] {
+            bottom: 15%;
+            right: calc(100% - 38px);
+            padding-right: 3px
+        }
+
+        .Main__bl_3NKsjgYi .Main__play-btn-wrap_x5pQSEfb div[data-v-e9185a48] {
+            margin-left: 5px
+        }
+
+        .Main__bl_3NKsjgYi[data-v-e9185a48]:hover {
+            right: unset;
+            left: -4px;
+            padding-right: 11px;
+            padding-left: 0px
+        }
+
+        .Main__bl_3NKsjgYi:hover .Main__play-btn-wrap_x5pQSEfb[data-v-e9185a48] {
+            order: 0
+        }
+
+        .Main__bl_3NKsjgYi:hover .Main__play-btn-wrap_x5pQSEfb div[data-v-e9185a48] {
+            padding-left: 5px;
+            margin-left: unset
+        }
+
+        .Main__bl_3NKsjgYi .Main__play-btn-wrap_x5pQSEfb[data-v-e9185a48] {
+            order: 1
+        }
+
+        .Main__tr_3I2WpakI[data-v-e9185a48] {
+            top: 15%;
+            left: calc(100% - 38px);
+            padding-left: 3px
+        }
+
+        .Main__tr_3I2WpakI .Main__play-btn-wrap_x5pQSEfb div[data-v-e9185a48] {
+            margin-right: 5px
+        }
+
+        .Main__tr_3I2WpakI[data-v-e9185a48]:hover {
+            left: unset;
+            right: -4px;
+            padding-right: 5px;
+            padding-left: 11px
+        }
+
+        .Main__tr_3I2WpakI:hover .Main__play-btn-wrap_x5pQSEfb[data-v-e9185a48] {
+            order: 1;
+            margin-left: 10px
+        }
+
+        .Main__tr_3I2WpakI:hover .Main__play-btn-wrap_x5pQSEfb div[data-v-e9185a48] {
+            margin-right: unset
+        }
+
+        .Main__tr_3I2WpakI .Main__play-btn-wrap_x5pQSEfb[data-v-e9185a48] {
+            order: 0
+        }
+
+        .Main__br_1ErROjdI[data-v-e9185a48] {
+            bottom: 15%;
+            left: calc(100% - 38px);
+            padding-left: 3px
+        }
+
+        .Main__br_1ErROjdI .Main__play-btn-wrap_x5pQSEfb div[data-v-e9185a48] {
+            margin-right: 5px
+        }
+
+        .Main__br_1ErROjdI[data-v-e9185a48]:hover {
+            left: unset;
+            right: -4px;
+            padding-right: 5px;
+            padding-left: 11px
+        }
+
+        .Main__br_1ErROjdI:hover .Main__play-btn-wrap_x5pQSEfb[data-v-e9185a48] {
+            order: 1;
+            margin-left: 10px
+        }
+
+        .Main__br_1ErROjdI:hover .Main__play-btn-wrap_x5pQSEfb div[data-v-e9185a48] {
+            margin-right: unset
+        }
+
+        .Main__br_1ErROjdI .Main__play-btn-wrap_x5pQSEfb[data-v-e9185a48] {
+            order: 0
+        }
+    </style>
+    <style type="text/css">
+        .vue-slider-process,
+        .vue-slider-dot {
+            transition: none !important
+        }
+
+        .vue-slider {
+            cursor: pointer
+        }
+
+        .vue-slider-dot-tooltip {
+            display: none !important
+        }
+
+        .vue-slider-dot {
+            background: black !important;
+            border-radius: 50%;
+            box-shadow: none;
+            height: 12px !important;
+            width: 12px !important
+        }
+
+        .vue-slider-dot-handle {
+            background: transparent !important;
+            box-shadow: none
+        }
+
+        .vue-slider-rail {
+            background: #f2f2f2 !important
+        }
+
+        .vue-slider-process {
+            background: black !important
+        }
+
+        .vue-slider {
+            height: 2px !important
+        }
+    </style>
+
+    <title>CBS - Cảnh Báo Sớm</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+</body>
+
+</html>
