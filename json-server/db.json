@@ -136,12 +136,13 @@
       },
       "pending_user": null,
       "tags": [],
-      "__typename": "CminsideEmployee"
+      "__typename": "CminsideEmployee",
+      "updateAt": 1641548208379
     },
     {
       "id": 1952,
       "name": "Lê Minh Hồ",
-      "dob": "1999-01-01",
+      "dob": "2000-01-01",
       "code": "NV000001952",
       "email": "17120052@st.hcmuaf.edu.vn",
       "phone": "0982439495",
@@ -183,7 +184,8 @@
       },
       "pending_user": null,
       "tags": [],
-      "__typename": "CminsideEmployee"
+      "__typename": "CminsideEmployee",
+      "updateAt": 1641548169729
     },
     {
       "id": 1892,
@@ -6520,6 +6522,14 @@
         }
       ],
       "id": 364
+    },
+    {
+      "code": "Test",
+      "name": "Test",
+      "description": "tTesst",
+      "parent_id": 364,
+      "positions": [],
+      "id": 365
     }
   ],
   "roles": [
@@ -12416,6 +12426,220 @@
       },
       "positions": [],
       "__typename": "CmlinkUserRole"
+    },
+    {
+      "name": "Admin",
+      "permissions": {
+        "economic_contract": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "contract": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "alarm": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "device": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "accessory": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "sensor": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "category": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "kpi": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "todolist": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "request": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "type": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "employee": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "department": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "position": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "inventory": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "userrole": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "form": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "customer": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "user": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "company_function": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "tag": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "pipeline": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        },
+        "product": {
+          "view": true,
+          "create": true,
+          "update": true,
+          "delete": true,
+          "view_all": true,
+          "update_all": true,
+          "delete_all": true
+        }
+      },
+      "positions": [],
+      "id": 199
     }
   ],
   "tasks": [
@@ -18701,6 +18925,1561 @@
       ],
       "historyTask": [],
       "id": 102
+    }
+  ],
+  "requests": [
+    {
+      "id": 824,
+      "code": "REQ0000824",
+      "is_owner": false,
+      "req_type_id": 110,
+      "display_name": "REQ0000824 (824)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 131,
+        "name": "Duyệt phép vắng",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-14T02:07:38+00:00",
+      "updated_at": "2020-10-14T02:08:00+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "ĐI chơi",
+      "can_edit": false,
+      "data": "{\"parent\": {\"514\": \"Vũng Tàu\", \"515\": \"0123456789\", \"516\": [187]}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 110,
+        "name": "Xin phép vắng tại KTX",
+        "statuses": [
+          {
+            "id": 131,
+            "name": "Duyệt phép vắng",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 514,
+            "title": "Nơi đến",
+            "control": 1,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 515,
+            "title": "Số điện thoại của bạn",
+            "control": 1,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 516,
+            "title": "Lời cam kết",
+            "control": 5,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1838,
+        "name": "Nguyễn Võ Công Toàn",
+        "avatar": "https://i.imgur.com/bFbOCtQ.jpg",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 823,
+      "code": "REQ0000823",
+      "is_owner": false,
+      "req_type_id": 110,
+      "display_name": "REQ0000823 (823)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 131,
+        "name": "Duyệt phép vắng",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-14T02:03:55+00:00",
+      "updated_at": "2020-10-14T02:05:04+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Đến nhà bạn",
+      "can_edit": false,
+      "data": "{\"parent\": {\"514\": \"Bình THạnh\", \"515\": \"0123456789\", \"516\": [187]}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 110,
+        "name": "Xin phép vắng tại KTX",
+        "statuses": [
+          {
+            "id": 131,
+            "name": "Duyệt phép vắng",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 514,
+            "title": "Nơi đến",
+            "control": 1,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 515,
+            "title": "Số điện thoại của bạn",
+            "control": 1,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 516,
+            "title": "Lời cam kết",
+            "control": 5,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1838,
+        "name": "Nguyễn Võ Công Toàn",
+        "avatar": "https://i.imgur.com/bFbOCtQ.jpg",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 822,
+      "code": "REQ0000822",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000822 (822)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-13T12:59:37+00:00",
+      "updated_at": "2020-10-14T02:49:06+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Đăng kí sửa chữa",
+      "can_edit": false,
+      "data": "{\"parent\": {\"511\": \"Quạt\", \"512\": \"Không quay\", \"513\": \"\"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 511,
+            "title": "Tên Thiết bị",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1838,
+        "name": "Nguyễn Võ Công Toàn",
+        "avatar": "https://i.imgur.com/bFbOCtQ.jpg",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 867,
+      "code": "REQ0000867",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000867 (867)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-22T04:20:22+00:00",
+      "updated_at": "2020-10-24T03:35:48+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Sửa rèm của, cửa nhà tắm, ổ khóa tủ đồ",
+      "can_edit": false,
+      "data": "{\"parent\": {\"512\": \"Rèm: thanh ngang treo rèm bị bung một bên (bên phải) Cửa nhà tắm: phòng có bồn cầu không đóng được cửa (phòng giữa) Ổ khóa tủ đồ: bị hổng (tủ của hai bạn Cường, Nam\", \"513\": \"016\", \"517\": \"Không có\"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1886,
+        "name": "Lê Văn Nhật Tuấn",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5fa/11b/17d/thumb_2880_300_300_0_0_auto.png",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 866,
+      "code": "REQ0000866",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000866 (866)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-21T23:35:00+00:00",
+      "updated_at": "2020-10-22T01:43:49+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Mong muốn xem xét và sửa chữa giúp chúng em",
+      "can_edit": false,
+      "data": "{\"parent\": {\"512\": \"- Bồn rửa mặt bên trái nước thoát rất chậm. - Bồn rửa mặt bên phải nước rỉ ở phía dưới.\", \"513\": \"P209\", \"517\": \"Em xin cảm ơn\"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1884,
+        "name": "Nguyễn Hoà Kim Thái",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/604/1b6/d4e/thumb_3382_300_300_0_0_auto.png",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 865,
+      "code": "REQ0000865",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000865 (865)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-21T14:55:26+00:00",
+      "updated_at": "2020-10-22T01:38:58+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Sửa vòi nước vệ sinh",
+      "can_edit": false,
+      "data": "{\"parent\": {\"512\": \"Nhỏ nước\", \"513\": \"101\", \"517\": \"Nhà tắm lớn\"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1843,
+        "name": "Phạm Thị Thu Hằng",
+        "avatar": "https://i.imgur.com/bFbOCtQ.jpg",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 864,
+      "code": "REQ0000864",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000864 (864)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-21T14:53:58+00:00",
+      "updated_at": "2020-10-23T04:58:43+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Sửa bản lề cửa phòng tắm nhỏ",
+      "can_edit": false,
+      "data": "{\"parent\": {\"512\": \"Bản lề bị gãy\", \"513\": \"101\", \"517\": \"Nhà tắm nhỏ\"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1843,
+        "name": "Phạm Thị Thu Hằng",
+        "avatar": "https://i.imgur.com/bFbOCtQ.jpg",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 863,
+      "code": "REQ0000863",
+      "is_owner": false,
+      "req_type_id": 112,
+      "display_name": "REQ0000863 (863)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 136,
+        "name": "Kế toán",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-21T11:23:18+00:00",
+      "updated_at": "2020-10-21T11:24:54+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Mua micro phục vụ văn nghệ",
+      "can_edit": false,
+      "data": "{\"parent\": {\"530\": [{\"531\": \"Cặp micro \", \"532\": 1, \"533\": 3000000, \"536\": 3000000}, {\"531\": \"Chân mic\", \"532\": 1, \"533\": 100000, \"536\": 100000}], \"535\": 3100000}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 112,
+        "name": "Đề xuất tạm ứng",
+        "statuses": [
+          {
+            "id": 135,
+            "name": "Trưởng bộ phận",
+            "status": 1,
+            "is_active": false,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          },
+          {
+            "id": 136,
+            "name": "Kế toán",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 530,
+            "title": "Bảng chi tiết",
+            "control": 11,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 535,
+            "title": "Tổng cộng",
+            "control": 7,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1836,
+        "name": "Nguyễn Minh Dũng",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5f9/cee/937/thumb_2858_300_300_0_0_auto.jpg",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 862,
+      "code": "REQ0000862",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000862 (862)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-21T05:01:55+00:00",
+      "updated_at": "2020-10-22T01:25:05+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Sửa ổ khóa phòng tắm lớn",
+      "can_edit": false,
+      "data": "{\"parent\": {\"512\": \"Bị hư\", \"513\": \"301\", \"517\": \"Nó bị rớt ra ngoài luôn á anh, giờ chỉ có thay mới thôi á. Có gì anh lên xem giúp phòng em.\"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1862,
+        "name": "Vương Ban",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5ff/c15/8e8/thumb_3175_300_300_0_0_auto.png",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 859,
+      "code": "REQ0000859",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000859 (859)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-21T03:14:55+00:00",
+      "updated_at": "2020-10-23T04:54:06+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Sửa chữa đèn",
+      "can_edit": false,
+      "data": "{\"parent\": {\"512\": \"Đèn bị chớp chớp\", \"513\": \"114\", \"517\": \"Nhà tắm nhỏ\"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1850,
+        "name": "Nguyễn Như Tâm",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5fa/11c/1fe/thumb_2884_300_300_0_0_auto.png",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 857,
+      "code": "REQ0000857",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000857 (857)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-21T00:56:02+00:00",
+      "updated_at": "2020-10-23T04:53:11+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Cây quạt treo trên tường",
+      "can_edit": false,
+      "data": "{\"parent\": {\"512\": \"Mở quạt thì quạt quay chậm rì \", \"513\": \"207\", \"517\": \"Quạt nằm ở vị trí thứ 3 từ canh Cửa chính nhìn vào \"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1883,
+        "name": "Tăng Thị Thái",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5fb/64b/605/thumb_2931_300_300_0_0_auto.png",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 856,
+      "code": "REQ0000856",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000856 (856)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-20T16:07:00+00:00",
+      "updated_at": "2020-10-23T04:52:11+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Sửa quạt",
+      "can_edit": false,
+      "data": "{\"parent\": {\"512\": \"Mở nhưng không chạy\", \"513\": \"104\", \"517\": \"Quạt ở giữa\"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1876,
+        "name": "Phạm Dương Huyền Nga",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5fa/0d6/61b/thumb_2860_300_300_0_0_auto.png",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 854,
+      "code": "REQ0000854",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000854 (854)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-20T13:08:15+00:00",
+      "updated_at": "2020-10-23T04:51:06+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Sửa đèn led",
+      "can_edit": false,
+      "data": "{\"parent\": {\"512\": \"Mở không sáng \", \"513\": \"104\", \"517\": \"Đèn led ở khu vực lavabo\"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1876,
+        "name": "Phạm Dương Huyền Nga",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5fa/0d6/61b/thumb_2860_300_300_0_0_auto.png",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 852,
+      "code": "REQ0000852",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000852 (852)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-20T05:32:01+00:00",
+      "updated_at": "2020-10-23T04:49:43+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Sửa chữa quạt trần",
+      "can_edit": false,
+      "data": "{\"parent\": {\"512\": \"1 cái quạt kêu khi hoạt động 1 cái quạt không chạy được, đôi lúc chạy được nhưng rất yếu.\", \"513\": \"314\", \"517\": \"1 cái nằm phía gần cửa ra vào 1 cái ỏ giữa\"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1899,
+        "name": "Hồ Xuân Vũ Quốc Huy",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/606/728/d8b/thumb_3445_300_300_0_0_auto.png",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 851,
+      "code": "REQ0000851",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000851 (851)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-20T05:26:56+00:00",
+      "updated_at": "2020-10-23T04:49:37+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Sửa chữa ổ khoá cửa ở nhà vệ sinh",
+      "can_edit": false,
+      "data": "{\"parent\": {\"512\": \"Khoá cửa bị hư, không thể chốt khóa được\", \"513\": \"314\", \"517\": \".\"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1899,
+        "name": "Hồ Xuân Vũ Quốc Huy",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/606/728/d8b/thumb_3445_300_300_0_0_auto.png",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 850,
+      "code": "REQ0000850",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000850 (850)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-19T14:31:37+00:00",
+      "updated_at": "2020-10-23T04:45:27+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Sửa đèn",
+      "can_edit": false,
+      "data": "{\"parent\": {\"512\": \"Bị nhấp nháy\", \"513\": \"115\", \"517\": \"Đèn trong nhà vệ sinh\"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1851,
+        "name": "Lâm Lê Thanh Tuyền",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5ff/da4/685/thumb_3240_300_300_0_0_auto.png",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 849,
+      "code": "REQ0000849",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000849 (849)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-19T14:11:01+00:00",
+      "updated_at": "2020-10-22T01:01:04+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Đồng hồ treo tường, quạt phòng tắm,velobô",
+      "can_edit": false,
+      "data": "{\"parent\": {\"512\": \"Đồng hồ không hoạt động được,quạt trong phòng tắm kéo dây nhưng không quay,levobô bị hư nắp đậy,nắp đậy không kín được, \", \"513\": \"207\", \"517\": \"Đồng hồ treo trên tường ngay Cửa chính,quạt phòng tắm phòng ở vị trí giữa,velobô ngay chỗ bồn rửa mặt nằm tay trái(hiện tại phòng đã lấy nắp Lên vì đậy không dính).\"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1883,
+        "name": "Tăng Thị Thái",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5fb/64b/605/thumb_2931_300_300_0_0_auto.png",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 848,
+      "code": "REQ0000848",
+      "is_owner": false,
+      "req_type_id": 112,
+      "display_name": "REQ0000848 (848)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 136,
+        "name": "Kế toán",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-19T08:54:21+00:00",
+      "updated_at": "2020-10-19T08:55:21+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Test dữ liệu",
+      "can_edit": false,
+      "data": "{\"parent\": {\"530\": [{\"531\": \"Quạt\", \"532\": 5, \"533\": 50000, \"536\": 250000}, {\"531\": \"Đèn \", \"532\": 10, \"533\": 80000, \"536\": 800000}, {\"531\": \"Tụ\", \"532\": 10, \"533\": 5000, \"536\": 50000}], \"535\": 1100000}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 112,
+        "name": "Đề xuất tạm ứng",
+        "statuses": [
+          {
+            "id": 135,
+            "name": "Trưởng bộ phận",
+            "status": 1,
+            "is_active": false,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          },
+          {
+            "id": 136,
+            "name": "Kế toán",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 530,
+            "title": "Bảng chi tiết",
+            "control": 11,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 535,
+            "title": "Tổng cộng",
+            "control": 7,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1836,
+        "name": "Nguyễn Minh Dũng",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5f9/cee/937/thumb_2858_300_300_0_0_auto.jpg",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 847,
+      "code": "REQ0000847",
+      "is_owner": false,
+      "req_type_id": 112,
+      "display_name": "REQ0000847 (847)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 136,
+        "name": "Kế toán",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-19T08:08:30+00:00",
+      "updated_at": "2020-10-19T08:10:29+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Test",
+      "can_edit": false,
+      "data": "{\"parent\": {\"530\": [{\"531\": \"66\", \"532\": 2, \"533\": 40, \"536\": 80}, {\"531\": \"344\", \"532\": 6, \"533\": 70, \"536\": 420}], \"535\": 500}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 112,
+        "name": "Đề xuất tạm ứng",
+        "statuses": [
+          {
+            "id": 135,
+            "name": "Trưởng bộ phận",
+            "status": 1,
+            "is_active": false,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          },
+          {
+            "id": 136,
+            "name": "Kế toán",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 530,
+            "title": "Bảng chi tiết",
+            "control": 11,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 535,
+            "title": "Tổng cộng",
+            "control": 7,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1836,
+        "name": "Nguyễn Minh Dũng",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5f9/cee/937/thumb_2858_300_300_0_0_auto.jpg",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 846,
+      "code": "REQ0000846",
+      "is_owner": false,
+      "req_type_id": 112,
+      "display_name": "REQ0000846 (846)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 135,
+        "name": "Trưởng bộ phận",
+        "status": 2,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-19T07:56:19+00:00",
+      "updated_at": "2020-10-19T07:57:27+00:00",
+      "is_done": false,
+      "is_cancel": false,
+      "is_reject": true,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "5656",
+      "can_edit": false,
+      "data": "{\"parent\": {\"530\": [{\"531\": \"66\", \"532\": 2, \"533\": 40, \"536\": 80}, {\"531\": \"344\", \"532\": 6, \"533\": 70, \"536\": 420}], \"535\": 500}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 112,
+        "name": "Đề xuất tạm ứng",
+        "statuses": [
+          {
+            "id": 135,
+            "name": "Trưởng bộ phận",
+            "status": 2,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          },
+          {
+            "id": 136,
+            "name": "Kế toán",
+            "status": 0,
+            "is_active": false,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 530,
+            "title": "Bảng chi tiết",
+            "control": 11,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 535,
+            "title": "Tổng cộng",
+            "control": 7,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1836,
+        "name": "Nguyễn Minh Dũng",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5f9/cee/937/thumb_2858_300_300_0_0_auto.jpg",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 844,
+      "code": "REQ0000844",
+      "is_owner": false,
+      "req_type_id": 112,
+      "display_name": "REQ0000844 (844)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 135,
+        "name": "Trưởng bộ phận",
+        "status": 2,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-19T06:42:05+00:00",
+      "updated_at": "2020-10-19T06:43:08+00:00",
+      "is_done": false,
+      "is_cancel": false,
+      "is_reject": true,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "test",
+      "can_edit": false,
+      "data": "{\"parent\": {\"530\": [{\"531\": \"Quạt\", \"532\": 1, \"533\": 100000}], \"535\": 283556}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 112,
+        "name": "Đề xuất tạm ứng",
+        "statuses": [
+          {
+            "id": 135,
+            "name": "Trưởng bộ phận",
+            "status": 2,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          },
+          {
+            "id": 136,
+            "name": "Kế toán",
+            "status": 0,
+            "is_active": false,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 530,
+            "title": "Bảng chi tiết",
+            "control": 11,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 535,
+            "title": "Tổng cộng",
+            "control": 7,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1836,
+        "name": "Nguyễn Minh Dũng",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5f9/cee/937/thumb_2858_300_300_0_0_auto.jpg",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 841,
+      "code": "REQ0000841",
+      "is_owner": false,
+      "req_type_id": 108,
+      "display_name": "REQ0000841 (841)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 130,
+        "name": "Duyệt đề xuất",
+        "status": 1,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-18T11:16:49+00:00",
+      "updated_at": "2020-10-18T11:40:09+00:00",
+      "is_done": true,
+      "is_cancel": false,
+      "is_reject": false,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Thấm trần, cửa lớn ra vào bị kẹt",
+      "can_edit": false,
+      "data": "{\"parent\": {\"512\": \"Khá \", \"513\": \"201\", \"517\": \"1. Thấm trần nhà vệ sinh đôi chỗ móc treo  \"}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 108,
+        "name": "Đăng kí sửa chữa",
+        "statuses": [
+          {
+            "id": 130,
+            "name": "Duyệt đề xuất",
+            "status": 1,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 512,
+            "title": "Tình trạng hư hỏng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 513,
+            "title": "Số phòng",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          },
+          {
+            "id": 517,
+            "title": "Ghi chú",
+            "control": 2,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1853,
+        "name": "Phan Thị Thảo Quyên",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5ff/c15/87d/thumb_3174_300_300_0_0_auto.jpg",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
+    },
+    {
+      "id": 839,
+      "code": "REQ0000839",
+      "is_owner": false,
+      "req_type_id": 111,
+      "display_name": "REQ0000839 (839)",
+      "user_option": null,
+      "reqstatus": {
+        "id": 132,
+        "name": "Trưởng bộ phận",
+        "status": 2,
+        "pending_input": false,
+        "__typename": "CmrequestRequestStatus"
+      },
+      "created_at": "2020-10-16T10:13:32+00:00",
+      "updated_at": "2020-10-16T10:14:59+00:00",
+      "is_done": false,
+      "is_cancel": false,
+      "is_reject": true,
+      "can_update": false,
+      "can_cancel": false,
+      "request_reason": "Test",
+      "can_edit": false,
+      "data": "{\"parent\": {\"521\": [{\"523\": \"Quạt\", \"524\": 5, \"525\": 8000, \"527\": 275100}, {\"523\": \"Tụ\", \"524\": 5, \"525\": 5000, \"527\": 275100}, {\"523\": \"Đèn\", \"524\": 2, \"525\": 200000, \"527\": 275100}]}, \"co_employees\": []}",
+      "reqtype": {
+        "id": 111,
+        "name": "Đề xuất tạm ứng",
+        "statuses": [
+          {
+            "id": 132,
+            "name": "Trưởng bộ phận",
+            "status": 2,
+            "is_active": true,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          },
+          {
+            "id": 133,
+            "name": "Kế toán",
+            "status": 0,
+            "is_active": false,
+            "color": null,
+            "__typename": "CmrequestRequestStatus"
+          }
+        ],
+        "controls": [
+          {
+            "id": 521,
+            "title": "Bảng 1",
+            "control": 11,
+            "__typename": "CmrequestForm"
+          }
+        ],
+        "__typename": "CmrequestRequestType"
+      },
+      "requester": {
+        "id": 1836,
+        "name": "Nguyễn Minh Dũng",
+        "avatar": "https://canhbaosom.com/storage/app/uploads/public/5f9/cee/937/thumb_2858_300_300_0_0_auto.jpg",
+        "__typename": "CminsideEmployee"
+      },
+      "__typename": "CmrequestRequest"
     }
   ]
 }
