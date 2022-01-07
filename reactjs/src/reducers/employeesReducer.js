@@ -1,25 +1,42 @@
 // Reducer quản lý nhân viên
-
-const employeesReducer = (state = [], action) => {
+const initialState = {
+    data: [],
+    pagination: {
+        _page: 1,
+        _limit: 10,
+        _totalItem: 0,
+        q: ""
+    }
+}
+const employeesReducer = (state = initialState, action) => {
     switch (action.type) {
         case "FETCH_EMPLOYEES":
             state = action.payload
-            return [...state]
+            return {...state}
         case "ADD_EMPLOYEE":
-            state.push(action.payload)
-            return [...state]
+            return {
+                ...state,
+                data: [...state.data, action.payload]
+            }
         case "UPDATE_EMPLOYEE":
-            state.forEach((employee, index, array) => {
+            const updateEmployees = state.data
+            updateEmployees.forEach((employee, index, array) => {
                 if (employee.id === action.payload.id) {
                     array[index] = action.payload
                 }
             })
-            return [...state]
+            return {
+                ...state,
+                data: [...updateEmployees]
+            }
         case "DELETE_EMPLOYEE":
-            state = state.filter(employee => employee.id !== action.payload)
-            return [...state]
+            const deleteEmployees = state.data.filter(employee => employee.id !== action.payload)
+            return {
+                ...state,
+                data: [...deleteEmployees]
+            }
         default:
-            return [...state]
+            return {...state}
     }
 }
 

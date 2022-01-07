@@ -6,24 +6,21 @@ import AppPagination from '../../components/AppPagination'
 import EmployeeItem from './EmployeeItem'
 import AddEmployee from './SubmitEmployee/AddEmployee'
 import ButtonShowDepartments from './departments/ButtonShowDepartments'
-import employeesApi from '../../api/employeesApi'
 import AppSearch from '../../components/AppSearch'
 import ButtonShowRoles from './roles/ButtonShowRoles'
 import { AiOutlineSortAscending, AiOutlineSortDescending } from 'react-icons/ai'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const queryString = require('query-string')
 
 const Employees = () => {
-    const employees = useSelector(state => state.employees)
+    const employees = useSelector(state => state.employees.data)
+    const pagination = useSelector(state => state.employees.pagination)
+
     const dispatch = useDispatch()
     const location = useLocation()
     const navigation = useNavigate()
-    const [pagination, setPagination] = useState({
-        _page: 1,
-        _limit: 10,
-        _totalRows: 0
-    })
+
     const [filters, setFilters] = useState({
         _page: 1,
         _limit: 10,
@@ -35,11 +32,6 @@ const Employees = () => {
     useEffect(() => {
         if (location.search.length > 0) {
             const params = queryString.parse(location.search)
-            setPagination({
-                ...pagination,
-                _page: params._page,
-                _limit: params._limit
-            })
             setFilters({
                 ...filters,
                 ...params
@@ -48,14 +40,7 @@ const Employees = () => {
     }, [])
     useEffect(() => {
         document.title = "Nhân viên - Cảnh Báo Sớm"
-        employeesApi.getAll({ q: filters.q })
-            .then((response) => {
-                setPagination({
-                    ...pagination,
-                    _totalRows: response.data.length
-                })
-            })
-    }, [filters.q])
+    }, [])
     useEffect(() => {
         const requestUrl = location.pathname + "?" + queryString.stringify(filters)
         navigation(requestUrl)
@@ -67,20 +52,12 @@ const Employees = () => {
             ...filters,
             _page: newPage
         })
-        setPagination({
-            ...pagination,
-            _page: newPage
-        })
     }
     const handleSearchTerm = (searchTerm) => {
         setFilters({
             ...filters,
             _page: 1,
             q: searchTerm
-        })
-        setPagination({
-            ...pagination,
-            _page: 1
         })
     }
     const handleSort = (sortBy) => {

@@ -3,7 +3,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 const DepartmentDetail = ({ department }) => {
-    const departments = useSelector(state => state.departments)
+    const departments = useSelector(state => state.departments.data)
     let parentName = ""
     departments.forEach(dp => {
         if (dp.id === department.parent_id) {

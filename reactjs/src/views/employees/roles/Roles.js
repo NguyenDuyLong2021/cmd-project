@@ -3,21 +3,16 @@ import React, { useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from '../../../actions/rolesAction'
-import rolesApi from '../../../api/rolesApi'
 import AppPagination from '../../../components/AppPagination'
 import AppSearch from '../../../components/AppSearch'
 import RoleItem from './RoleItem'
 import AddRole from './SubmitRole/AddRole'
 
 const Roles = ({ visible, setVisible }) => {
-    const roles = useSelector(state => state.roles)
+    const roles = useSelector(state => state.roles.data)
+    const pagination = useSelector(state => state.roles.pagination)
     const dispatch = useDispatch()
 
-    const [pagination, setPagination] = useState({
-        _page: 1,
-        _limit: 10,
-        _totalRows: 0
-    })
     const [filters, setFilters] = useState({
         _page: 1,
         _litmit: 10,
@@ -26,13 +21,6 @@ const Roles = ({ visible, setVisible }) => {
 
     useEffect(() => {
         document.title = "Vai trò - Cảnh Báo Sớm"
-        rolesApi.getAll()
-            .then((response) => {
-                setPagination({
-                    ...pagination,
-                    _totalRows: response.data.length
-                })
-            })
     }, [])
     useEffect(() => {
         dispatch(actions.fetchRolesRequest(filters))
@@ -43,12 +31,8 @@ const Roles = ({ visible, setVisible }) => {
             ...filters,
             _page: newPage
         })
-        setPagination({
-            ...pagination,
-            _page: newPage
-        })
     }
-    const handleSearchTerm = (searchTerm) => {
+    const handleSearchTerm = searchTerm => {
         setFilters({
             ...filters,
             _page: 1,

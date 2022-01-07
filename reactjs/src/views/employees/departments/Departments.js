@@ -8,7 +8,7 @@ import DepartmentItem from './DepartmentItem'
 import AddDepartment from './SubmitDepartment/AddDepartment'
 
 const Departments = ({ visible, setVisible }) => {
-    const departments = useSelector(state => state.departments)
+    const departments = useSelector(state => state.departments.data)
     const dispatch = useDispatch()
 
     const [filters, setFilters] = useState({

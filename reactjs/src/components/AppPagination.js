@@ -4,8 +4,8 @@ import { CPagination, CPaginationItem } from '@coreui/react';
 import React from 'react'
 
 const AppPagination = ({ pagination, onPageChange }) => {
-    const { _page, _limit, _totalRows } = pagination;
-    const totalPage = Math.ceil(_totalRows / _limit);
+    const { _page, _limit, _totalItem } = pagination;
+    const totalPage = Math.ceil(_totalItem / _limit);
 
     const listPageNumber = () => {
         const listPage = [];
@@ -71,31 +71,53 @@ const AppPagination = ({ pagination, onPageChange }) => {
         onPageChange(newPage);
     }
     return (
+        <>
+        
         <CPagination className="pt-3" align="center">
-            <CPaginationItem disabled={_page <= 1} onClick={() => handlePageChange(_page - 1)}>
+            <CPaginationItem
+                style={{ cursor: "pointer" }}
+                disabled={_page <= 1}
+                onClick={() => handlePageChange(_page - 1)}
+            >
                 <CIcon icon={cilChevronLeft}></CIcon>
             </CPaginationItem>
             {listPageNumber().map((page, index) => {
                 if (page === _page) {
                     return (
-                        <CPaginationItem key={index} active>{page}</CPaginationItem>
+                        <CPaginationItem
+                            key={index}
+                            style={{ cursor: "pointer" }}
+                            active
+                        >{page}</CPaginationItem>
                     )
                 }
                 else if (page === "...") {
                     return (
-                        <CPaginationItem key={index}>{page}</CPaginationItem>
+                        <CPaginationItem
+                            key={index}
+                            style={{ cursor: "pointer" }}
+                        >{page}</CPaginationItem>
                     )
                 }
                 else {
                     return (
-                        <CPaginationItem key={index} onClick={() => handlePageChange(page)}>{page}</CPaginationItem>
+                        <CPaginationItem
+                            key={index}
+                            style={{ cursor: "pointer" }}
+                            onClick={() => handlePageChange(page)}
+                        >{page}</CPaginationItem>
                     )
                 }
             })}
-            <CPaginationItem disabled={_page >= totalPage} onClick={() => handlePageChange(_page + 1)}>
+            <CPaginationItem
+                style={{ cursor: "pointer" }}
+                disabled={_page >= totalPage}
+                onClick={() => handlePageChange(_page + 1)}
+            >
                 <CIcon icon={cilChevronRight}></CIcon>
             </CPaginationItem>
         </CPagination>
+        </>
     )
 }
 

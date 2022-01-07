@@ -1,7 +1,7 @@
-import { CFormInput } from '@coreui/react'
+import { CFormInput, CInputGroup, CInputGroupText } from '@coreui/react'
 import React, { useRef, useState } from 'react'
 
-const AppSearch = ({ value, onSearch }) => {
+const AppSearch = ({ value = "", onSearch }) => {
     const [searchTerm, setSearchTerm] = useState(value)
     const typingTimeoutRef = useRef(null)
     const handleSearchTerm = (e) => {
@@ -11,10 +11,16 @@ const AppSearch = ({ value, onSearch }) => {
         }
         typingTimeoutRef.current = setTimeout(() => {
             onSearch(e.target.value)
-        }, 1000)
+        }, 250)
     }
     return (
-        <CFormInput ref={typingTimeoutRef} type="text" placeholder="Tìm kiếm..." value={searchTerm} onChange={handleSearchTerm} />
+        <CInputGroup>
+            <CInputGroupText component="button" onClick={() => {
+                onSearch("")
+                setSearchTerm("")
+            }}>x</CInputGroupText>
+        <CFormInput ref={typingTimeoutRef} type="text" placeholder="Tìm kiếm..." value={searchTerm || value} onChange={handleSearchTerm} />
+        </CInputGroup>
     )
 }
 

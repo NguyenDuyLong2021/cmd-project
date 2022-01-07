@@ -8,7 +8,7 @@ import useOnClickOutside from "../../../../customHooks/useOnClickOutside"
 import SelectDepartment from "../../SubmitEmployee/SelectDepartment"
 
 const FormSubmitDepartment = ({ visible, setVisible, department = null }) => {
-    const departments = useSelector(state => state.departments)
+    const departments = useSelector(state => state.departments.data)
     const dispatch = useDispatch()
 
     /* Quản lý các state */

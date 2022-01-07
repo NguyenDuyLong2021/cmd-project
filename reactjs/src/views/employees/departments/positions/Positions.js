@@ -8,7 +8,7 @@ import { fetchRolesRequest } from '../../../../actions/rolesAction'
 import AppToaster from '../../../../components/AppToaster'
 
 const Positions = ({ visible, setVisible, department }) => {
-    const roles = useSelector(state => state.roles)
+    const roles = useSelector(state => state.roles.data)
     const dispatch = useDispatch()
 
     const [info, setInfo] = useState([])

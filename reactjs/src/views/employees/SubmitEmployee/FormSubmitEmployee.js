@@ -31,7 +31,7 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
             password: "",
         }
     })
-    const departments = useSelector(state => state.departments)
+    const departments = useSelector(state => state.departments.data)
     const dispatch = useDispatch()
 
     const [visibleDepartment, setVisibleDepartment] = useState(false) // State quản lý hiển thị danh sách phòng ban để người dùng chọn

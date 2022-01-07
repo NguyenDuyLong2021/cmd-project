@@ -1,25 +1,41 @@
 // Reducer quản lý vai trò
-
-const rolesReducer = (state = [], action) => {
+const initialState = {
+    data: [],
+    pagination: {
+        _page: 1,
+        _limit: 10,
+        _totalItem: 0
+    }
+}
+const rolesReducer = (state = initialState, action) => {
     switch (action.type) {
         case "FETCH_ROLES":
             state = action.payload
-            return [...state]
+            return {...state}
         case "ADD_ROLE":
-            state.push(action.payload)
-            return [...state]
+            return {
+                ...state,
+                data: [...state.data, action.payload]
+            }
         case "UPDATE_ROLE":
-            state.forEach((role, index, array) => {
+            const updateRoles = state.data
+            updateRoles.forEach((role, index, array) => {
                 if (role.id === action.payload.id) {
                     array[index] = action.payload
                 }
             })
-            return [...state]
+            return {
+                ...state,
+                data: [...updateRoles]
+            }
         case "DELETE_ROLE":
-            state = state.filter(role => role.id !== action.payload)
-            return [...state]
+            const deleteRoles = state.data.filter(role => role.id !== action.payload)
+            return {
+                ...state,
+                data: [...deleteRoles]
+            }
         default:
-            return [...state]
+            return {...state}
     }
 }
 

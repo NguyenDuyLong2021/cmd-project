@@ -1,10 +1,10 @@
 import employeesApi from '../api/employeesApi'
 
 // Nạp thông tin nhân viên
-export const fetchEmployees = (employees) => {
+export const fetchEmployees = (data) => {
     return {
         type: "FETCH_EMPLOYEES",
-        payload: employees
+        payload: data
     }
 }
 export const fetchEmployeesRequest = (params) => {

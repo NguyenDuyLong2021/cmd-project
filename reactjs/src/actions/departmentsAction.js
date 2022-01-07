@@ -1,10 +1,10 @@
 import departmentsApi from "../api/departmentsApi"
 
 // Nạp thông tin phòng ban
-export const fetchDepartments = (departments) => {
+export const fetchDepartments = (data) => {
     return {
         type: "FETCH_DEPARTMENTS",
-        payload: departments
+        payload: data
     }
 }
 export const fetchDepartmentsRequest = (params) => {
@@ -18,7 +18,7 @@ export const fetchDepartmentsRequest = (params) => {
 }
 //
 
-// Thêm nhân viên
+// Thêm phòng ban
 export const addDepartment = (department) => {
     return {
         type: "ADD_DEPARTMENT",
@@ -36,7 +36,7 @@ export const addDepartmentRequest = (department) => {
 }
 //
 
-// Chỉnh sửa nhân viên
+// Chỉnh sửa phòng ban
 export const updateDepartment = (department) => {
     return {
         type: "UPDATE_DEPARTMENT",
@@ -54,7 +54,7 @@ export const updateDepartmentRequest = (department) => {
 }
 //
 
-// Xóa nhân viên
+// Xóa phòng ban
 export const deleteDepartment = (id) => {
     return {
         type: "DELETE_DEPARTMENT",

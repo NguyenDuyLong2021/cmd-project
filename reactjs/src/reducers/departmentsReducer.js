@@ -1,25 +1,41 @@
 // Reducer quản lý phòng ban
-
-const departmentsReducer = (state = [], action) => {
+const initialState = {
+    data: [],
+    pagination: {
+        _page: 0,
+        _limit: 0,
+        _totalItem: 0
+    }
+}
+const departmentsReducer = (state = initialState, action) => {
     switch (action.type) {
         case "FETCH_DEPARTMENTS":
             state = action.payload
-            return [...state]
+            return {...state}
         case "ADD_DEPARTMENT":
-            state.push(action.payload)
-            return [...state]
+            return {
+                ...state,
+                data: [...state.data, action.payload]
+            }
         case "UPDATE_DEPARTMENT":
-            state.forEach((department, index, array) => {
+            const updateDepartments = state.data
+            updateDepartments.forEach((department, index, array) => {
                 if (department.id === action.payload.id) {
                     array[index] = action.payload
                 }
             })
-            return [...state]
+            return {
+                ...state,
+                data: [...updateDepartments]
+            }
         case "DELETE_DEPARTMENT":
-            state = state.filter(department => department.id !== action.payload)
-            return [...state]
+            const deleteDepartments = state.data.filter(department => department.id !== action.payload)
+            return {
+                ...state,
+                data: [...deleteDepartments]
+            }
         default:
-            return [...state]
+            return {...state}
     }
 }
 
