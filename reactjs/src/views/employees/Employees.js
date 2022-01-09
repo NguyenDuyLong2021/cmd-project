@@ -23,7 +23,6 @@ const Employees = () => {
 
     const [filters, setFilters] = useState({
         _page: 1,
-        _limit: 10,
         q: "",
         _sort: null,
         _order: null
