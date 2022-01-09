@@ -500,7 +500,7 @@ class FormCreateTask extends Component {
     }
     render() {
         return (
-            <div data-v-763f102e className="el-dialog__wrapper custom-dialog todo-list-form-sidebar" style={{ zIndex: 2055 }}>
+            <div suppressContentEditableWarning={true} data-v-763f102e className="el-dialog__wrapper custom-dialog todo-list-form-sidebar" style={{ zIndex: 2055 }}>
                 <div role="dialog" aria-modal="true" aria-label="Tạo mới công việc " className="el-dialog" style={{ marginTop: '15vh' }}>
                     <div className="el-dialog__header">
                         <span className="el-dialog__title">Tạo mới công việc </span>

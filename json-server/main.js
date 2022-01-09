@@ -36,7 +36,7 @@ router.render = (req, res) => {
     const header = res.getHeaders();
     const totalCountHeader = header["x-total-count"]
     const queryParams = queryString.parse(req._parsedUrl.query);
-    console.log(res)
+    // console.log(res)
     if (req.method === "GET" && totalCountHeader) {
         const result = {
             data: res.locals.data,

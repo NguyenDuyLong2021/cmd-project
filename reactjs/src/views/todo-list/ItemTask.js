@@ -78,7 +78,7 @@ class ItemTask extends Component {
     }
     render() {
         return (
-            <div>
+            <div key={this.props.key}>
                 <div onClick={this.showDetailTask} id="todo-parent-loading106396" className="vs-con-loading__container my-4 todo-parent-container todo-tree-hide-multi-level">
                     <div className="vx-card">
                         <div className="vx-card__header">
@@ -86,7 +86,7 @@ class ItemTask extends Component {
                                 <div>
                                     <div className="flex flex-row items-center w-full px-4 todo-parent-title cursor-pointer">
                                         <button data-v-dcb3565e type="button" className="vs-con-dropdown parent-dropdown cbs-color-picker cursor-pointer">
-                                                <i data-v-dcb3565e="" className="text-2xl nucleo nucleo-flag-glyph cbs-color-picker__icon-picker" style={{ color: 'rgb(189, 189, 189)' }} />
+                                            <i data-v-dcb3565e="" className="text-2xl nucleo nucleo-flag-glyph cbs-color-picker__icon-picker" style={{ color: 'rgb(189, 189, 189)' }} />
                                         </button>
                                         {this.renderDepartment()}
                                         <p className="w-4/5 pl-4 leading-normal font-semibold">{this.props.nameTask}</p>
@@ -95,7 +95,7 @@ class ItemTask extends Component {
                                         </p>
                                         <div className="w-2/5">
                                             <span>
-                                                {this.props.employees.map(item => <IconEmployee srcImgEmployee={item.imgEmployee} />)}
+                                                {this.props.employees.map((item,id) => <IconEmployee key={id} srcImgEmployee={item.imgEmployee} />)}
                                             </span>
                                         </div>
                                         <div className="w-1/5">

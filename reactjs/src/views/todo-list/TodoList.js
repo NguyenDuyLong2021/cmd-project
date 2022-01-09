@@ -24,6 +24,7 @@ class TodoList extends Component {
         }
         return null
     }
+    // render form tạo việc theo điều kiện
     isShowCreateTask = () => {
         if (this.props.status.isShowCreateTask) {
             let arr = [<div className="v-modal" tabIndex={0} style={{ zIndex: 2054 }} />, <FormCreateTask />]
@@ -31,6 +32,7 @@ class TodoList extends Component {
         }
         return null
     }
+    // hiện chi tiết công việc
     isShowDetailTask = () => {
         if (this.props.status.isShowDetailTask) {
             let arr = [<div className="v-modal" tabIndex={0} style={{ zIndex: 2054 }} />, <Detail />]
@@ -77,7 +79,7 @@ class TodoList extends Component {
                         status = "Qúa hạn"
                         break;
                 }
-                return <ItemTask  Status={status} nameTask={item.nameTask} id={item.id} dateEnd={item.dateEnd} employees={item.employees} />
+                return <ItemTask key={id} Status={status} nameTask={item.nameTask} id={item.id} dateEnd={item.dateEnd} employees={item.employees} />
             })
         }
     }
@@ -87,6 +89,7 @@ class TodoList extends Component {
         // window.onscroll = ()=>{window.scrollTo(0,0)}
         // document.body.style.overflowY="hidden"
     }
+    // callback lại function isShowFormCreateTask() 
     showFormCreateTask = () => {
         this.props.isShowFormCreateTask()
     }
@@ -102,7 +105,8 @@ class TodoList extends Component {
     }
     render() {
         return (
-            <>
+            <> 
+            q
                 <div className="router-view">
                     <div className="router-content">
                         <div className="router-header flex flex-wrap items-center mb-6">
@@ -162,7 +166,7 @@ class TodoList extends Component {
                                                         <span className="vs-button-text vs-button--text">Bộ lọc</span>
                                                         <span className="vs-button-linex" style={{ top: 'auto', bottom: '-2px', left: '50%', transform: 'translate(-50%)' }} />
                                                     </button>
-                                                    <div onClick={this.showFormCreateTask} className="md:flex lg:flex xl:flex hidden ml-3">
+                                                    <div onClick={this.props.isShowFormCreateTask} className="md:flex lg:flex xl:flex hidden ml-3">
                                                         <button type="button" name="button" className="vs-component vs-button w-48 font-bold vs-button-primary vs-button-filled">
                                                             <span className="vs-button-backgroundx vs-button--background" style={{ opacity: 1, left: '20px', top: '20px', width: '0px', height: '0px', transition: 'width 0.3s ease 0s, height 0.3s ease 0s, opacity 0.3s ease 0s' }} />{/**/}
                                                             <span className="vs-button-text vs-button--text">Tạo việc</span>
@@ -188,11 +192,8 @@ class TodoList extends Component {
                                         <div className="vs-con-tbody vs-table--tbody ">
                                             <table className="vs-table vs-table--tbody-table">
                                                 <thead className="vs-table--thead">
-                                                    <tr>{/**/}</tr>
                                                 </thead>
-                                                <div>
-                                                    {this.renderListTask()}
-                                                </div>
+                                                {this.renderListTask()}
                                             </table>
                                         </div>
                                     </div>

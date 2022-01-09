@@ -5,7 +5,7 @@ import queryString from 'query-string'
 // Thiết lập cấu hình mặc định cho http request
 const axiosClient = axios.create({
     // baseURL: process.env.REACT_APP_API_URL ||"http://127.0.0.1:3000",
-    baseURL: "http://127.0.0.1:3000",
+    baseURL: "http://127.0.0.1:3030",
     headers: {
         'content-type': 'application/json',
     },

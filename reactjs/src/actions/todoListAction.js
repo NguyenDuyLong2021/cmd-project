@@ -1,12 +1,11 @@
 import * as types from "../constants/ActionTask"
 import todoListApi from '../api/todoListApi';
-// lấy luôn dữ liệu trong action , không gọi api trong component 
+// Lấy danh sách công việc theo chỉ mục (lấy luôn dữ liệu trong action , không gọi api trong component)
 export const dispatchLimitedTaskRequest = (data) => {
     return (dispatch) => {
         const fetchTasksList = async () => {
             try {
-                const response = await todoListApi.getTaskLimited(data)//getTaskLimited() function using to load data task with data limited a page is 10 task
-               console.log("rp", response)
+                const response = await todoListApi.getTaskLimited(data)
                 dispatch(dispatchTaskByFilterStatus(response))
             } catch (error) {
                 console.log("Can not load...!", error)
@@ -15,7 +14,7 @@ export const dispatchLimitedTaskRequest = (data) => {
         fetchTasksList()
     }
 }
-// lấy luôn dữ liệu trong action , không gọi api trong component 
+// // lấy luôn dữ liệu trong action , không gọi api trong component 
 export const getAllTaskRequest = () => {
     return (dispatch) => {
         const fetchTasksList = async () => {
@@ -29,38 +28,36 @@ export const getAllTaskRequest = () => {
         fetchTasksList()
     }
 }
-// luu du lieu duoc loc vao store
+// luu danh sách các công việc vào store
 export const dispatchTaskByFilterStatus = (tasks) => { return { type: types.DISPATCH_TASK_BY_STATUS, tasks } }
-// luu tat cac cac cong viec vao trong store
+// // luu tat cac cac cong viec vao trong store
 export const dispatchAllTask = (tasks) => { return { type: types.DISPATCH_ALL_TASK, tasks } }
-// action kiem tra da duoc render xong chua
+// kiem tra da duoc render xong chua
 export const isRenderDone = () => { return { type: types.IS_RENDER_DONE } }//sua ngay 11/11/2021 tyqe sang type
 //them item vao mang cac item can loc
 export const addItemNeedFilter = (item) => { return { type: types.ADD_ITEM_NEED_FILTER, item } }
-// xoa item khoi mang cac item can loc
-export const removeNeedItemFilter = (item) => { return { type: types.REMOVE_ITEM_NEED_FILTER, item } }
-// set trang hien tai 
+// set so trang hien tai 
 export const numberPageCurrent = (numberPage) => { return { type: types.NUMBER_PAGE_CURRENT, numberPage } }
-// se thay doi trang thai xem có hiện filter advanced
+// se thay doi trang thai đóng mở của form filter advanced
 export const isShowFilterAdvanced = () => { return { type: types.IS_SHOW_FILTER_ADVANCED } }
-// se thay doi trang thai xem có hiện form tạo việc hay không
+// se thay doi trang thai đóng mở form tạo việc hay không
 export const isShowCreateTask = () => { return { type: types.IS_SHOW_CREATE_TASK } }
-//se hien thi date input cua ngay bat đau
+//thay đổi trạng thái đóng mở của datepicker ngày bắt đầu lọc nâng cao
 export const showDateInputOfDateStart = () => { return { type: types.SHOW_DATE_INPUT_START_DATE } }
-//se hien thi date input cua ngay ket thuc
+//thay đổi trạng thái đóng mở của date picker của ngày kết thức lọc nâng cao
 export const showDateInputOfDateEnd = () => { return { type: types.SHOW_DATE_INPUT_END_DATE } }
 //cap nhat ngay bat dau cong viec cua bo loc nang cao
 export const updateDateStartFilterAdvanced = (date) => { return { type: types.UPDATE_DATE_START_FILTER_ADVANCED, date } }
 //cap nhat ngay ket thuc cong viec cua bo loc nang cao
 export const updateDateEndFilterAdvanced = (date) => { return { type: types.UPDATE_DATE_END_FILTER_ADVANCED, date } }
-//se hien thi date input cua ngay bat đau
+//thay đôi trạng thái đóng mở cua ngay bat đau trong bộ lọc nâng cao
 export const showDetailTask = () => { return { type: types.IS_SHOW_DETAIL_TASK } }
 //lây chi tiết công việc
 export const getTaskDetailRequest = (params) => {
     return (dispatch) => {
         const fetchTasksDetail = async () => {
             try {
-                const response = await todoListApi.getDetailTask(params)//getDetailTask() function using to load data task with data limited a page is 10 task
+                const response = await todoListApi.getDetailTask(params)
                 dispatch(dispatchTaskDetail(response))
             } catch (error) {
                 console.log("Can not load...!", error)
@@ -76,8 +73,8 @@ export const searchByParams = (params) => {
     return (dispatch) => {
         const fetchSearchByParams = async () => {
             try {
-                const response = await todoListApi.searchByParams(params)//getDetailTask() function using to load data task with data limited a page is 10 task
-                console.log(response.data)
+                const response = await todoListApi.searchByParams(params)
+                console.log(response)
                 dispatch(dispatchEmployeeSearch(response.data))
             } catch (error) {
                 console.log("Can not load...!", error)
@@ -86,19 +83,19 @@ export const searchByParams = (params) => {
         fetchSearchByParams()
     }
 }
-// luu nhung thong tin nhan vien theo search
+// lưu thông tin nhân viên được tìm thấy từ bộ tìm kiếm
 export const dispatchEmployeeSearch = (data) => { return { type: types.DISPATCH_LIST_EMPLOYEE_SEARCH, data } }
 //hiển thị drop down menu
 export const showDropdownMenu = () => { return { type: types.SHOW_DROP_DOWN_MENU } }
 //select item dropdown menu
 export const selectedDropdownMenu = (item) => { return { type: types.SELECTED_DROP_DOWN_MENU, item } }
-//lay ngay thoi diem bat dau cua mot cong viec moi
+//thoi điểm bắt đầu của một công việc mới khi tạo công việc
 export const timeStartNewTask = (date) => { return { type: types.TIME_START_NEW_TASK, date } }
-//lay ngay thoi diem hoan thanh cua mot cong viec moi
+//thới điểm hoàn thành công việc của một công việc mới được tạo
 export const timeStartCompleteTask = (date) => { return { type: types.TIME_COMPLETE_NEW_START, date } }
-//hien thi date picker thoi diem băt dau mot cong viec moi
+//thay đổi trạng thái đóng mở của datepicker của ngày bắt đầu của form tạo công việc mới
 export const showTimeStartNewTask = () => { return { type: types.SHOW_DATE_PICKER_START_NEW_TASK } }
-//hien thi date picker thoi diem ket thuc cua mot cong viec moi
+//thay đổi trạng thái đóng mở của datepicker của ngày kết thúc của một công việc mới
 export const showTimeCompleteNewTask = () => { return { type: types.SHOW_DATE_PICKER_COMPLETES_NEW_TASK } }
 // tao cong viec moi
 export const creatNewTask = (param) => {
@@ -113,7 +110,7 @@ export const creatNewTask = (param) => {
         newTask()
     }
 }
-//công cụ search theo params
+//tìm kiềm phòng ban
 export const searchDepartment = (params) => {
     return (dispatch) => {
         const fetchSearchByParams = async () => {
@@ -161,5 +158,7 @@ export const searchTask = (params) => {
 }
 // luu nhung cong viec duoc tim kiem
 export const dispatchSearchTask = (data) => { return { type: types.DISPATCH_TASK_SEARCH, data } }
+// thay đổi tên công việc ở ô tìm kiếm 
+export const changeNameTaskSearch=(nameTask)=>{return {type: types.CHANGE_NAME_TASK_SEARCH, nameTask}}
 
 

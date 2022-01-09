@@ -2,11 +2,6 @@ import axiosClient from "./axiosClient"
 
 const baseUrl = "/tasks"
 const todoListApi = {
-    // get all tack of to do list
-    getAllTask: (params) => {
-        let url = `${baseUrl}`;
-        return axiosClient.get(url);
-    },
     //get detail a task
     getDetailTask: (params) => {
         let url = `${baseUrl}/${params.id}`;
@@ -56,7 +51,7 @@ const todoListApi = {
     },
     //search by params
     searchByParams: (params) => {
-        let url = `/${params.object}?${params.contain}=${params.key}&_limit=10`;
+        let url = `/${params.object}?${params.contain}=${params.key}&_limit=10&_page=${params.page}`;
         return axiosClient.get(url)
     },
     newtTask: (params) => {

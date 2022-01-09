@@ -8,6 +8,7 @@ let initialState = {
     dateEndFilterAdvanced: null, taskDetail: null, listEmployeeSearch: [], showDropDownMenu: false,
     selectedDropdown: null, timeStartNewStart: null, timeCompleteNewStask: null
     , showDatePickerStartNewTask: false, showDatePickerCompleteNewTask: false, department: [], itemNeedFilterAdvanced: []
+    , nameTaskSearch:null
 };
 const todoListReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -95,11 +96,13 @@ const todoListReducer = (state = initialState, action) => {
             return { ...state, department: action.data };
         // dispatch cong viec tiem kiem
         case types.DISPATCH_TASK_SEARCH: {
-            return { ...state, listTaskFilter: action.data.data.data , allTask: action.data.data.pagination._totalItem };
+            return { ...state, listTaskFilter: action.data.data , allTask: action.data.pagination._totalItem };
         }
         // dispatch tat ca cac cong viec
         case types.DISPATCH_TASK_BY_FILTER_ADVANCED:
             return { ...state, listTaskFilter: action.tasks.data.data, allTask: action.tasks.data.pagination._totalItem  };
+            case types.CHANGE_NAME_TASK_SEARCH:
+                return { ...state, } 
         default:
             return state;
 
