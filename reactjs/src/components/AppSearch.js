@@ -17,7 +17,7 @@ const AppSearch = ({ value, onSearch }) => {
         }
         typingTimeoutRef.current = setTimeout(() => {
             onSearch(e.target.value)
-        }, 250)
+        }, 1000)
     }
     return (
         <CInputGroup>
