@@ -1,38 +1,20 @@
-import { CToast, CToastBody, CToaster, CToastHeader } from '@coreui/react'
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
+import { Toast } from 'react-bootstrap'
 
-const AppToaster = ({ content }) => {
-    const [toast, addToast] = useState(0)
+const AppToaster = ({ visible, setVisible, title, content }) => {
     const timeNow = new Date()
     const strDateTime = "Vào lúc " + timeNow.getHours() + ":" + timeNow.getMinutes() + ", ngày " + timeNow.getDate() + "/" + (timeNow.getMonth() + 1) + "/" + timeNow.getFullYear()
-    const toaster = useRef()
-    const Toast = (
-        <CToast autohide={true} delay={10000}>
-            <CToastHeader closeButton>
-                <svg
-                    className="rounded me-2"
-                    width="20"
-                    height="20"
-                    xmlns="http://www.w3.org/2000/svg"
-                    preserveAspectRatio="xMidYMid slice"
-                    focusable="false"
-                    role="img"
-                >
-                    <rect width="100%" height="100%" fill="#2b59b2"></rect>
-                </svg>
-                <strong className="me-auto">Thông báo</strong>
-                <small>{strDateTime}</small>
-            </CToastHeader>
-            <CToastBody>{content}</CToastBody>
-        </CToast>
-    )
-    useEffect(() => {
-        addToast(Toast)
-    }, [])
     return (
-        <>
-            <CToaster ref={toaster} push={toast} placement="top-end" />
-        </>
+        <Toast onClose={() => setVisible(false)} show={visible}>
+            <Toast.Header closeButton closeVariant="primary">
+                <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                <div className="me-auto text-primary">{title}</div>
+                <small>{strDateTime}</small>
+            </Toast.Header>
+            <Toast.Body>
+                {content}
+            </Toast.Body>
+        </Toast>
     )
 }
 

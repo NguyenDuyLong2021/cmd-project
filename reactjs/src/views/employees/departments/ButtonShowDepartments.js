@@ -1,20 +1,19 @@
-import { CButton } from '@coreui/react'
 import React, { useState } from 'react'
+import { Button } from 'react-bootstrap'
 import Departments from './Departments'
 
 const ButtonShowDepartments = () => {
     const [visible, setVisible] = useState(false)
     return (
         <>
-            <CButton
-                color="primary"
-                variant="outline"
+            <Button
+                variant="outline-primary"
                 onClick={() => setVisible(!visible)}
             >
-                <span className="fw-bolder">
+                <span className="fw-bold">
                 Phòng ban - Chức vụ
                 </span>
-            </CButton>
+            </Button>
             <Departments visible={visible} setVisible={setVisible} />
         </>
     )

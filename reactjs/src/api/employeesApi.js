@@ -1,27 +1,27 @@
-import axios from "axios"
+import axiosClient from "./axiosClient"
 
 // API nhân viên
-const baseUrl = "http://localhost:3030/employees"
+const baseUrl = "/employees"
 const employeesApi = {
     getAll: (params) => {
         const requestUrl = `${baseUrl}`
-        return axios.get(requestUrl, {params})
+        return axiosClient.get(requestUrl, {params})
     },
     get: (id) => {
         const requestUrl = `${baseUrl}/${id}`
-        return axios.get(requestUrl)
+        return axiosClient.get(requestUrl)
     },
     add: (data) => {
         const requestUrl = `${baseUrl}`
-        return axios.post(requestUrl, data)
+        return axiosClient.post(requestUrl, data)
     },
     update: (data) => {
         const requestUrl = `${baseUrl}/${data.id}`
-        return axios.patch(requestUrl, data)
+        return axiosClient.patch(requestUrl, data)
     },
     delete: (id) => {
         const requestUrl = `${baseUrl}/${id}`
-        return axios.delete(requestUrl)
+        return axiosClient.delete(requestUrl)
     }
 }
 //

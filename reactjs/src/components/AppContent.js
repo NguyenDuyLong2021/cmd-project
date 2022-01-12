@@ -1,14 +1,14 @@
 import React, { Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { CContainer, CSpinner } from '@coreui/react'
 
 // routes config
 import routes from '../routes'
+import { Container, Spinner } from 'react-bootstrap'
 
 const AppContent = () => {
     return (
-        <CContainer fluid>
-            <Suspense fallback={<CSpinner color="primary" />}>
+        <Container fluid>
+            <Suspense fallback={<Spinner animation="border" variant="primary" />}>
                 <Routes>
                     {routes.map((route, idx) => {
                         return (
@@ -24,7 +24,7 @@ const AppContent = () => {
                     })}
                 </Routes>
             </Suspense>
-        </CContainer>
+        </Container>
     )
 }
 

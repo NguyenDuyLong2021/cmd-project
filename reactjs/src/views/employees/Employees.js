@@ -1,6 +1,8 @@
-import { CButton, CCard, CCardBody, CFormInput, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from '@coreui/react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { AiOutlineSortAscending, AiOutlineSortDescending } from 'react-icons/ai'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { Button, Card, Form, Table } from 'react-bootstrap'
 import * as actions from '../../actions/employeesAction'
 import AppPagination from '../../components/AppPagination'
 import EmployeeItem from './EmployeeItem'
@@ -8,8 +10,6 @@ import AddEmployee from './SubmitEmployee/AddEmployee'
 import ButtonShowDepartments from './departments/ButtonShowDepartments'
 import AppSearch from '../../components/AppSearch'
 import ButtonShowRoles from './roles/ButtonShowRoles'
-import { AiOutlineSortAscending, AiOutlineSortDescending } from 'react-icons/ai'
-import { useLocation, useNavigate } from 'react-router-dom'
 
 const queryString = require('query-string')
 
@@ -23,6 +23,7 @@ const Employees = () => {
 
     const [filters, setFilters] = useState({
         _page: 1,
+        _limit: 20,
         _sort: null,
         _order: null
     })
@@ -108,117 +109,116 @@ const Employees = () => {
                 </div>
             </div>
             <hr />
-            <CCard>
-                <CCardBody>
-                    <CTable
+            <Card>
+                <Card.Body>
+                    <Table
                         striped
                         hover
                         responsive
                         borderless
-                        align="middle"
                     >
-                        <CTableHead>
-                            <CTableRow>
-                                <CTableHeaderCell></CTableHeaderCell>
-                                <CTableHeaderCell>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>
                                     <div className="row flex-row">
-                                        <CButton
-                                            color="none"
+                                        <Button
+                                            variant="none"
                                             onClick={() => handleSort("name")}
                                         >
                                             <span className="fw-bolder">
                                                 HỌ VÀ TÊN {filters._sort === "name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                             </span>
-                                        </CButton>
-                                        <CFormInput type="text" name="name" placeholder="Tìm kiếm..." value={filters.name} onChange={handleFilter} />
+                                        </Button>
+                                        <Form.Control type="text" name="name" placeholder="Tìm kiếm..." value={filters.name} onChange={handleFilter} />
                                     </div>
-                                </CTableHeaderCell>
-                                <CTableHeaderCell>
+                                </th>
+                                <th>
                                     <div>
-                                        <CButton
-                                            color="none"
+                                        <Button
+                                            variant="none"
                                             onClick={() => handleSort("dob")}
                                         >
                                             <span className="fw-bolder">
                                                 NGÀY SINH {filters._sort === "dob" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "dob" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                             </span>
-                                        </CButton>
-                                        <CFormInput type="text" name="dob" placeholder="Tìm kiếm..." value={filters.dob} onChange={handleFilter} />
+                                        </Button>
+                                        <Form.Control type="text" name="dob" placeholder="Tìm kiếm..." value={filters.dob} onChange={handleFilter} />
                                     </div>
-                                </CTableHeaderCell>
-                                <CTableHeaderCell>
+                                </th>
+                                <th>
                                     <div>
-                                        <CButton
-                                            color="none"
+                                        <Button
+                                            variant="none"
                                             onClick={() => handleSort("email")}
                                         >
                                             <span className="fw-bolder">
                                                 EMAIL {filters._sort === "email" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "email" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                             </span>
-                                        </CButton>
-                                        <CFormInput type="text" name="email" placeholder="Tìm kiếm..." value={filters.email} onChange={handleFilter} />
+                                        </Button>
+                                        <Form.Control type="text" name="email" placeholder="Tìm kiếm..." value={filters.email} onChange={handleFilter} />
                                     </div>
-                                </CTableHeaderCell>
-                                <CTableHeaderCell>
+                                </th>
+                                <th>
                                     <div>
-                                        <CButton
-                                            color="none"
+                                        <Button
+                                            variant="none"
                                             onClick={() => handleSort("phone")}
                                         >
                                             <span className="fw-bolder">
                                                 SĐT {filters._sort === "phone" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "phone" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                             </span>
-                                        </CButton>
-                                        <CFormInput type="text" name="phone" placeholder="Tìm kiếm..." value={filters.phone} onChange={handleFilter} />
+                                        </Button>
+                                        <Form.Control type="text" name="phone" placeholder="Tìm kiếm..." value={filters.phone} onChange={handleFilter} />
                                     </div>
-                                </CTableHeaderCell>
-                                <CTableHeaderCell>
+                                </th>
+                                <th>
                                     <div>
-                                        <CButton
-                                            color="none"
+                                        <Button
+                                            variant="none"
                                             onClick={() => handleSort("department.name")}
                                         >
                                             <span className="fw-bolder">
                                                 PHÒNG BAN {filters._sort === "department.name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "department.name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                             </span>
-                                        </CButton>
-                                        <CFormInput type="text" name="department.name" placeholder="Tìm kiếm..." value={filters.department} onChange={handleFilter} />
+                                        </Button>
+                                        <Form.Control type="text" name="department.name" placeholder="Tìm kiếm..." value={filters.department} onChange={handleFilter} />
                                     </div>
-                                </CTableHeaderCell>
-                                <CTableHeaderCell>
+                                </th>
+                                <th>
                                     <div>
-                                        <CButton
-                                            color="none"
+                                        <Button
+                                            variant="none"
                                             onClick={() => handleSort("position.name")}
                                         >
                                             <span className="fw-bolder">
                                                 CHỨC VỤ {filters._sort === "position.name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "position.name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                             </span>
-                                        </CButton>
-                                        <CFormInput type="text" name="position.name" placeholder="Tìm kiếm..." value={filters.position} onChange={handleFilter} />
+                                        </Button>
+                                        <Form.Control type="text" name="position.name" placeholder="Tìm kiếm..." value={filters.position} onChange={handleFilter} />
                                     </div>
-                                </CTableHeaderCell>
-                            </CTableRow>
-                        </CTableHead>
-                        <CTableBody>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             {
                                 employees.map(employee => (
                                     <EmployeeItem key={employee.id} employee={employee} />
                                 ))
                             }
-                        </CTableBody>
-                    </CTable>
+                        </tbody>
+                    </Table>
                     {employees.length === 0 ? (
-                        <CCardBody align="center">
+                        <Card.Body align="center">
                             Không có dữ liệu
-                        </CCardBody>
+                        </Card.Body>
                     ) : null}
                     <AppPagination
                         pagination={pagination}
                         onPageChange={handlePageChange}
                     />
-                </CCardBody>
-            </CCard>
+                </Card.Body>
+            </Card>
         </>
     )
 }

@@ -5894,7 +5894,7 @@
     {
       "id": 1985,
       "name": "NGUYỄN PHÚC KHANG",
-      "dob": null,
+      "dob": "2022-01-16",
       "code": "NV000001985",
       "email": "phuckhag2001@gmail.com",
       "phone": "0339976341",
@@ -5936,7 +5936,8 @@
       },
       "pending_user": null,
       "tags": [],
-      "__typename": "CminsideEmployee"
+      "__typename": "CminsideEmployee",
+      "updateAt": 1641994131107
     }
   ],
   "departments": [

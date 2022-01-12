@@ -1,6 +1,5 @@
-import { CButton, CDropdown, CDropdownMenu, CDropdownToggle, CListGroupItem, CModal, CModalBody, CModalTitle } from '@coreui/react'
 import React, { useState } from 'react'
-import { AiOutlineClose } from 'react-icons/ai'
+import { Dropdown, ListGroup, Modal } from 'react-bootstrap'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { BsFillCircleFill } from 'react-icons/bs'
 import DeleteDepartment from './DeleteDepartment'
@@ -12,8 +11,8 @@ const DepartmentItem = ({ department, level }) => {
     const [visible, setVisible] = useState(false)
     return (
         <>
-            <CListGroupItem
-                component="button"
+            <ListGroup.Item
+                action
                 className="position-relative"
                 style={{ paddingLeft: level * 40 }}
                 onClick={() => setVisible(true)}
@@ -21,37 +20,35 @@ const DepartmentItem = ({ department, level }) => {
                 <BsFillCircleFill size={5} />
                 <span className="ps-2" />
                 {department.name}
-            </CListGroupItem>
-            <CModal
+            </ListGroup.Item>
+            <Modal
                 fullscreen
                 scrollable
-                visible={visible}
-                onClose={() => setVisible(false)}
+                show={visible}
+                onHide={() => setVisible(false)}
             >
-                <div className="modal-header row justify-content-between">
+                <div className="modal-header row justify-content-between bg-gradient">
                     <div className="col">
-                        <CModalTitle>CHI TIẾT PHÒNG BAN</CModalTitle>
+                        <Modal.Title>CHI TIẾT PHÒNG BAN</Modal.Title>
                     </div>
-                    <div className="col-auto">
-                        <CDropdown popper={false} direction="dropstart">
-                            <CDropdownToggle color="none" caret={false}>
+                    <div className="col-auto row justify-content-between">
+                        <Dropdown popper={false} placement="start">
+                            <Dropdown.Toggle>
                                 <BiDotsHorizontalRounded className="fs-4" />
-                            </CDropdownToggle>
-                            <CDropdownMenu>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
                                 <ButtonShowPositions department={department} />
                                 <EditDepartment department={department} />
                                 <DeleteDepartment id={department.id} />
-                            </CDropdownMenu>
-                        </CDropdown>
-                        <CButton color="none" onClick={() => setVisible(false)}>
-                            <AiOutlineClose className="fs-4" />
-                        </CButton>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                        <button className="btn-close" onClick={() => setVisible(false)} />
                     </div>
                 </div>
-                <CModalBody>
+                <Modal.Body>
                     <DepartmentDetail department={department} />
-                </CModalBody>
-            </CModal>
+                </Modal.Body>
+            </Modal>
         </>
     )
 }

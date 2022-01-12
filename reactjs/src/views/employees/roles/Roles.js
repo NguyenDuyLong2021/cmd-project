@@ -1,5 +1,5 @@
-import { CAccordion, CAccordionItem, CButton, CModal, CModalBody, CModalFooter, CModalTitle } from '@coreui/react'
 import React, { useEffect, useState } from 'react'
+import { Accordion, Button, Modal } from 'react-bootstrap'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from '../../../actions/rolesAction'
@@ -41,22 +41,16 @@ const Roles = ({ visible, setVisible }) => {
     }
     return (
         <>
-            <CModal
+            <Modal
                 fullscreen
                 scrollable
-                visible={visible}
-                onClose={() => setVisible(false)}
+                show={visible}
+                onHide={() => setVisible(false)}
             >
-                <div className="modal-header row justify-content-between">
-                    <div className="col">
-                        <CModalTitle>VAI TRÒ</CModalTitle>
-                    </div>
-                    <div className="col-auto">
-                        <CButton color="none" onClick={() => setVisible(false)}>
-                            <AiOutlineClose className="fs-4" />
-                        </CButton>
-                    </div>
-                    <hr className="mt-3" />
+                <Modal.Header closeButton>
+                    <Modal.Title>VAI TRÒ</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                     <div className="row align-content-between justify-content-between bg-light p-3">
                         <div className="col">
                             <AppSearch onSearch={handleSearchTerm} />
@@ -65,25 +59,23 @@ const Roles = ({ visible, setVisible }) => {
                             <AddRole />
                         </div>
                     </div>
-                </div>
-                <CModalBody>
-                    <CAccordion flush alwaysOpen>
+                    <Accordion flush alwaysOpen>
                         {
                             roles.map(role => (
-                                <CAccordionItem itemKey={role.id} key={role.id}>
+                                <Accordion.Item itemKey={role.id} key={role.id}>
                                     <RoleItem role={role} />
-                                </CAccordionItem>
+                                </Accordion.Item>
                             ))
                         }
-                    </CAccordion>
-                </CModalBody>
-                <CModalFooter className="justify-content-center">
+                    </Accordion>
+                </Modal.Body>
+                <Modal.Footer className="justify-content-center">
                     <AppPagination
                         pagination={pagination}
                         onPageChange={handlePageChange}
                     />
-                </CModalFooter>
-            </CModal>
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }

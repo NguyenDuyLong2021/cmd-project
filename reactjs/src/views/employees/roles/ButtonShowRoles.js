@@ -1,20 +1,19 @@
-import { CButton } from '@coreui/react'
 import React, { useState } from 'react'
+import { Button } from 'react-bootstrap'
 import Roles from './Roles'
 
 const ButtonShowRoles = () => {
     const [visible, setVisible] = useState(false)
     return (
         <>
-            <CButton
-                color="primary"
-                variant="outline"
+            <Button
+                variant="outline-primary"
                 onClick={() => setVisible(!visible)}
             >
-                <span className="fw-bolder">
+                <span className="fw-bold">
                     Vai trò
                 </span>
-            </CButton>
+            </Button>
             <Roles visible={visible} setVisible={setVisible} />
         </>
     )

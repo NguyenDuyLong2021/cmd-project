@@ -1,9 +1,7 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-
+import { Breadcrumb } from 'react-bootstrap'
 import routes from '../routes'
-
-import { CBreadcrumb, CBreadcrumbItem } from '@coreui/react'
 
 const AppBreadcrumb = () => {
     const currentLocation = useLocation().pathname
@@ -30,19 +28,19 @@ const AppBreadcrumb = () => {
     const breadcrumbs = getBreadcrumbs(currentLocation)
 
     return (
-        <CBreadcrumb className="m-0 ms-2">
-            <CBreadcrumbItem href="/">Trang chủ</CBreadcrumbItem>
+        <Breadcrumb className="m-0 ms-2">
+            <Breadcrumb.Item href="/">Trang chủ</Breadcrumb.Item>
             {breadcrumbs.map((breadcrumb, index) => {
                 return (
-                    <CBreadcrumbItem
+                    <Breadcrumb.Item
                         {...(breadcrumb.active ? { active: true } : { href: breadcrumb.pathname })}
                         key={index}
                     >
                         {breadcrumb.name}
-                    </CBreadcrumbItem>
+                    </Breadcrumb.Item>
                 )
             })}
-        </CBreadcrumb>
+        </Breadcrumb>
     )
 }
 

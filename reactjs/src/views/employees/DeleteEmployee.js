@@ -1,5 +1,5 @@
-import { CButton, CDropdownItem, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle } from '@coreui/react'
 import React, { useState } from 'react'
+import { Button, Dropdown, Modal } from 'react-bootstrap'
 import { BiTrash } from 'react-icons/bi'
 import { useDispatch } from 'react-redux'
 import * as actions from '../../actions/employeesAction'
@@ -8,50 +8,48 @@ import AppToaster from '../../components/AppToaster'
 const DeleteEmployee = ({ id }) => {
     const dispatch = useDispatch()
     const [visible, setVisible] = useState(false)
-    const [notification, setNotification] = useState(false)
+    const [visibleNotificationDeleteSuccess, setVisibleNotificationDeleteSuccess] = useState(false)
     const handleDelete = (id) => {
         dispatch(actions.deleteEmployeeRequest(id))
-        setNotification(true)
+        setVisibleNotificationDeleteSuccess(true)
         setVisible(false)
     }
 
     return (
         <>
-            <CDropdownItem
+            <Dropdown.Item
                 component="button"
                 onClick={() => setVisible(!visible)}
             >
                 <BiTrash /> Xóa
-            </CDropdownItem>
-            <CModal
+            </Dropdown.Item>
+            <Modal
                 scrollable
-                visible={visible}
-                onClose={() => setVisible(false)}
+                show={visible}
+                onHide={() => setVisible(false)}
             >
-                <CModalHeader>
-                    <CModalTitle>XÓA NHÂN VIÊN</CModalTitle>
-                </CModalHeader>
-                <CModalBody>
+                <Modal.Header closeButton closeVariant="white" className="bg-gradient text-white">
+                    <Modal.Title>XÓA NHÂN VIÊN</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                     Bạn có chắc muốn xóa nhân viên này khỏi công ty?
-                </CModalBody>
-                <CModalFooter>
-                    <CButton
-                        color="secondary"
-                        className="text-white"
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="secondary"
                         onClick={() => setVisible(false)}
                     >
                         Hủy
-                    </CButton>
-                    <CButton
-                        color="danger"
-                        className="text-white"
+                    </Button>
+                    <Button
+                        variant="danger"
                         onClick={() => handleDelete(id)}
                     >
                         Đồng ý
-                    </CButton>
-                </CModalFooter>
-            </CModal>
-            {notification ? <AppToaster title="Thông báo" content="Xóa nhân viên thành công" /> : null}
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            <AppToaster visible={visibleNotificationDeleteSuccess} setVisible={setVisibleNotificationDeleteSuccess} title="Nhân viên" content="Xóa nhân viên thành công" />
         </>
     )
 }

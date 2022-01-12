@@ -1,6 +1,5 @@
-import { CButton, CListGroup, CModal, CModalBody, CModalTitle } from '@coreui/react'
 import React, { useEffect, useState } from 'react'
-import { AiOutlineClose } from 'react-icons/ai'
+import { ListGroup, Modal } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from '../../../actions/departmentsAction'
 import AppSearch from '../../../components/AppSearch'
@@ -60,22 +59,21 @@ const Departments = ({ visible, setVisible }) => {
 
     return (
         <>
-            <CModal
+            <Modal
                 fullscreen
                 scrollable
-                visible={visible}
-                onClose={() => setVisible(false)}
+                show={visible}
+                onHide={() => setVisible(false)}
             >
-                <div className="modal-header row justify-content-between">
-                    <div className="col">
-                        <CModalTitle>PHÒNG BAN</CModalTitle>
+                <div className="modal-header row justify-content-between bg-gradient">
+                    <div className="col text-white">
+                        <Modal.Title>PHÒNG BAN</Modal.Title>
                     </div>
                     <div className="col-auto">
-                        <CButton color="none" onClick={() => setVisible(false)}>
-                            <AiOutlineClose className="fs-4" />
-                        </CButton>
+                        <button className="btn-close" onClick={() => setVisible(false)} />
                     </div>
-                    <hr className="mt-3" />
+                </div>
+                <Modal.Body>
                     <div className="row align-content-between justify-content-between bg-light p-3">
                         <div className="col">
                             <AppSearch onSearch={handleSearchTerm} />
@@ -84,13 +82,11 @@ const Departments = ({ visible, setVisible }) => {
                             <AddDepartment />
                         </div>
                     </div>
-                </div>
-                <CModalBody>
-                    <CListGroup flush>
+                    <ListGroup variant="flush">
                         {departmentsElement}
-                    </CListGroup>
-                </CModalBody>
-            </CModal>
+                    </ListGroup>
+                </Modal.Body>
+            </Modal>
         </>
     )
 }

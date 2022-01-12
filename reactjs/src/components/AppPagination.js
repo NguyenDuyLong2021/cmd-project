@@ -1,7 +1,7 @@
-import { cilChevronLeft, cilChevronRight } from '@coreui/icons';
-import CIcon from '@coreui/icons-react';
-import { CPagination, CPaginationItem } from '@coreui/react';
+
 import React from 'react'
+import { Pagination } from 'react-bootstrap'
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 
 /*
     Component này có thể được sử dụng lại ở bất cứ đâu
@@ -12,8 +12,8 @@ import React from 'react'
     2. onPageChange: một function được truyền vào tham số newPage là trang mới khi click vào button
 */
 const AppPagination = ({ pagination, onPageChange }) => {
-    const { _page, _totalItem } = pagination
-    const totalPage = Math.ceil(_totalItem / 10)
+    const { _page, _limit, _totalItem } = pagination
+    const totalPage = Math.ceil(_totalItem / _limit)
 
     const listPageNumber = () => {
         const listPage = []
@@ -79,53 +79,49 @@ const AppPagination = ({ pagination, onPageChange }) => {
         onPageChange(newPage);
     }
     return (
-        <>
-        
-        <CPagination className="pt-3" align="center">
-            <CPaginationItem
-                style={{ cursor: "pointer" }}
-                disabled={_page <= 1}
-                onClick={() => handlePageChange(_page - 1)}
-            >
-                <CIcon icon={cilChevronLeft}></CIcon>
-            </CPaginationItem>
-            {listPageNumber().map((page, index) => {
-                if (page === _page) {
-                    return (
-                        <CPaginationItem
-                            key={index}
-                            style={{ cursor: "pointer" }}
-                            active
-                        >{page}</CPaginationItem>
-                    )
-                }
-                else if (page === "...") {
-                    return (
-                        <CPaginationItem
-                            key={index}
-                            style={{ cursor: "pointer" }}
-                        >{page}</CPaginationItem>
-                    )
-                }
-                else {
-                    return (
-                        <CPaginationItem
-                            key={index}
-                            style={{ cursor: "pointer" }}
-                            onClick={() => handlePageChange(page)}
-                        >{page}</CPaginationItem>
-                    )
-                }
-            })}
-            <CPaginationItem
-                style={{ cursor: "pointer" }}
-                disabled={_page >= totalPage}
-                onClick={() => handlePageChange(_page + 1)}
-            >
-                <CIcon icon={cilChevronRight}></CIcon>
-            </CPaginationItem>
-        </CPagination>
-        </>
+        <div className="d-table m-auto">
+
+            <Pagination className="pt-3 col">
+                <Pagination.Item
+                    disabled={_page <= 1}
+                    onClick={() => handlePageChange(_page - 1)}
+                >
+                    <BsChevronLeft />
+                </Pagination.Item>
+                {listPageNumber().map((page, index) => {
+                    if (page === _page) {
+                        return (
+                            <Pagination.Item
+                                key={index}
+                                active
+                            >{page}</Pagination.Item>
+                        )
+                    }
+                    else if (page === "...") {
+                        return (
+                            <Pagination.Item
+                                disabled
+                                key={index}
+                            >{page}</Pagination.Item>
+                        )
+                    }
+                    else {
+                        return (
+                            <Pagination.Item
+                                key={index}
+                                onClick={() => handlePageChange(page)}
+                            >{page}</Pagination.Item>
+                        )
+                    }
+                })}
+                <Pagination.Item
+                    disabled={_page >= totalPage}
+                    onClick={() => handlePageChange(_page + 1)}
+                >
+                    <BsChevronRight />
+                </Pagination.Item>
+            </Pagination>
+        </div>
     )
 }
 

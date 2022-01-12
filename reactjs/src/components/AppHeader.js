@@ -1,72 +1,23 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import {
-    CContainer,
-    CHeader,
-    CHeaderBrand,
-    CHeaderDivider,
-    CHeaderNav,
-    CHeaderToggler,
-    CNavLink,
-    CNavItem,
-    CImage,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilBell, cilEnvelopeOpen, cilList, cilMenu } from '@coreui/icons'
-import { AppBreadcrumb } from './index'
-import { AppHeaderDropdown } from './header/index'
-import logo from '../assets/brand/logo-full.svg'
+
+import { Container, Navbar } from 'react-bootstrap'
+
+import AppNavbarNav from './AppNavbarNav'
+import AppHeaderDropdown from './header/AppHeaderDropdown'
 
 const AppHeader = () => {
-    const dispatch = useDispatch()
-    const sidebarShow = useSelector(state => state.sidebar.sidebarShow)
 
     return (
-        <CHeader position="sticky" className="mb-4">
-            <CContainer fluid>
-                <CHeaderToggler
-                    className="ps-1"
-                    onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
-                >
-                    <CIcon icon={cilMenu} size="lg" />
-                </CHeaderToggler>
-                <CHeaderBrand className="mx-auto d-md-none" to="/">
-                    <CImage src={logo} alt="Logo" />
-                </CHeaderBrand>
-                <CHeaderNav className="d-none d-md-flex me-auto">
-                    <CNavItem>
-                        <CNavLink to="/" component={NavLink} activeClassName="active">
-                            Trang chủ
-                        </CNavLink>
-                    </CNavItem>
-                </CHeaderNav>
-                <CHeaderNav>
-                    <CNavItem>
-                        <CNavLink href="#">
-                            <CIcon icon={cilBell} size="lg" />
-                        </CNavLink>
-                    </CNavItem>
-                    <CNavItem>
-                        <CNavLink href="#">
-                            <CIcon icon={cilList} size="lg" />
-                        </CNavLink>
-                    </CNavItem>
-                    <CNavItem>
-                        <CNavLink href="#">
-                            <CIcon icon={cilEnvelopeOpen} size="lg" />
-                        </CNavLink>
-                    </CNavItem>
-                </CHeaderNav>
-                <CHeaderNav className="ms-3">
+        <Navbar bg="body" expand="lg" sticky="top">
+            <Container className="row justify-content-between" fluid>
+                <Navbar.Brand className="col-auto">CBS</Navbar.Brand>
+                <Navbar.Toggle className="col-auto" aria-controls="navbarScroll" />
+                <Navbar.Collapse className="col row-lg" id="navbarScroll">
+                    <AppNavbarNav />
                     <AppHeaderDropdown />
-                </CHeaderNav>
-            </CContainer>
-            {/* <CHeaderDivider />
-            <CContainer fluid>
-                <AppBreadcrumb />
-            </CContainer> */}
-        </CHeader>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     )
 }
 

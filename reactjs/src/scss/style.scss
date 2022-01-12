@@ -1,17 +1,56 @@
-// If you want to override variables do it here
+/*!
+ * Bootstrap v5.0.2 (https://getbootstrap.com/)
+ * Copyright 2011-2021 The Bootstrap Authors
+ * Copyright 2011-2021 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+
+// scss-docs-start import-stack
+// Configuration
+@import "functions";
 @import "variables";
+@import "mixins";
+@import "utilities";
 
-$enable-ltr: true;
-$enable-rtl: true;
+// Layout & components
+@import "root";
+@import "reboot";
+@import "type";
+@import "images";
+@import "containers";
+@import "grid";
+@import "tables";
+@import "forms";
+@import "buttons";
+@import "transitions";
+@import "dropdown";
+@import "button-group";
+@import "nav";
+@import "navbar";
+@import "card";
+@import "accordion";
+@import "breadcrumb";
+@import "pagination";
+@import "badge";
+@import "alert";
+@import "progress";
+@import "list-group";
+@import "close";
+@import "toasts";
+@import "modal";
+@import "tooltip";
+@import "popover";
+@import "carousel";
+@import "spinners";
+@import "offcanvas";
 
-// Import CoreUI for React components library
-@import "@coreui/coreui/scss/coreui";
+// Helpers
+@import "helpers";
 
-// Import Chart.js custom tooltips styles
-@import "@coreui/chartjs/scss/coreui-chartjs";
+// Utilities
+@import "utilities/api";
 
-@import "layout";
-@import "example";
-
-// If you want to add custom CSS you can put it here.
+// Custom
 @import "custom";
+
+// scss-docs-end import-stack

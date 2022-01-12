@@ -1,45 +1,42 @@
-import React from 'react'
-import {
-    CAvatar,
-    CBadge,
-    CDropdown,
-    CDropdownDivider,
-    CDropdownHeader,
-    CDropdownItem,
-    CDropdownMenu,
-    CDropdownToggle,
-} from '@coreui/react'
-import {
-    cilBell,
-    cilCreditCard,
-    cilCommentSquare,
-    cilEnvelopeOpen,
-    cilFile,
-    cilLockLocked,
-    cilSettings,
-    cilTask,
-    cilUser,
-} from '@coreui/icons'
-import CIcon from '@coreui/icons-react'
+import React, { useState } from 'react'
 import defaultAvatar from './../../assets/images/avatars/defaultAvatar.jpg'
+import { Dropdown, Image } from 'react-bootstrap'
+import { BsBoxArrowRight, BsPersonCircle } from 'react-icons/bs'
 
 const AppHeaderDropdown = () => {
+    const [visible, setVisible] = useState(false)
     return (
-        <CDropdown variant="nav-item">
-            <CDropdownToggle placement="bottom-end" className="py-0" caret={false}>
-                <CAvatar src={defaultAvatar} size="md" />
-            </CDropdownToggle>
-            <CDropdownMenu className="pt-0" placement="bottom-end">
-                <CDropdownItem component="button">
-                    <CIcon icon={cilBell} className="me-2" />
-                    Thông báo
-                </CDropdownItem>
-                <CDropdownItem href="info/me">
-                    <CIcon icon={cilBell} className="me-2" />
+        <Dropdown
+            style={{
+                cursor: "pointer"
+            }}
+            className="col-auto"
+            show={visible}
+            onToggle={() => setVisible(!visible)}
+        >
+            <div className="dropdown-toggle me-5" onClick={() => setVisible(!visible)}>
+                <Image
+                    roundedCircle
+                    src={defaultAvatar}
+                    style={{
+                        maxWidth: "3rem",
+                        maxHeight: "3rem",
+                    }}
+                    className="me-2"
+                />
+                Nguyễn Võ Song Toàn
+            </div>
+            <Dropdown.Menu placement="bottom-end">
+                <Dropdown.Item component="button">
+                    <BsPersonCircle />
                     Tài khoản
-                </CDropdownItem>
-            </CDropdownMenu>
-        </CDropdown>
+                </Dropdown.Item>
+                <Dropdown.Item href="info/me">
+                    <BsBoxArrowRight />
+                    Đăng xuất
+                </Dropdown.Item>
+            </Dropdown.Menu>
+        </Dropdown>
     )
 }
 

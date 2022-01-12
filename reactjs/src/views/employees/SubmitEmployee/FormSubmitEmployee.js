@@ -1,7 +1,6 @@
-import { CButton, CCard, CCardBody, CCardHeader, CForm, CFormFeedback, CFormInput, CFormLabel, CFormSwitch, CListGroupItem, CModal, CModalBody, CModalHeader, CModalTitle } from "@coreui/react"
 import React, { useEffect, useRef, useState } from "react"
+import { Button, Card, Form, ListGroup, Modal } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchDepartmentsRequest } from "../../../actions/departmentsAction"
 import { addEmployeeRequest, updateEmployeeRequest } from "../../../actions/employeesAction"
 import AppToaster from "../../../components/AppToaster"
 import useOnClickOutside from "../../../customHooks/useOnClickOutside"
@@ -37,8 +36,8 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
     const [visibleDepartment, setVisibleDepartment] = useState(false) // State quản lý hiển thị danh sách phòng ban để người dùng chọn
     const [visiblePosition, setVisiblePosition] = useState(false) // State quản lý hiển thị danh sách chức vụ để người dùng chọn
     const [visibleLogin, setVisibleLogin] = useState(false) // State quản lý hiển thị nhập tên đăng và mật khẩu nếu cho phép đăng nhập
-    const [notificationAddSuccess, setNotificationAddSuccess] = useState(false) // State quản lý hiển thị thông báo thêm nhân viên thành công
-    const [notificationUpdateSuccess, setNotificationUpdateSuccess] = useState(false) // State quản lý hiển thị thông báo cập nhật thông tin nhân viên thành công
+    const [visibleNotificationAddSuccess, setVisibleNotificationAddSuccess] = useState(false) // State quản lý hiển thị thông báo thêm nhân viên thành công
+    const [visibleNotificationUpdateSuccess, setVisibleNotificationUpdateSuccess] = useState(false) // State quản lý hiển thị thông báo cập nhật thông tin nhân viên thành công
     //
 
     /* Quản lý các ref */
@@ -133,11 +132,11 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
             e.stopPropagation()
             if (info.id) {
                 dispatch(updateEmployeeRequest(info))
-                setNotificationUpdateSuccess(true)
+                setVisibleNotificationUpdateSuccess(true)
             }
             else {
                 dispatch(addEmployeeRequest(info))
-                setNotificationAddSuccess(true)
+                setVisibleNotificationAddSuccess(true)
             }
             setVisible(false)
         }
@@ -148,10 +147,10 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
     let SelectPositionElement = null
     if (visiblePosition) {
         if (info.department?.id && !info.department?.positions.length) {
-            SelectPositionElement = <CListGroupItem className="bg-light" align="center">Phòng ban hiện chưa có chức vụ nào!</CListGroupItem>
+            SelectPositionElement = <ListGroup.Item className="bg-light" align="center">Phòng ban hiện chưa có chức vụ nào!</ListGroup.Item>
         }
         else if (!info.department.id) {
-            SelectPositionElement = <CListGroupItem className="bg-light" align="center">Chưa chọn phòng ban!</CListGroupItem>
+            SelectPositionElement = <ListGroup.Item className="bg-light" align="center">Chưa chọn phòng ban!</ListGroup.Item>
         }
         else {
             SelectPositionElement = <SelectPosition
@@ -165,26 +164,26 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
 
     return (
         <>
-            <CModal
+            <Modal
                 size="xl"
                 scrollable
-                visible={visible}
-                onClose={() => setVisible(false)}
+                show={visible}
+                onHide={() => setVisible(false)}
             >
-                <CModalHeader>
-                    <CModalTitle>
+                <Modal.Header closeButton className="bg-gradient">
+                    <Modal.Title className="text-white">
                         {employee?.id ? "CHỈNH SỬA NHÂN VIÊN" : "THÊM NHÂN VIÊN MỚI"}
-                    </CModalTitle>
-                </CModalHeader>
-                <CModalBody>
-                    <CForm
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form
                         noValidate
                         validated={validated}
                         onSubmit={handleSubmit}
                     >
                         <div className="mb-3">
-                            <CFormLabel htmlFor="code">Mã nhân viên:</CFormLabel>
-                            <CFormInput
+                            <Form.Label htmlFor="code">Mã nhân viên:</Form.Label>
+                            <Form.Control
                                 type="text"
                                 name="code"
                                 placeholder="Nhập mã nhân viên..."
@@ -192,14 +191,14 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                                 onChange={handleInputChange}
                                 required
                             />
-                            <CFormFeedback invalid>
+                            <Form.Control.Feedback type="invalid">
                                 Vui lòng nhập mã nhân viên.
-                            </CFormFeedback>
+                            </Form.Control.Feedback>
                         </div>
                         <hr />
                         <div className="mb-3">
-                            <CFormLabel htmlFor="name">Họ và tên:</CFormLabel>
-                            <CFormInput
+                            <Form.Label htmlFor="name">Họ và tên:</Form.Label>
+                            <Form.Control
                                 type="text"
                                 name="name"
                                 placeholder="Nhập họ và tên nhân viên..."
@@ -207,14 +206,14 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                                 onChange={handleInputChange}
                                 required
                             />
-                            <CFormFeedback invalid>
+                            <Form.Control.Feedback type="invalid">
                                 Vui lòng nhập họ và tên nhân viên.
-                            </CFormFeedback>
+                            </Form.Control.Feedback>
                         </div>
                         <hr />
                         <div className="mb-3">
-                            <CFormLabel htmlFor="dob">Ngày sinh:</CFormLabel>
-                            <CFormInput
+                            <Form.Label htmlFor="dob">Ngày sinh:</Form.Label>
+                            <Form.Control
                                 type="date"
                                 name="dob"
                                 placeholder="Nhập ngày sinh..."
@@ -222,14 +221,14 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                                 onChange={handleInputChange}
                                 required
                             />
-                            <CFormFeedback invalid>
+                            <Form.Control.Feedback type="invalid">
                                 Vui lòng nhập ngày sinh.
-                            </CFormFeedback>
+                            </Form.Control.Feedback>
                         </div>
                         <hr />
                         <div className="mb-3">
-                            <CFormLabel htmlFor="email">Email:</CFormLabel>
-                            <CFormInput
+                            <Form.Label htmlFor="email">Email:</Form.Label>
+                            <Form.Control
                                 type="email"
                                 name="email"
                                 placeholder="Nhập email nhân viên..."
@@ -237,14 +236,14 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                                 onChange={handleInputChange}
                                 required
                             />
-                            <CFormFeedback invalid>
+                            <Form.Control.Feedback type="invalid">
                                 Vui lòng nhập email.
-                            </CFormFeedback>
+                            </Form.Control.Feedback>
                         </div>
                         <hr />
                         <div className="mb-3">
-                            <CFormLabel htmlFor="phone">Số điện thoại:</CFormLabel>
-                            <CFormInput
+                            <Form.Label htmlFor="phone">Số điện thoại:</Form.Label>
+                            <Form.Control
                                 type="number"
                                 name="phone"
                                 placeholder="Nhập số điện thoại của nhân viên..."
@@ -252,15 +251,15 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                                 onChange={handleInputChange}
                                 required
                             />
-                            <CFormFeedback invalid>
+                            <Form.Control.Feedback type="invalid">
                                 Vui lòng nhập số điện thoại.
-                            </CFormFeedback>
+                            </Form.Control.Feedback>
                         </div>
                         <hr />
                         <div className="mb-3">
-                            <CFormLabel htmlFor="department">Phòng ban:</CFormLabel>
+                            <Form.Label htmlFor="department">Phòng ban:</Form.Label>
                             <div ref={refSelectDepartment}>
-                                <CFormInput
+                                <Form.Control
                                     type="text"
                                     name="department"
                                     placeholder="Chọn phòng ban của nhân viên..."
@@ -269,9 +268,9 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                                     onClick={() => setVisibleDepartment(!visibleDepartment)}
                                     required
                                 />
-                                <CFormFeedback invalid>
+                                <Form.Control.Feedback type="invalid">
                                     Vui lòng chọn phòng ban.
-                                </CFormFeedback>
+                                </Form.Control.Feedback>
                                 <SelectDepartment
                                     visible={visibleDepartment}
                                     currentDepartment={info.department}
@@ -282,9 +281,9 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                         </div>
                         <hr />
                         <div className="mb-3">
-                            <CFormLabel htmlFor="position">Chức vụ:</CFormLabel>
+                            <Form.Label htmlFor="position">Chức vụ:</Form.Label>
                             <div ref={refSelectPosition}>
-                                <CFormInput
+                                <Form.Control
                                     type="text"
                                     name="position"
                                     placeholder="Chọn chức vụ của nhân viên..."
@@ -294,26 +293,27 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                                     required
                                 />
                                 {SelectPositionElement}
-                                <CFormFeedback invalid>
+                                <Form.Control.Feedback type="invalid">
                                     Vui lòng chọn chức vụ.
-                                </CFormFeedback>
+                                </Form.Control.Feedback>
                             </div>
                         </div>
                         <hr />
-                        <CCard>
-                            <CCardBody>
-                                <CCardHeader>
-                                    <CFormSwitch
+                        <Card>
+                            <Card.Body>
+                                <Card.Header>
+                                    <Form.Check
+                                        type="switch"
                                         label="Cho phép đăng nhập"
                                         checked={visibleLogin}
                                         onChange={handleInputChange}
                                     />
-                                </CCardHeader>
+                                </Card.Header>
                                 {(visibleLogin) ? (
                                     <>
                                         <div className="mb-3">
-                                            <CFormLabel htmlFor="username" className="mt-3">Tên đăng nhập:</CFormLabel>
-                                            <CFormInput
+                                            <Form.Label htmlFor="username" className="mt-3">Tên đăng nhập:</Form.Label>
+                                            <Form.Control
                                                 type="text"
                                                 name="username"
                                                 placeholder="Nhập tên đăng nhập..."
@@ -321,16 +321,16 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                                                 onChange={handleUserChange}
                                                 required
                                             />
-                                            <CFormFeedback invalid>
+                                            <Form.Control.Feedback type="invalid">
                                                 Vui lòng nhập tên đăng nhập.
-                                            </CFormFeedback>
+                                            </Form.Control.Feedback>
                                         </div>
                                         {((employee?.id && employee?.user.username === "" && employee?.user.password === "") || !employee) ? (
                                             <>
                                                 <hr />
                                                 <div className="mb-3">
-                                                    <CFormLabel htmlFor="password">Mật khẩu:</CFormLabel>
-                                                    <CFormInput
+                                                    <Form.Label htmlFor="password">Mật khẩu:</Form.Label>
+                                                    <Form.Control
                                                         type="password"
                                                         name="password"
                                                         placeholder="Nhập mật khẩu..."
@@ -338,36 +338,42 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                                                         onChange={handleUserChange}
                                                         required
                                                     />
-                                                    <CFormFeedback invalid>
+                                                    <Form.Control.Feedback type="invalid">
                                                         Vui lòng nhập mật khẩu.
-                                                    </CFormFeedback>
+                                                    </Form.Control.Feedback>
                                                 </div>
                                             </>
                                         ) : null}
 
                                     </>
                                 ) : null}
-                            </CCardBody>
-                        </CCard>
+                            </Card.Body>
+                        </Card>
                         <hr />
                         <>
-                            <CButton
+                            <Button
                                 className="d-table m-auto"
                                 size="lg"
                                 type="submit"
                             >
                                 {(employee?.id) ? "Cập nhật thông tin" : "Xác nhận tạo mới"}
-                            </CButton>
+                            </Button>
                         </>
-                    </CForm>
-                </CModalBody>
-            </CModal>
-            {(notificationAddSuccess) ? (
-                <AppToaster content="Thêm nhân viên thành công" />
-            ) : null}
-            {(notificationUpdateSuccess) ? (
-                <AppToaster content="Cập nhật thông tin nhân viên thành công" />
-            ) : null}
+                    </Form>
+                </Modal.Body>
+            </Modal>
+            <AppToaster
+                visible={visibleNotificationAddSuccess}
+                setVisible={setVisibleNotificationAddSuccess}
+                title="Thêm nhân viên"
+                content="Thêm nhân viên thành công"
+            />
+            <AppToaster
+                visible={visibleNotificationUpdateSuccess}
+                setVisible={setVisibleNotificationUpdateSuccess}
+                title="Chỉnh sửa nhân viên"
+                content="Cập nhật thông tin nhân viên thành công"
+            />
         </>
     )
 }
