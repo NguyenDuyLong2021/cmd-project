@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ApproveByMe = () => {
+const EditRequest = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const ApproveByMe = () => {
     )
 }
 
-export default ApproveByMe
+export default EditRequest

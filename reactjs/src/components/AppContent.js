@@ -7,7 +7,7 @@ import { Container, Spinner } from 'react-bootstrap'
 
 const AppContent = () => {
     return (
-        <Container fluid>
+        <Container fluid className="mt-3">
             <Suspense fallback={<Spinner animation="border" variant="primary" />}>
                 <Routes>
                     {routes.map((route, idx) => {

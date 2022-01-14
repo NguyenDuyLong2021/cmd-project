@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default function CreatedByMe() {
+const CreatedByMe = () => {
     return (
         <div>
             
         </div>
     )
 }
+
+export default CreatedByMe

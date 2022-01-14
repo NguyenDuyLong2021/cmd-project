@@ -19,3 +19,22 @@
   @include transition($transition-collapse);
 }
 // scss-docs-end collapse-classes
+
+// scss-docs-start slideIn-classes
+@keyframes slideInLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100px);
+  }
+}
+@keyframes slideInRight {
+  from {
+    transform: translateX(200px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+// scss-docs-end slideIn-classes

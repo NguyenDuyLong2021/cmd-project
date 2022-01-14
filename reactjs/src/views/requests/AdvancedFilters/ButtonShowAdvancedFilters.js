@@ -1,20 +1,19 @@
-import { CButton } from '@coreui/react'
 import React, { useState } from 'react'
+import { Button } from 'react-bootstrap'
 import AdvancedFilters from './AdvancedFilters'
 
 const ButtonShowAdvancedFilters = () => {
     const [visible, setVisible] = useState(false)
     return (
         <>
-            <CButton
-                color="primary"
-                variant="outline"
+            <Button
+                variant="outline-primary"
                 onClick={() => setVisible(!visible)}
             >
                 <span className="fw-bolder">
                     Bộ lọc
                 </span>
-            </CButton>
+            </Button>
             <AdvancedFilters visible={visible} setVisible={setVisible} />
         </>
     )

@@ -9,7 +9,10 @@ const AdvancedFilters = ({ visible, setVisible }) => {
             backdrop="static"
             keyboard={false}
         >
-            <Modal.Header closeButton>
+            <Modal.Header
+                closeButton
+                className="bg-gradient"
+            >
                 <Modal.Title>Modal title</Modal.Title>
             </Modal.Header>
             <Modal.Body>

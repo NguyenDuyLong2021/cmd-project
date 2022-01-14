@@ -1,5 +1,5 @@
-import { CButton, CForm, CFormCheck, CFormFeedback, CFormInput, CFormLabel, CFormSelect, CListGroupItem, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle } from '@coreui/react'
 import React, { useEffect, useState } from 'react'
+import { Button, Form, ListGroup, Modal } from 'react-bootstrap'
 import { AiOutlineClose } from 'react-icons/ai'
 import { BiTrash } from 'react-icons/bi'
 import { useDispatch, useSelector } from 'react-redux'
@@ -122,28 +122,24 @@ const Positions = ({ visible, setVisible, department }) => {
 
     return (
         <>
-            <CModal
+            <Modal
                 fullscreen
                 scrollable
-                visible={visible}
-                onClose={() => setVisible(false)}
+                show={visible}
+                onHide={() => setVisible(false)}
             >
-                <div className="modal-header row justify-content-between">
-                    <div className="col">
-                        <CModalTitle>
-                            CHỨC VỤ
-                            <br />
-                            {department.name}
-                        </CModalTitle>
-                    </div>
-                    <div className="col-auto">
-                        <CButton color="none" onClick={() => setVisible(false)}>
-                            <AiOutlineClose className="fs-4" />
-                        </CButton>
-                    </div>
-                </div>
-                <CModalBody>
-                    <CForm
+                <Modal.Header
+                    closeButton
+                    className="bg-gradient"
+                >
+                    <Modal.Title>
+                        CHỨC VỤ
+                        <br />
+                        {department.name}
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form
                         noValidate
                         validated={validated}
                         onSubmit={handleSubmit}
@@ -151,10 +147,10 @@ const Positions = ({ visible, setVisible, department }) => {
                         {
                             info.map((position, index) => (
                                 <div key={index}>
-                                    <CListGroupItem className="bg-light">
+                                    <ListGroup.Item className="bg-light">
                                         <div className="mb-3">
-                                            <CFormLabel htmlFor="code">Tên chức vụ:</CFormLabel>
-                                            <CFormInput
+                                            <Form.Label htmlFor="code">Tên chức vụ:</Form.Label>
+                                            <Form.Control
                                                 type="text"
                                                 name="name"
                                                 tabIndex={index}
@@ -163,13 +159,13 @@ const Positions = ({ visible, setVisible, department }) => {
                                                 onChange={handleInputChange}
                                                 required
                                             />
-                                            <CFormFeedback invalid>
+                                            <Form.Control.Feedback type="invalid">
                                                 Vui lòng nhập tên chức vụ.
-                                            </CFormFeedback>
+                                            </Form.Control.Feedback>
                                         </div>
                                         <div className="mb-3">
-                                            <CFormLabel htmlFor="name">Vai trò:</CFormLabel>
-                                            <CFormSelect
+                                            <Form.Label htmlFor="name">Vai trò:</Form.Label>
+                                            <Form.Select
                                                 tabIndex={index}
                                                 value={position.role?.id}
                                                 label={position.role?.name}
@@ -180,70 +176,70 @@ const Positions = ({ visible, setVisible, department }) => {
                                                         <option key={role.id} value={role.id}>{role.name}</option>
                                                     ))
                                                 }
-                                            </CFormSelect>
+                                            </Form.Select>
                                         </div>
                                         <div className="row justify-content-center">
-                                        <CFormCheck
-                                            label="Là trưởng phòng"
-                                            name="is_lead"
-                                            tabIndex={index}
-                                            disabled={info.some(e => e.is_lead === true) && position.is_lead === false}
-                                            checked={position.is_lead}
-                                            onChange={handleInputChange}
-                                        />
-                                        <CButton color="none" onClick={() => setVisibleDelete(true)}>
-                                            <BiTrash />
-                                        </CButton>
+                                            <Form.Check
+                                                label="Là trưởng phòng"
+                                                name="is_lead"
+                                                tabIndex={index}
+                                                disabled={info.some(e => e.is_lead === true) && position.is_lead === false}
+                                                checked={position.is_lead}
+                                                onChange={handleInputChange}
+                                            />
+                                            <Button variant="none" onClick={() => setVisibleDelete(true)}>
+                                                <BiTrash />
+                                            </Button>
                                         </div>
-                                    </CListGroupItem>
+                                    </ListGroup.Item>
                                     <br />
-                                    <CModal
+                                    <Modal
                                         backdrop="static"
                                         visible={visibleDelete}
                                         onClose={() => setVisibleDelete(false)}
                                     >
-                                        <CModalHeader>
-                                            <CModalTitle>XÓA CHỨC VỤ</CModalTitle>
-                                        </CModalHeader>
-                                        <CModalBody>
+                                        <Modal.Header>
+                                            <Modal.Title>XÓA CHỨC VỤ</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
                                             Bạn có chắc muốn xóa chức vụ này khỏi phòng ban?
-                                        </CModalBody>
-                                        <CModalFooter>
-                                            <CButton
+                                        </Modal.Body>
+                                        <Modal.Footer>
+                                            <Button
                                                 color="secondary"
                                                 className="text-white"
                                                 onClick={() => setVisibleDelete(false)}
                                             >
                                                 Hủy
-                                            </CButton>
-                                            <CButton
+                                            </Button>
+                                            <Button
                                                 color="danger"
                                                 className="text-white"
                                                 onClick={() => handleDelete(index)}
                                             >
                                                 Đồng ý
-                                            </CButton>
-                                        </CModalFooter>
-                                    </CModal>
+                                            </Button>
+                                        </Modal.Footer>
+                                    </Modal>
                                 </div>
                             ))
                         }
                         <div className="mb-3 mt-3">
-                            <CButton className="d-table m-auto" onClick={showFormAddPostion}>
+                            <Button className="d-table m-auto" onClick={showFormAddPostion}>
                                 Thêm chức vụ
-                            </CButton>
+                            </Button>
                         </div>
-                        <CModalFooter>
-                            <CButton
+                        <Modal.Footer>
+                            <Button
                                 className="d-block m-auto"
                                 type="submit"
                             >
                                 Lưu
-                            </CButton>
-                        </CModalFooter>
-                    </CForm>
-                </CModalBody>
-            </CModal>
+                            </Button>
+                        </Modal.Footer>
+                    </Form>
+                </Modal.Body>
+            </Modal>
             {notificationUpdateSuccess ? <AppToaster title="Thông báo" content="Cập nhật chức vụ thành công" /> : null}
             {notificationDeleteSuccess ? <AppToaster title="Thông báo" content="Xóa chức vụ thành công" /> : null}
         </>

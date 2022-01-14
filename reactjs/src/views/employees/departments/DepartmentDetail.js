@@ -1,5 +1,5 @@
-import { CListGroup, CListGroupItem, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from '@coreui/react'
 import React from 'react'
+import { ListGroup, Table } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 
 const DepartmentDetail = ({ department }) => {
@@ -11,46 +11,45 @@ const DepartmentDetail = ({ department }) => {
         }
     })
     return (
-        <CListGroup flush>
-            <CListGroupItem>
+        <ListGroup variant="flush">
+            <ListGroup.Item>
                 Mã phòng ban: {department.code}
-            </CListGroupItem>
-            <CListGroupItem>
+            </ListGroup.Item>
+            <ListGroup.Item>
                 Tên phòng ban: {department.name}
-            </CListGroupItem>
-            <CListGroupItem>
+            </ListGroup.Item>
+            <ListGroup.Item>
                 Thuộc sự quản lý của phòng ban: {parentName || department.name}
-            </CListGroupItem>
-            <CListGroupItem>
+            </ListGroup.Item>
+            <ListGroup.Item>
                 Mô tả về phòng ban: {(department.description === "") ? "Chưa có mô tả" : department.description}
-            </CListGroupItem>
-            <CListGroupItem>
-                <CTable
+            </ListGroup.Item>
+            <ListGroup.Item>
+                <Table
                     striped
                     hover
                     responsive
                     borderless
-                    align="middle"
                 >
-                    <CTableHead>
-                        <CTableRow>
-                            <CTableHeaderCell scope="col">CHỨC VỤ</CTableHeaderCell>
-                            <CTableHeaderCell scope="col">VAI TRÒ</CTableHeaderCell>
-                        </CTableRow>
-                    </CTableHead>
-                    <CTableBody>
+                    <thead>
+                        <tr>
+                            <td scope="col">CHỨC VỤ</td>
+                            <td scope="col">VAI TRÒ</td>
+                        </tr>
+                    </thead>
+                    <tbody>
                         {
                             department.positions.map((position, index) => (
-                                <CTableRow key={index}>
-                                    <CTableDataCell>{position.name}</CTableDataCell>
-                                    <CTableDataCell>{position?.role.name}</CTableDataCell>
-                                </CTableRow>
+                                <tr key={index}>
+                                    <td>{position.name}</td>
+                                    <td>{position?.role.name}</td>
+                                </tr>
                             ))
                         }
-                    </CTableBody>
-                </CTable>
-            </CListGroupItem>
-        </CListGroup>
+                    </tbody>
+                </Table>
+            </ListGroup.Item>
+        </ListGroup>
     )
 }
 

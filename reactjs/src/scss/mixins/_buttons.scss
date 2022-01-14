@@ -47,7 +47,7 @@
   &:active,
   &.active,
   .show > &.dropdown-toggle {
-    color: $active-color;
+    color: $white;
     background-color: $active-background;
     // Remove CSS gradients if they're enabled
     background-image: if($enable-gradients, none, null);

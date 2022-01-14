@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Dropdown } from 'react-bootstrap'
+import { Dropdown } from 'react-bootstrap'
 import { BsFileLock, BsFillCircleFill, BsThreeDotsVertical } from "react-icons/bs"
 import DeleteEmployee from './DeleteEmployee'
 import EditEmployee from './SubmitEmployee/EditEmployee'
@@ -20,7 +20,7 @@ const EmployeeItem = ({ employee }) => {
             <td>{employee.position?.name}</td>
             <td>
                 <Dropdown>
-                    <Dropdown.Toggle className="bg-none">
+                    <Dropdown.Toggle variant="none">
                         <BsThreeDotsVertical />
                     </Dropdown.Toggle>
                     <Dropdown.Menu rootCloseEvent="click">

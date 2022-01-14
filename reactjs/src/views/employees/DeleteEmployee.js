@@ -49,7 +49,12 @@ const DeleteEmployee = ({ id }) => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <AppToaster visible={visibleNotificationDeleteSuccess} setVisible={setVisibleNotificationDeleteSuccess} title="Nhân viên" content="Xóa nhân viên thành công" />
+            <AppToaster
+                visible={visibleNotificationDeleteSuccess}
+                setVisible={setVisibleNotificationDeleteSuccess}
+                title="Nhân viên"
+                content="Xóa nhân viên thành công"
+            />
         </>
     )
 }

@@ -1,86 +1,68 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import {
-  CButton,
-  CCard,
-  CCardBody,
-  CCardGroup,
-  CCol,
-  CContainer,
-  CForm,
-  CFormInput,
-  CInputGroup,
-  CInputGroupText,
-  CRow,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
+import React, { useEffect } from 'react'
+import { Button, Card, CardGroup, Col, Container, Form, InputGroup, Row } from 'react-bootstrap'
+import { BiLockOpen, BiUserCircle } from 'react-icons/bi'
+import background from "../../../assets/images/cmd.jpg"
 
 const Login = () => {
-  return (
-    <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
-      <CContainer>
-        <CRow className="justify-content-center">
-          <CCol md={8}>
-            <CCardGroup>
-              <CCard className="p-4">
-                <CCardBody>
-                  <CForm>
-                    <h1>Login</h1>
-                    <p className="text-medium-emphasis">Sign In to your account</p>
-                    <CInputGroup className="mb-3">
-                      <CInputGroupText>
-                        <CIcon icon={cilUser} />
-                      </CInputGroupText>
-                      <CFormInput placeholder="Username" autoComplete="username" />
-                    </CInputGroup>
-                    <CInputGroup className="mb-4">
-                      <CInputGroupText>
-                        <CIcon icon={cilLockLocked} />
-                      </CInputGroupText>
-                      <CFormInput
-                        type="password"
-                        placeholder="Password"
-                        autoComplete="current-password"
-                      />
-                    </CInputGroup>
-                    <CRow>
-                      <CCol xs={6}>
-                        <CButton color="primary" className="px-4">
-                          Login
-                        </CButton>
-                      </CCol>
-                      <CCol xs={6} className="text-right">
-                        <CButton color="link" className="px-0">
-                          Forgot password?
-                        </CButton>
-                      </CCol>
-                    </CRow>
-                  </CForm>
-                </CCardBody>
-              </CCard>
-              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
-                <CCardBody className="text-center">
-                  <div>
-                    <h2>Sign up</h2>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                      tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                    <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>
-                        Register Now!
-                      </CButton>
-                    </Link>
-                  </div>
-                </CCardBody>
-              </CCard>
-            </CCardGroup>
-          </CCol>
-        </CRow>
-      </CContainer>
-    </div>
-  )
+    useEffect(() => {
+        document.title = "Đăng Nhập - Cảnh Báo Sớm"
+    })
+    return (
+        <div className="bg-gradient min-vh-100 d-flex flex-row align-items-center">
+            <Container>
+                <Row className="justify-content-center">
+                    <Col md={8}>
+                        <CardGroup>
+                            <Card className="p-4">
+                                <Card.Body>
+                                    <Form>
+                                        <h1>Đăng Nhập</h1>
+                                        <p className="text-medium-emphasis">Đăng nhập vào tài khoản của bạn</p>
+                                        <InputGroup className="mb-3">
+                                            <InputGroup.Text>
+                                                <BiUserCircle />
+                                            </InputGroup.Text>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Tên đăng nhập"
+                                                autoComplete="username"
+                                            />
+                                        </InputGroup>
+                                        <InputGroup className="mb-4">
+                                            <InputGroup.Text>
+                                                <BiLockOpen />
+                                            </InputGroup.Text>
+                                            <Form.Control
+                                                type="password"
+                                                placeholder="Mật khẩu"
+                                                autoComplete="password"
+                                            />
+                                        </InputGroup>
+                                        <Row>
+                                            <Col xs={6}>
+                                                <Button color="primary" className="px-4">
+                                                    Đăng nhập
+                                                </Button>
+                                            </Col>
+                                            <Col xs={6} className="text-right">
+                                                <Button variant="link" className="px-0 text-primary">
+                                                    Quên mật khẩu
+                                                </Button>
+                                            </Col>
+                                        </Row>
+                                    </Form>
+                                </Card.Body>
+                            </Card>
+                            <Card className="bg-primary" style={{ width: '44%' }}>
+                                <Card.Img src={background} style={{ minWidth: "inherit", minHeight: "100%", borderRadius: 0 }} />
+                                <Card.ImgOverlay />
+                            </Card>
+                        </CardGroup>
+                    </Col>
+                </Row>
+            </Container>
+        </div >
+    )
 }
 
 export default Login

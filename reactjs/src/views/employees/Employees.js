@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AiOutlineSortAscending, AiOutlineSortDescending } from 'react-icons/ai'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Button, Card, Form, Table } from 'react-bootstrap'
+import { Button, Card, Form, Row, Table } from 'react-bootstrap'
 import * as actions from '../../actions/employeesAction'
 import AppPagination from '../../components/AppPagination'
 import EmployeeItem from './EmployeeItem'
@@ -93,19 +93,18 @@ const Employees = () => {
                 <div className="col-auto fw-bold fs-5">
                     DANH SÁCH NHÂN VIÊN
                 </div>
-                <div className="row justify-content-end col">
-                    <div className="col-auto">
-                        <AppSearch value={filters.q} onSearch={handleSearchTerm} />
-                    </div>
-                    <div className="col-auto">
-                        <ButtonShowDepartments />
-                    </div>
-                    <div className="col-auto">
-                        <ButtonShowRoles />
-                    </div>
-                    <div className="col-auto">
-                        <AddEmployee />
-                    </div>
+                <div className="col" />
+                <div className="col-auto">
+                    <AppSearch value={filters.q} onSearch={handleSearchTerm} />
+                </div>
+                <div className="col-auto">
+                    <ButtonShowDepartments />
+                </div>
+                <div className="col-auto">
+                    <ButtonShowRoles />
+                </div>
+                <div className="col-auto">
+                    <AddEmployee />
                 </div>
             </div>
             <hr />
@@ -121,82 +120,70 @@ const Employees = () => {
                             <tr>
                                 <th></th>
                                 <th>
-                                    <div className="row flex-row">
-                                        <Button
-                                            variant="none"
-                                            onClick={() => handleSort("name")}
-                                        >
-                                            <span className="fw-bolder">
-                                                HỌ VÀ TÊN {filters._sort === "name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
-                                            </span>
-                                        </Button>
-                                        <Form.Control type="text" name="name" placeholder="Tìm kiếm..." value={filters.name} onChange={handleFilter} />
-                                    </div>
+                                    <Button
+                                        variant="none"
+                                        onClick={() => handleSort("name")}
+                                    >
+                                        <span className="fw-bolder">
+                                            HỌ VÀ TÊN {filters._sort === "name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
+                                        </span>
+                                    </Button>
+                                    <Form.Control type="text" name="name" placeholder="Tìm kiếm..." value={filters.name} onChange={handleFilter} />
                                 </th>
                                 <th>
-                                    <div>
-                                        <Button
-                                            variant="none"
-                                            onClick={() => handleSort("dob")}
-                                        >
-                                            <span className="fw-bolder">
-                                                NGÀY SINH {filters._sort === "dob" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "dob" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
-                                            </span>
-                                        </Button>
-                                        <Form.Control type="text" name="dob" placeholder="Tìm kiếm..." value={filters.dob} onChange={handleFilter} />
-                                    </div>
+                                    <Button
+                                        variant="none"
+                                        onClick={() => handleSort("dob")}
+                                    >
+                                        <span className="fw-bolder">
+                                            NGÀY SINH {filters._sort === "dob" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "dob" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
+                                        </span>
+                                    </Button>
+                                    <Form.Control type="text" name="dob" placeholder="Tìm kiếm..." value={filters.dob} onChange={handleFilter} />
                                 </th>
                                 <th>
-                                    <div>
-                                        <Button
-                                            variant="none"
-                                            onClick={() => handleSort("email")}
-                                        >
-                                            <span className="fw-bolder">
-                                                EMAIL {filters._sort === "email" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "email" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
-                                            </span>
-                                        </Button>
-                                        <Form.Control type="text" name="email" placeholder="Tìm kiếm..." value={filters.email} onChange={handleFilter} />
-                                    </div>
+                                    <Button
+                                        variant="none"
+                                        onClick={() => handleSort("email")}
+                                    >
+                                        <span className="fw-bolder">
+                                            EMAIL {filters._sort === "email" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "email" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
+                                        </span>
+                                    </Button>
+                                    <Form.Control type="text" name="email" placeholder="Tìm kiếm..." value={filters.email} onChange={handleFilter} />
                                 </th>
                                 <th>
-                                    <div>
-                                        <Button
-                                            variant="none"
-                                            onClick={() => handleSort("phone")}
-                                        >
-                                            <span className="fw-bolder">
-                                                SĐT {filters._sort === "phone" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "phone" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
-                                            </span>
-                                        </Button>
-                                        <Form.Control type="text" name="phone" placeholder="Tìm kiếm..." value={filters.phone} onChange={handleFilter} />
-                                    </div>
+                                    <Button
+                                        variant="none"
+                                        onClick={() => handleSort("phone")}
+                                    >
+                                        <span className="fw-bolder">
+                                            SĐT {filters._sort === "phone" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "phone" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
+                                        </span>
+                                    </Button>
+                                    <Form.Control type="text" name="phone" placeholder="Tìm kiếm..." value={filters.phone} onChange={handleFilter} />
                                 </th>
                                 <th>
-                                    <div>
-                                        <Button
-                                            variant="none"
-                                            onClick={() => handleSort("department.name")}
-                                        >
-                                            <span className="fw-bolder">
-                                                PHÒNG BAN {filters._sort === "department.name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "department.name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
-                                            </span>
-                                        </Button>
-                                        <Form.Control type="text" name="department.name" placeholder="Tìm kiếm..." value={filters.department} onChange={handleFilter} />
-                                    </div>
+                                    <Button
+                                        variant="none"
+                                        onClick={() => handleSort("department.name")}
+                                    >
+                                        <span className="fw-bolder">
+                                            PHÒNG BAN {filters._sort === "department.name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "department.name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
+                                        </span>
+                                    </Button>
+                                    <Form.Control type="text" name="department.name" placeholder="Tìm kiếm..." value={filters.department} onChange={handleFilter} />
                                 </th>
                                 <th>
-                                    <div>
-                                        <Button
-                                            variant="none"
-                                            onClick={() => handleSort("position.name")}
-                                        >
-                                            <span className="fw-bolder">
-                                                CHỨC VỤ {filters._sort === "position.name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "position.name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
-                                            </span>
-                                        </Button>
-                                        <Form.Control type="text" name="position.name" placeholder="Tìm kiếm..." value={filters.position} onChange={handleFilter} />
-                                    </div>
+                                    <Button
+                                        variant="none"
+                                        onClick={() => handleSort("position.name")}
+                                    >
+                                        <span className="fw-bolder">
+                                            CHỨC VỤ {filters._sort === "position.name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "position.name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
+                                        </span>
+                                    </Button>
+                                    <Form.Control type="text" name="position.name" placeholder="Tìm kiếm..." value={filters.position} onChange={handleFilter} />
                                 </th>
                             </tr>
                         </thead>

@@ -7,15 +7,15 @@ const AddEmployee = () => {
     return (
         <>
             <Button
-            variant="primary"
+                variant="primary"
                 onClick={() => setVisible(!visible)}
             >
-            <span className="fw-bold">
-                Tạo mới nhân viên
-            </span>
+                <span className="fw-bold">
+                    Tạo mới nhân viên
+                </span>
             </Button>
             <FormSubmitEmployee visible={visible} setVisible={setVisible} />
-            
+
         </>
     )
 }

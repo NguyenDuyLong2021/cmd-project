@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Accordion, Button, Modal } from 'react-bootstrap'
-import { AiOutlineClose } from 'react-icons/ai'
+import { Accordion, Modal } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from '../../../actions/rolesAction'
 import AppPagination from '../../../components/AppPagination'
@@ -15,7 +14,7 @@ const Roles = ({ visible, setVisible }) => {
 
     const [filters, setFilters] = useState({
         _page: 1,
-        _litmit: 10,
+        _limit: 10,
         q: ""
     })
 
@@ -47,7 +46,7 @@ const Roles = ({ visible, setVisible }) => {
                 show={visible}
                 onHide={() => setVisible(false)}
             >
-                <Modal.Header closeButton>
+                <Modal.Header closeButton className="bg-gradient">
                     <Modal.Title>VAI TRÒ</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -62,7 +61,7 @@ const Roles = ({ visible, setVisible }) => {
                     <Accordion flush alwaysOpen>
                         {
                             roles.map(role => (
-                                <Accordion.Item itemKey={role.id} key={role.id}>
+                                <Accordion.Item eventKey={role.id} key={role.id}>
                                     <RoleItem role={role} />
                                 </Accordion.Item>
                             ))

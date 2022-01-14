@@ -1,17 +1,17 @@
-import { CButton } from '@coreui/react'
 import React, { useState } from 'react'
+import { Button } from 'react-bootstrap'
 import FormSubmitRole from './FormSubmitRole'
 
 const AddRole = () => {
     const [visible, setVisible] = useState(false)
     return (
         <>
-            <CButton
-                color="primary"
+            <Button
+                variant="primary"
                 onClick={() => setVisible(!visible)}
             >
                 Tạo mới
-            </CButton>
+            </Button>
             <FormSubmitRole visible={visible} setVisible={setVisible} />
         </>
     )

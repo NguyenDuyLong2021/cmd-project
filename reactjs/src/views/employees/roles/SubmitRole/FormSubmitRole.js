@@ -1,5 +1,5 @@
-import { CButton, CForm, CFormCheck, CFormFeedback, CFormInput, CFormLabel, CModal, CModalBody, CModalFooter, CModalTitle, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from "@coreui/react"
 import React, { useEffect, useState } from "react"
+import { Button, Form, Modal, Table } from "react-bootstrap"
 import { AiOutlineClose } from "react-icons/ai"
 import { useDispatch } from "react-redux"
 import * as actions from "../../../../actions/rolesAction"
@@ -110,33 +110,29 @@ const FormSubmitRole = ({ visible, setVisible, role = null }) => {
 
     return (
         <>
-            <CModal
+            <Modal
                 fullscreen
                 scrollable
-                visible={visible}
-                onClose={() => setVisible(false)}
+                show={visible}
+                onHide={() => setVisible(false)}
             >
-                <div className="modal-header row justify-content-between">
-                    <div className="col">
-                        <CModalTitle>
-                            {role?.id ? "CHỈNH SỬA VAI TRÒ" : "THÊM VAI TRÒ MỚI"}
-                        </CModalTitle>
-                    </div>
-                    <div className="col-auto">
-                        <CButton color="none" onClick={() => setVisible(false)}>
-                            <AiOutlineClose className="fs-4" />
-                        </CButton>
-                    </div>
-                </div>
-                <CModalBody>
-                    <CForm
+                <Modal.Header
+                    closeButton
+                    className="bg-gradient"
+                >
+                    <Modal.Title>
+                        {role?.id ? "CHỈNH SỬA VAI TRÒ" : "THÊM VAI TRÒ MỚI"}
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form
                         noValidate
                         validated={validated}
                         onSubmit={handleSubmit}
                     >
                         <div className="mb-3">
-                            <CFormLabel htmlFor="name">Tên vai trò:</CFormLabel>
-                            <CFormInput
+                            <Form.Label htmlFor="name">Tên vai trò:</Form.Label>
+                            <Form.Control
                                 type="text"
                                 name="name"
                                 placeholder="Nhập tên vai trò..."
@@ -144,74 +140,72 @@ const FormSubmitRole = ({ visible, setVisible, role = null }) => {
                                 onChange={handleInputChange}
                                 required
                             />
-                            <CFormFeedback invalid>
+                            <Form.Control.Feedback type="invalid">
                                 Vui lòng nhập tên vai trò.
-                            </CFormFeedback>
+                            </Form.Control.Feedback>
                         </div>
                         <div className="mb-3">
-                            <CFormLabel htmlFor="permissions">Quyền:</CFormLabel>
-                            <CTable borderless>
-                                <CTableHead>
-                                    <CTableRow>
-                                        <CTableHeaderCell></CTableHeaderCell>
-                                        <CTableHeaderCell>Xem</CTableHeaderCell>
-                                        <CTableHeaderCell>Tạo</CTableHeaderCell>
-                                        <CTableHeaderCell>Sửa</CTableHeaderCell>
-                                        <CTableHeaderCell>Xóa</CTableHeaderCell>
-                                        <CTableHeaderCell>Xem hết</CTableHeaderCell>
-                                        <CTableHeaderCell>Sửa hết</CTableHeaderCell>
-                                        <CTableHeaderCell>Xóa hết</CTableHeaderCell>
-                                    </CTableRow>
-                                </CTableHead>
-                                <CTableBody>
+                            <Form.Label htmlFor="permissions">Quyền:</Form.Label>
+                            <Table borderless>
+                                <thead>
+                                    <tr>
+                                        <td></td>
+                                        <td>Xem</td>
+                                        <td>Tạo</td>
+                                        <td>Sửa</td>
+                                        <td>Xóa</td>
+                                        <td>Xem hết</td>
+                                        <td>Sửa hết</td>
+                                        <td>Xóa hết</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     {
                                         detailPermissions.map((detailPermission, index) => (
-                                            <CTableRow key={index}>
-                                                <CTableHeaderCell>
-                                                    <CFormCheck
+                                            <tr key={index}>
+                                                <td>
+                                                    <Form.Check
+                                                        type="checkbox"
                                                         name={detailPermission.name}
                                                         label={detailPermission.label + ":"}
                                                         checked={info.permissions[detailPermission.name].view && info.permissions[detailPermission.name].create && info.permissions[detailPermission.name].update && info.permissions[detailPermission.name].delete && info.permissions[detailPermission.name].view_all && info.permissions[detailPermission.name].update_all && info.permissions[detailPermission.name].delete_all}
                                                         onChange={handleCheckAll}
                                                     />
-                                                </CTableHeaderCell>
+                                                </td>
                                                 {
                                                     detailFunctions.map((detailFunction, index) => (
-                                                        <CTableDataCell key={index + 1}>
-                                                            <CFormCheck
+                                                        <td key={index + 1}>
+                                                            <Form.Check
+                                                                type="checkbox"
                                                                 name={detailPermission.name}
                                                                 accessKey={detailFunction.name}
                                                                 checked={info.permissions[detailPermission.name][detailFunction.name]}
                                                                 onChange={handleCheck}
                                                             />
-                                                        </CTableDataCell>
+                                                        </td>
                                                     ))
                                                 }
-                                            </CTableRow>
+                                            </tr>
                                         ))
                                     }
-                                </CTableBody>
-                            </CTable>
+                                </tbody>
+                            </Table>
                         </div>
-                        <CModalFooter>
-                            <CButton
+                        <Modal.Footer>
+                            <Button
                                 className="d-table m-auto"
                                 size="lg"
                                 type="submit"
                             >
                                 {(role?.id) ? "Cập nhật thông tin" : "Xác nhận tạo mới"}
-                            </CButton>
-                        </CModalFooter>
-                    </CForm>
-                </CModalBody>
-            </CModal>
+                            </Button>
+                        </Modal.Footer>
+                    </Form>
+                </Modal.Body>
+            </Modal>
 
-            {(notificationAddSuccess) ? (
-                <AppToaster content="Thêm vai trò thành công" />
-            ) : null}
-            {(notificationUpdateSuccess) ? (
-                <AppToaster content="Cập nhật thông tin vai trò thành công" />
-            ) : null}
+                <AppToaster visible={notificationAddSuccess} setVisible={setNotificationAddSuccess} title="Vai trò" content="Thêm vai trò thành công" />
+                <AppToaster visible={notificationUpdateSuccess} setVisible={setNotificationUpdateSuccess} title="Vai trò" content="Cập nhật thông tin vai trò thành công" />
         </>
     )
 }

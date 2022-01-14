@@ -1,50 +1,49 @@
-import { CAccordionBody, CAccordionHeader, CListGroupItem, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from '@coreui/react'
 import React from 'react'
+import { Accordion, ListGroup, Table } from 'react-bootstrap'
 import DeleteRole from './DeleteRole'
 import EditRole from './SubmitRole/EditRole'
 
 const RoleItem = ({ role }) => {
     return (
         <>
-            <CAccordionHeader>
+            <Accordion.Header>
                 {role.name}
-            </CAccordionHeader>
-            <CAccordionBody>
-                <CListGroupItem>
+            </Accordion.Header>
+            <Accordion.Body>
+                <ListGroup.Item>
                     <div className="row justify-content-around">
                         <EditRole role={role} />
                         <DeleteRole id={role.id} />
                     </div>
-                </CListGroupItem>
+                </ListGroup.Item>
                 {
                     role.positions?.length === 0 ? <div className="list-group-item bg-light">Vai trò này chưa có chức vụ nào nắm giữ</div> : (
-                        <CTable
+                        <Table
                             striped
                             hover
                             responsive
                             borderless
-                            align="middle"
                         >
-                            <CTableHead>
-                                <CTableRow className="fs-5">
-                                    <CTableHeaderCell>CHỨC VỤ</CTableHeaderCell>
-                                    <CTableHeaderCell>PHÒNG BAN</CTableHeaderCell>
-                                </CTableRow>
-                            </CTableHead>
-                            <CTableBody>
+                            <thead>
+                                <tr className="fs-5">
+                                    <td>CHỨC VỤ</td>
+                                    <td>PHÒNG BAN</td>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 {
                                     role.positions?.map(position => (
-                                        <CTableRow key={position.id}>
-                                            <CTableDataCell>{position.name}</CTableDataCell>
-                                            <CTableDataCell>{position.department?.name}</CTableDataCell>
-                                        </CTableRow>
+                                        <tr key={position.id}>
+                                            <td>{position.name}</td>
+                                            <td>{position.department?.name}</td>
+                                        </tr>
                                     ))
                                 }
-                            </CTableBody>
-                        </CTable>
+                            </tbody>
+                        </Table>
                     )
                 }
-            </CAccordionBody>
+            </Accordion.Body>
         </>
     )
 }

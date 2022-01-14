@@ -1,5 +1,5 @@
-import { CButton } from '@coreui/react'
 import React, { useState } from 'react'
+import { Button } from 'react-bootstrap'
 import { BiEdit } from 'react-icons/bi'
 import FormSubmitRole from './FormSubmitRole'
 
@@ -7,13 +7,13 @@ const EditRole = ({ role }) => {
     const [visibleEdit, setVisibleEdit] = useState(false)
     return (
         <>
-            <CButton
-                color="warning"
-                className="col-4 text-white"
+            <Button
+                variant="warning"
+                className="col-auto"
                 onClick={() => setVisibleEdit(true)}
             >
                 <BiEdit /> <span className="ps-1">Chỉnh sửa</span>
-            </CButton>
+            </Button>
             <FormSubmitRole visible={visibleEdit} setVisible={setVisibleEdit} role={role} />
         </>
     )

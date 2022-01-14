@@ -1,5 +1,5 @@
-import { CButton, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle } from '@coreui/react'
 import React, { useState } from 'react'
+import { Button, Modal } from 'react-bootstrap'
 import { BiTrash } from 'react-icons/bi'
 import { useDispatch } from 'react-redux'
 import * as actions from '../../../actions/rolesAction'
@@ -17,42 +17,40 @@ const DeleteRole = ({ id }) => {
 
     return (
         <>
-            <CButton
-                color="danger"
-                className="col-4 text-white"
+            <Button
+                variant="danger"
+                className="col-auto"
                 onClick={() => setVisible(true)}
             >
                 <BiTrash /> <span className="ps-1">Xóa</span>
-            </CButton>
-            <CModal
+            </Button>
+            <Modal
                 scrollable
-                visible={visible}
-                onClose={() => setVisible(false)}
+                show={visible}
+                onHide={() => setVisible(false)}
             >
-                <CModalHeader>
-                    <CModalTitle>XÓA VAI TRÒ</CModalTitle>
-                </CModalHeader>
-                <CModalBody>
+                <Modal.Header>
+                    <Modal.Title>XÓA VAI TRÒ</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                     Bạn có chắc muốn xóa vai trò này khỏi công ty?
-                </CModalBody>
-                <CModalFooter>
-                    <CButton
-                        color="secondary"
-                        className="text-white"
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="secondary"
                         onClick={() => setVisible(false)}
                     >
                         Hủy
-                    </CButton>
-                    <CButton
-                        color="danger"
-                        className="text-white"
+                    </Button>
+                    <Button
+                        variant="danger"
                         onClick={() => handleDelete(id)}
                     >
                         Đồng ý
-                    </CButton>
-                </CModalFooter>
-            </CModal>
-            {notification ? <AppToaster title="Thông báo" content="Xóa vai trò thành công" /> : null}
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            <AppToaster visible={notification} setVisible={setNotification} title="Thông báo" content="Xóa vai trò thành công" />
         </>
     )
 }

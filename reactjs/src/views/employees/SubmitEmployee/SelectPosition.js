@@ -1,24 +1,24 @@
-import { CListGroup, CListGroupItem } from '@coreui/react'
 import React from 'react'
+import { ListGroup } from 'react-bootstrap'
 
 const SelectPosition = ({ visible, currentPosition, data = [], onPositionChange }) => {
     // Chuỗi lệnh hiển thị tên phòng ban phân cấp
     const showPosition = data.map((postition) => (
-        <CListGroupItem
-            component="button"
+        <ListGroup.Item
+            action
             key={postition.id}
             onClick={() => onPositionChange(postition)}
             active={currentPosition.name === postition.name}
         >
             {postition.name}
-        </CListGroupItem>
+        </ListGroup.Item>
     ))
     //
 
     return (
-        <CListGroup>
+        <ListGroup>
             {(visible) ? showPosition : null}
-        </CListGroup>
+        </ListGroup>
     )
 }
 

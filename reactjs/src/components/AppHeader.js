@@ -1,21 +1,28 @@
 import React from 'react'
-
 import { Container, Navbar } from 'react-bootstrap'
-
 import AppNavbarNav from './AppNavbarNav'
 import AppHeaderDropdown from './header/AppHeaderDropdown'
+import logo from "../assets/brand/logo-full.png"
 
 const AppHeader = () => {
 
     return (
-        <Navbar bg="body" expand="lg" sticky="top">
-            <Container className="row justify-content-between" fluid>
-                <Navbar.Brand className="col-auto">CBS</Navbar.Brand>
-                <Navbar.Toggle className="col-auto" aria-controls="navbarScroll" />
-                <Navbar.Collapse className="col row-lg" id="navbarScroll">
-                    <AppNavbarNav />
-                    <AppHeaderDropdown />
-                </Navbar.Collapse>
+        <Navbar bg="light" expand="lg" sticky="top">
+            <Container fluid>
+                    <Navbar.Brand>
+                        <img
+                            src={logo}
+                            width="120"
+                            height="50"
+                            className="d-inline-block align-top"
+                            alt="Cảnh Báo Sớm Logo"
+                        />
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="navbarScroll" />
+                    <Navbar.Collapse className="row flex-lg-row flex-sm-column" id="navbarScroll">
+                        <AppNavbarNav />
+                        <AppHeaderDropdown />
+                    </Navbar.Collapse>
             </Container>
         </Navbar>
     )

@@ -6,7 +6,7 @@ import _nav from "../_nav"
 const AppNavbarNav = () => {
     return (
         <Nav
-            className="col row justify-content-between fw-bold"
+            className="col row flex-lg-row flex-sm-column justify-content-center fw-bold"
             style={{ maxHeight: '100px' }}
             navbarScroll
         >
@@ -15,7 +15,7 @@ const AppNavbarNav = () => {
                     key={index}
                     to={navItem.to}
                     className={({ isActive }) =>
-                        "btn fw-bold mx-3 col " + (isActive ? "bg-gradient text-white px-3" : "btn-none px-3")
+                        "btn fw-bold mx-5 col-auto " + (isActive ? "bg-gradient text-white" : "btn-none")
                     }
                 >
                     {navItem.name.toUpperCase()}

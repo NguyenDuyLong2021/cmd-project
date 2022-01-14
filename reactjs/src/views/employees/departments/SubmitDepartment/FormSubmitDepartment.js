@@ -1,5 +1,5 @@
-import { CButton, CForm, CFormFeedback, CFormInput, CFormLabel, CFormTextarea, CModal, CModalBody, CModalFooter, CModalTitle } from "@coreui/react"
 import React, { useEffect, useRef, useState } from "react"
+import { Button, Form, Modal } from "react-bootstrap"
 import { AiOutlineClose } from "react-icons/ai"
 import { useDispatch, useSelector } from "react-redux"
 import * as actions from "../../../../actions/departmentsAction"
@@ -22,8 +22,8 @@ const FormSubmitDepartment = ({ visible, setVisible, department = null }) => {
     })
     const [visibleDepartment, setVisibleDepartment] = useState(false)
     const [currentParentDepartmentName, setCurrentParentDepartmentName] = useState("")
-    const [notificationAddSuccess, setNotificationAddSuccess] = useState(false) // State quản lý hiển thị thông báo thêm phòng ban thành công
-    const [notificationUpdateSuccess, setNotificationUpdateSuccess] = useState(false) // State quản lý hiển thị thông báo cập nhật thông tin phòng ban thành công
+    const [visibleNotificationAddSuccess, setVisibleNotificationAddSuccess] = useState(false) // State quản lý hiển thị thông báo thêm phòng ban thành công
+    const [visibleNotificationUpdateSuccess, setVisibleNotificationUpdateSuccess] = useState(false) // State quản lý hiển thị thông báo cập nhật thông tin phòng ban thành công
     //
 
     /* Quản lý các ref */
@@ -84,11 +84,11 @@ const FormSubmitDepartment = ({ visible, setVisible, department = null }) => {
             }
             if (info.id) {
                 dispatch(actions.updateDepartmentRequest(info))
-                setNotificationUpdateSuccess(true)
+                setVisibleNotificationUpdateSuccess(true)
             }
             else {
                 dispatch(actions.addDepartmentRequest(info))
-                setNotificationAddSuccess(true)
+                setVisibleNotificationAddSuccess(true)
             }
             setVisible(false)
         }
@@ -98,33 +98,29 @@ const FormSubmitDepartment = ({ visible, setVisible, department = null }) => {
     const currentDepartment = departments.find(dp => dp.id === info.parent_id)
     return (
         <>
-            <CModal
+            <Modal
                 fullscreen
                 scrollable
-                visible={visible}
-                onClose={() => setVisible(false)}
+                show={visible}
+                onHide={() => setVisible(false)}
             >
-                <div className="modal-header row justify-content-between">
-                    <div className="col">
-                        <CModalTitle>
-                            {department?.id ? "CHỈNH SỬA PHÒNG BAN" : "THÊM PHÒNG BAN MỚI"}
-                        </CModalTitle>
-                    </div>
-                    <div className="col-auto">
-                        <CButton color="none" onClick={() => setVisible(false)}>
-                            <AiOutlineClose className="fs-4" />
-                        </CButton>
-                    </div>
-                </div>
-                <CModalBody>
-                    <CForm
+                <Modal.Header
+                    closeButton
+                    className="bg-gradient"
+                >
+                    <Modal.Title>
+                        {department?.id ? "CHỈNH SỬA PHÒNG BAN" : "THÊM PHÒNG BAN MỚI"}
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form
                         noValidate
                         validated={validated}
                         onSubmit={handleSubmit}
                     >
                         <div className="mb-3">
-                            <CFormLabel htmlFor="code">Mã phòng ban:</CFormLabel>
-                            <CFormInput
+                            <Form.Label htmlFor="code">Mã phòng ban:</Form.Label>
+                            <Form.Control
                                 type="text"
                                 name="code"
                                 placeholder="Nhập mã phòng ban..."
@@ -132,14 +128,14 @@ const FormSubmitDepartment = ({ visible, setVisible, department = null }) => {
                                 onChange={handleInputChange}
                                 required
                             />
-                            <CFormFeedback invalid>
+                            <Form.Control.Feedback type="invalid">
                                 Vui lòng nhập mã phòng ban.
-                            </CFormFeedback>
+                            </Form.Control.Feedback>
                         </div>
                         <hr />
                         <div className="mb-3">
-                            <CFormLabel htmlFor="name">Tên phòng ban:</CFormLabel>
-                            <CFormInput
+                            <Form.Label htmlFor="name">Tên phòng ban:</Form.Label>
+                            <Form.Control
                                 type="text"
                                 name="name"
                                 placeholder="Nhập tên phòng ban..."
@@ -147,15 +143,15 @@ const FormSubmitDepartment = ({ visible, setVisible, department = null }) => {
                                 onChange={handleInputChange}
                                 required
                             />
-                            <CFormFeedback invalid>
+                            <Form.Control.Feedback type="invalid">
                                 Vui lòng nhập tên phòng ban.
-                            </CFormFeedback>
+                            </Form.Control.Feedback>
                         </div>
                         <hr />
                         <div className="mb-3">
-                            <CFormLabel htmlFor="email">Mô tả:</CFormLabel>
-                            <CFormTextarea
-                                type="text"
+                            <Form.Label htmlFor="email">Mô tả:</Form.Label>
+                            <Form.Control
+                                type="textarea"
                                 rows={5}
                                 name="description"
                                 placeholder="Nhập mô tả phòng ban..."
@@ -165,18 +161,18 @@ const FormSubmitDepartment = ({ visible, setVisible, department = null }) => {
                         </div>
                         <hr />
                         <div className="mb-3">
-                            <CFormLabel htmlFor="department">Phòng ban cha:</CFormLabel>
+                            <Form.Label htmlFor="department">Phòng ban cha:</Form.Label>
                             <div ref={refSelectDepartment}>
-                                <CFormInput
+                                <Form.Control
                                     type="text"
                                     placeholder="Chọn phòng ban cha..."
                                     value={currentParentDepartmentName}
                                     onChange={handleChangeParrent}
                                     onClick={() => setVisibleDepartment(!visibleDepartment)}
                                 />
-                                <CFormFeedback invalid>
+                                <Form.Control.Feedback type="invalid">
                                     Vui lòng chọn phòng ban cha.
-                                </CFormFeedback>
+                                </Form.Control.Feedback>
                                 <SelectDepartment
                                     visible={visibleDepartment}
                                     currentDepartment={currentDepartment}
@@ -185,25 +181,31 @@ const FormSubmitDepartment = ({ visible, setVisible, department = null }) => {
                                 />
                             </div>
                         </div>
-                        <CModalFooter>
-                            <CButton
+                        <Modal.Footer>
+                            <Button
                                 className="d-table m-auto"
                                 size="lg"
                                 type="submit"
                             >
                                 {(department?.id) ? "Cập nhật thông tin" : "Xác nhận tạo mới"}
-                            </CButton>
-                        </CModalFooter>
-                    </CForm>
-                </CModalBody>
-            </CModal>
+                            </Button>
+                        </Modal.Footer>
+                    </Form>
+                </Modal.Body>
+            </Modal>
 
-            {(notificationAddSuccess) ? (
-                <AppToaster content="Thêm phòng ban thành công" />
-            ) : null}
-            {(notificationUpdateSuccess) ? (
-                <AppToaster content="Cập nhật thông tin phòng ban thành công" />
-            ) : null}
+            <AppToaster
+                visible={visibleNotificationAddSuccess}
+                setVisible={setVisibleNotificationAddSuccess}
+                title="Phòng ban"
+                content="Thêm phòng ban thành công"
+            />
+            <AppToaster
+                visible={visibleNotificationUpdateSuccess}
+                setVisible={setVisibleNotificationUpdateSuccess}
+                title="Phòng ban"
+                content="Cập nhật thông tin phòng ban thành công"
+            />
         </>
     )
 }

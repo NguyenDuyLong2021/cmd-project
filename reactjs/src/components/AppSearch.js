@@ -7,7 +7,7 @@ import { Form, InputGroup } from 'react-bootstrap'
     1. value: giá trì tìm kiếm hiện tại
     2. onPageChange: một function được truyền vào tham số searchTerm là cụm từ mới được tìm kiếm
 */
-const AppSearch = ({ value, onSearch }) => {
+const AppSearch = ({ value = "", onSearch }) => {
     const [searchTerm, setSearchTerm] = useState("")
     const typingTimeoutRef = useRef(null)
     const handleSearchTerm = (e) => {

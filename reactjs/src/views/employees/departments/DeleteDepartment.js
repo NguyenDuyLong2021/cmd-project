@@ -1,5 +1,5 @@
-import { CButton, CDropdownItem, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle } from '@coreui/react'
 import React, { useState } from 'react'
+import { Button, Dropdown, Modal } from 'react-bootstrap'
 import { BiTrash } from 'react-icons/bi'
 import { useDispatch } from 'react-redux'
 import * as actions from '../../../actions/departmentsAction'
@@ -8,50 +8,48 @@ import AppToaster from '../../../components/AppToaster'
 const DeleteDepartment = ({ id }) => {
     const dispatch = useDispatch()
     const [visible, setVisible] = useState(false)
-    const [notification, setNotification] = useState(false)
+    const [visibleNotificationDeleteSuccess, setVisibleNotificationDeleteSuccess] = useState(false)
     const handleDelete = (id) => {
         dispatch(actions.deleteDepartmentRequest(id))
-        setNotification(true)
+        setVisibleNotificationDeleteSuccess(true)
         setVisible(false)
     }
 
     return (
         <>
-            <CDropdownItem
-                component="button"
-                onClick={() => setVisible(!visible)}
-            >
+            <Dropdown.Item onClick={() => setVisible(!visible)}>
                 <BiTrash /> Xóa
-            </CDropdownItem>
-            <CModal
+            </Dropdown.Item>
+            <Modal
                 scrollable
-                visible={visible}
-                onClose={() => setVisible(false)}
+                show={visible}
+                onHide={() => setVisible(false)}
             >
-                <CModalHeader>
-                    <CModalTitle>XÓA PHÒNG BAN</CModalTitle>
-                </CModalHeader>
-                <CModalBody>
+                <Modal.Header closeButton className="bg-gradient">
+                    <Modal.Title>XÓA PHÒNG BAN</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                     Bạn có chắc muốn xóa phòng ban này khỏi công ty?
-                </CModalBody>
-                <CModalFooter>
-                    <CButton
-                        color="secondary"
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="secondary"
                         className="text-white"
                         onClick={() => setVisible(false)}
                     >
                         Hủy
-                    </CButton>
-                    <CButton
-                        color="danger"
+                    </Button>
+                    <Button
+                        variant="danger"
                         className="text-white"
                         onClick={() => handleDelete(id)}
                     >
                         Đồng ý
-                    </CButton>
-                </CModalFooter>
-            </CModal>
-            {notification ? <AppToaster title="Thông báo" content="Xóa phòng ban thành công" /> : null}
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            
+            <AppToaster visible={visibleNotificationDeleteSuccess} setVisible={setVisibleNotificationDeleteSuccess} title="Phòng ban" content="Xóa phòng ban thành công" />
         </>
     )
 }

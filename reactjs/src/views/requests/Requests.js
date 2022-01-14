@@ -1,4 +1,3 @@
-import { CButton, CCard, CCardBody, CTable, CTableBody, CTableHead, CTableHeaderCell, CTableRow } from '@coreui/react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from '../../actions/requestsAction'
@@ -9,6 +8,7 @@ import AppSearch from '../../components/AppSearch'
 import { AiOutlineSortAscending, AiOutlineSortDescending } from 'react-icons/ai'
 import { useLocation, useNavigate } from 'react-router-dom'
 import ButtonShowAdvancedFilters from './AdvancedFilters/ButtonShowAdvancedFilters'
+import { Button, Card, Table } from 'react-bootstrap'
 
 const queryString = require('query-string')
 
@@ -19,7 +19,7 @@ const Requests = () => {
     const dispatch = useDispatch()
     const location = useLocation()
     const navigation = useNavigate()
-    
+
     const [filters, setFilters] = useState({
         _page: 1,
         _limit: 10,
@@ -89,104 +89,102 @@ const Requests = () => {
                 <div className="col-auto fw-bold fs-5">
                     DANH SÁCH ĐỀ XUẤT
                 </div>
-                <div className="row justify-content-end col">
-                    <div className="col-auto">
-                        <AppSearch value={filters.q} onSearch={handleSearchTerm} />
-                    </div>
-                    <div className="col-auto">
-                        <ButtonShowAdvancedFilters />
-                    </div>
-                    <div className="col-auto">
-                        <AddRequest />
-                    </div>
+                <div className="col" />
+                <div className="col-auto">
+                    <AppSearch value={filters.q} onSearch={handleSearchTerm} />
+                </div>
+                <div className="col-auto">
+                    <ButtonShowAdvancedFilters />
+                </div>
+                <div className="col-auto">
+                    <AddRequest />
                 </div>
             </div>
             <hr />
-            <CCard>
-                <CCardBody>
-                    <CTable
+            <Card>
+                <Card.Body>
+                    <Table
                         striped
                         hover
                         responsive
                         borderless
-                        align="middle"
                     >
-                        <CTableHead>
-                            <CTableRow>
-                                <CTableHeaderCell></CTableHeaderCell>
-                                <CTableHeaderCell>
-                                    <CButton
-                                        color="none"
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>
+                                    <Button
+                                        variant="none"
                                         onClick={() => handleSort("requester.name")}
                                     >
                                         <span className="fw-bolder">
                                             NGƯỜI ĐỀ XUẤT {filters._sort === "requester.name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "requester.name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                         </span>
-                                    </CButton>
-                                </CTableHeaderCell>
-                                <CTableHeaderCell>
-                                    <CButton
-                                        color="none"
+                                    </Button>
+                                </th>
+                                <th>
+                                    <Button
+                                        variant="none"
                                         onClick={() => handleSort("reqtype.name")}
                                     >
                                         <span className="fw-bolder">
                                             LOẠI ĐỀ XUẤT {filters._sort === "reqtype.name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "reqtype.name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                         </span>
-                                    </CButton>
-                                </CTableHeaderCell>
-                                <CTableHeaderCell>
-                                    <CButton
-                                        color="none"
+                                    </Button>
+                                </th>
+                                <th>
+                                    <Button
+                                        variant="none"
                                         onClick={() => handleSort("request_reason")}
                                     >
                                         <span className="fw-bolder">
                                             MỤC ĐÍCH/LÝ DO {filters._sort === "request_reason" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "request_reason" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                         </span>
-                                    </CButton>
-                                </CTableHeaderCell>
-                                <CTableHeaderCell>
-                                    <CButton
-                                        color="none"
+                                    </Button>
+                                </th>
+                                <th>
+                                    <Button
+                                        variant="none"
                                         onClick={() => handleSort("created_at")}
                                     >
                                         <span className="fw-bolder">
                                             NGÀY TẠO {filters._sort === "created_at" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "created_at" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                         </span>
-                                    </CButton>
-                                </CTableHeaderCell>
-                                <CTableHeaderCell>
-                                    <CButton
-                                        color="none"
+                                    </Button>
+                                </th>
+                                <th>
+                                    <Button
+                                        variant="none"
                                         onClick={() => handleSort("reqtype.statuses[0].name")}
                                     >
                                         <span className="fw-bolder">
                                             TRẠNG THÁI {filters._sort === "reqtype.statuses[0].name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "reqtype.statuses[0].name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                         </span>
-                                    </CButton>
-                                </CTableHeaderCell>
-                                <CTableHeaderCell>
-                                </CTableHeaderCell>
-                            </CTableRow>
-                        </CTableHead>
-                        <CTableBody>
+                                    </Button>
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             {
                                 requests.map(request => (
                                     <RequestItem key={request.id} request={request} />
                                 ))
                             }
-                        </CTableBody>
-                    </CTable>
+                        </tbody>
+                    </Table>
                     {requests.length === 0 ? (
-                        <CCardBody align="center">
+                        <Card.Body align="center">
                             Không có dữ liệu
-                        </CCardBody>
+                        </Card.Body>
                     ) : null}
                     <AppPagination
                         pagination={pagination}
                         onPageChange={handlePageChange}
                     />
-                </CCardBody>
-            </CCard>
+                </Card.Body>
+            </Card>
         </>
     )
 }

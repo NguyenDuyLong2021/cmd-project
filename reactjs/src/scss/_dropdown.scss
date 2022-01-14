@@ -116,7 +116,6 @@
   }
 }
 
-
 // Dividers (basically an `<hr>`) within the dropdown
 .dropdown-divider {
   height: 0;
@@ -179,7 +178,8 @@
 
 .dropdown-menu.show {
   display: block;
-  transition: tranform all .3s;
+  animation: slideInRight .25s ease-in;
+  animation-direction: alternate;
 }
 
 // Dropdown section headers

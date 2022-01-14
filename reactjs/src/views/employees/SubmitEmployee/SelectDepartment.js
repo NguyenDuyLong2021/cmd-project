@@ -1,5 +1,5 @@
-import { CListGroup, CListGroupItem } from '@coreui/react'
 import React from 'react'
+import { ListGroup } from 'react-bootstrap'
 import { BsFillCircleFill } from 'react-icons/bs'
 
 const SelectDepartment = ({ visible, currentDepartment, departments, onDepartmentChange }) => {
@@ -9,7 +9,7 @@ const SelectDepartment = ({ visible, currentDepartment, departments, onDepartmen
         departments.forEach((department_child) => {
             if (department_parent.id === department_child.parent_id) {
                 selectDepartmentElement.push(
-                    <CListGroupItem
+                    <ListGroup.Item
                         component="button"
                         key={department_child.id}
                         style={{ paddingLeft: level * 40 }}
@@ -19,7 +19,7 @@ const SelectDepartment = ({ visible, currentDepartment, departments, onDepartmen
                     <BsFillCircleFill size={5} />
                     <span className="ps-2" />
                         {department_child.name}
-                    </CListGroupItem>)
+                    </ListGroup.Item>)
                 recursiveDepartmentChild(department_child, level + 1)
             }
         })
@@ -28,8 +28,8 @@ const SelectDepartment = ({ visible, currentDepartment, departments, onDepartmen
         departments.forEach((department) => {
             if (!department.parent_id) {
                 selectDepartmentElement.push(
-                    <CListGroupItem
-                        component="button"
+                    <ListGroup.Item
+                        action
                         key={department.id}
                         onClick={() => onDepartmentChange(department)}
                         active={currentDepartment?.name === department.name}
@@ -37,7 +37,7 @@ const SelectDepartment = ({ visible, currentDepartment, departments, onDepartmen
                     <BsFillCircleFill size={5} />
                     <span className="ps-2" />
                         {department.name}
-                    </CListGroupItem>)
+                    </ListGroup.Item>)
                 recursiveDepartmentChild(department, 1)
             }
         })
@@ -46,9 +46,9 @@ const SelectDepartment = ({ visible, currentDepartment, departments, onDepartmen
     //
 
     return (
-        <CListGroup>
+        <ListGroup>
             {(visible) ? selectDepartmentElement : null}
-        </CListGroup>
+        </ListGroup>
     )
 }
 

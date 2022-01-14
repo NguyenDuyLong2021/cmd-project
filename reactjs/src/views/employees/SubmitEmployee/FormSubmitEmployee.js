@@ -170,7 +170,10 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                 show={visible}
                 onHide={() => setVisible(false)}
             >
-                <Modal.Header closeButton className="bg-gradient">
+                <Modal.Header
+                    closeButton
+                    className="bg-gradient"
+                >
                     <Modal.Title className="text-white">
                         {employee?.id ? "CHỈNH SỬA NHÂN VIÊN" : "THÊM NHÂN VIÊN MỚI"}
                     </Modal.Title>
@@ -365,13 +368,13 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
             <AppToaster
                 visible={visibleNotificationAddSuccess}
                 setVisible={setVisibleNotificationAddSuccess}
-                title="Thêm nhân viên"
+                title="Nhân viên"
                 content="Thêm nhân viên thành công"
             />
             <AppToaster
                 visible={visibleNotificationUpdateSuccess}
                 setVisible={setVisibleNotificationUpdateSuccess}
-                title="Chỉnh sửa nhân viên"
+                title="Nhân viên"
                 content="Cập nhật thông tin nhân viên thành công"
             />
         </>
