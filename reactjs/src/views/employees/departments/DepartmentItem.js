@@ -27,23 +27,22 @@ const DepartmentItem = ({ department, level }) => {
                 show={visible}
                 onHide={() => setVisible(false)}
             >
-                <div className="modal-header row justify-content-between bg-gradient">
-                    <div className="col">
+                <div className="modal-header row justify-content-evenly bg-gradient">
+                    <div className="col-auto">
                         <Modal.Title>CHI TIẾT PHÒNG BAN</Modal.Title>
                     </div>
-                    <div className="col-auto row justify-content-between">
-                        <Dropdown popper={false} placement="start">
-                            <Dropdown.Toggle>
-                                <BiDotsHorizontalRounded className="fs-4" />
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                <ButtonShowPositions department={department} />
-                                <EditDepartment department={department} />
-                                <DeleteDepartment id={department.id} />
-                            </Dropdown.Menu>
-                        </Dropdown>
-                        <button className="btn-close" onClick={() => setVisible(false)} />
-                    </div>
+                    <div className="col" />
+                    <Dropdown className="col-auto">
+                        <Dropdown.Toggle variant="none" className="text-white">
+                            <BiDotsHorizontalRounded size={20} />
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <ButtonShowPositions department={department} />
+                            <EditDepartment department={department} />
+                            <DeleteDepartment id={department.id} />
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    <button className="col-auto btn-close me-3" onClick={() => setVisible(false)} />
                 </div>
                 <Modal.Body>
                     <DepartmentDetail department={department} />

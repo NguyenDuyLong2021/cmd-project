@@ -1,42 +1,56 @@
-// Reducer quản lý nhân viên
+import * as actions from "../constants/ActionEmployee"
+
+// Khởi tạo state
 const initialState = {
     data: [],
     pagination: {
         _page: 1,
         _limit: 10,
-        _totalItem: 0,
-        q: ""
+        _totalItem: 0
     }
 }
+
+// Reducer quản lý danh sách nhân viên
 const employeesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "FETCH_EMPLOYEES":
+        // Lấy danh sách nhân viên
+        case actions.FETCH_EMPLOYEES: {
             state = action.payload
-            return {...state}
-        case "ADD_EMPLOYEE":
+            return { ...state }
+        }
+
+        // Thêm nhân viên
+        case actions.ADD_EMPLOYEE: {
             return {
                 ...state,
                 data: [...state.data, action.payload]
             }
-        case "UPDATE_EMPLOYEE":
-            const updateEmployees = state.data
-            updateEmployees.forEach((employee, index, array) => {
+        }
+
+        // Cập nhật thông tin nhân viên
+        case actions.UPDATE_EMPLOYEE: {
+            const listEmployeesUpdated = state.data
+            listEmployeesUpdated.forEach((employee, index, array) => {
                 if (employee.id === action.payload.id) {
                     array[index] = action.payload
                 }
             })
             return {
                 ...state,
-                data: [...updateEmployees]
+                data: [...listEmployeesUpdated]
             }
-        case "DELETE_EMPLOYEE":
-            const deleteEmployees = state.data.filter(employee => employee.id !== action.payload)
+        }
+
+        // Xóa nhân viên
+        case actions.DELETE_EMPLOYEE: {
+            const listEmployeesDeleted = state.data.filter(employee => employee.id !== action.payload)
             return {
                 ...state,
-                data: [...deleteEmployees]
+                data: [...listEmployeesDeleted]
             }
+        }
         default:
-            return {...state}
+            return { ...state }
     }
 }
 

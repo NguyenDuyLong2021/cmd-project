@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react"
 import { Button, Card, Form, ListGroup, Modal } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import { addEmployeeRequest, updateEmployeeRequest } from "../../../actions/employeesAction"
-import AppToaster from "../../../components/AppToaster"
 import useOnClickOutside from "../../../customHooks/useOnClickOutside"
 import SelectDepartment from "./SelectDepartment"
 import SelectPosition from "./SelectPosition"
@@ -36,8 +35,6 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
     const [visibleDepartment, setVisibleDepartment] = useState(false) // State quản lý hiển thị danh sách phòng ban để người dùng chọn
     const [visiblePosition, setVisiblePosition] = useState(false) // State quản lý hiển thị danh sách chức vụ để người dùng chọn
     const [visibleLogin, setVisibleLogin] = useState(false) // State quản lý hiển thị nhập tên đăng và mật khẩu nếu cho phép đăng nhập
-    const [visibleNotificationAddSuccess, setVisibleNotificationAddSuccess] = useState(false) // State quản lý hiển thị thông báo thêm nhân viên thành công
-    const [visibleNotificationUpdateSuccess, setVisibleNotificationUpdateSuccess] = useState(false) // State quản lý hiển thị thông báo cập nhật thông tin nhân viên thành công
     //
 
     /* Quản lý các ref */
@@ -132,11 +129,9 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
             e.stopPropagation()
             if (info.id) {
                 dispatch(updateEmployeeRequest(info))
-                setVisibleNotificationUpdateSuccess(true)
             }
             else {
                 dispatch(addEmployeeRequest(info))
-                setVisibleNotificationAddSuccess(true)
             }
             setVisible(false)
         }
@@ -163,7 +158,6 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
     }
 
     return (
-        <>
             <Modal
                 size="xl"
                 scrollable
@@ -352,8 +346,7 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                                 ) : null}
                             </Card.Body>
                         </Card>
-                        <hr />
-                        <>
+                        <Modal.Footer>
                             <Button
                                 className="d-table m-auto"
                                 size="lg"
@@ -361,23 +354,10 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                             >
                                 {(employee?.id) ? "Cập nhật thông tin" : "Xác nhận tạo mới"}
                             </Button>
-                        </>
+                        </Modal.Footer>
                     </Form>
                 </Modal.Body>
             </Modal>
-            <AppToaster
-                visible={visibleNotificationAddSuccess}
-                setVisible={setVisibleNotificationAddSuccess}
-                title="Nhân viên"
-                content="Thêm nhân viên thành công"
-            />
-            <AppToaster
-                visible={visibleNotificationUpdateSuccess}
-                setVisible={setVisibleNotificationUpdateSuccess}
-                title="Nhân viên"
-                content="Cập nhật thông tin nhân viên thành công"
-            />
-        </>
     )
 }
 

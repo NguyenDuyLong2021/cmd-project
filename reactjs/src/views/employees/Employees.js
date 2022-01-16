@@ -128,7 +128,7 @@ const Employees = () => {
                                             HỌ VÀ TÊN {filters._sort === "name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                         </span>
                                     </Button>
-                                    <Form.Control type="text" name="name" placeholder="Tìm kiếm..." value={filters.name} onChange={handleFilter} />
+                                    <Form.Control type="text" name="name" placeholder="Lọc theo họ và tên..." value={filters.name} onChange={handleFilter} />
                                 </th>
                                 <th>
                                     <Button
@@ -139,7 +139,7 @@ const Employees = () => {
                                             NGÀY SINH {filters._sort === "dob" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "dob" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                         </span>
                                     </Button>
-                                    <Form.Control type="text" name="dob" placeholder="Tìm kiếm..." value={filters.dob} onChange={handleFilter} />
+                                    <Form.Control type="text" name="dob" placeholder="Lọc theo ngày sinh..." value={filters.dob} onChange={handleFilter} />
                                 </th>
                                 <th>
                                     <Button
@@ -150,7 +150,7 @@ const Employees = () => {
                                             EMAIL {filters._sort === "email" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "email" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                         </span>
                                     </Button>
-                                    <Form.Control type="text" name="email" placeholder="Tìm kiếm..." value={filters.email} onChange={handleFilter} />
+                                    <Form.Control type="text" name="email" placeholder="Lọc theo email..." value={filters.email} onChange={handleFilter} />
                                 </th>
                                 <th>
                                     <Button
@@ -161,7 +161,7 @@ const Employees = () => {
                                             SĐT {filters._sort === "phone" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "phone" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                         </span>
                                     </Button>
-                                    <Form.Control type="text" name="phone" placeholder="Tìm kiếm..." value={filters.phone} onChange={handleFilter} />
+                                    <Form.Control type="text" name="phone" placeholder="Lọc theo số điện thoại..." value={filters.phone} onChange={handleFilter} />
                                 </th>
                                 <th>
                                     <Button
@@ -172,7 +172,7 @@ const Employees = () => {
                                             PHÒNG BAN {filters._sort === "department.name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "department.name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                         </span>
                                     </Button>
-                                    <Form.Control type="text" name="department.name" placeholder="Tìm kiếm..." value={filters.department} onChange={handleFilter} />
+                                    <Form.Control type="text" name="department.name" placeholder="Lọc theo tên phòng ban..." value={filters.department} onChange={handleFilter} />
                                 </th>
                                 <th>
                                     <Button
@@ -183,7 +183,7 @@ const Employees = () => {
                                             CHỨC VỤ {filters._sort === "position.name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "position.name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
                                         </span>
                                     </Button>
-                                    <Form.Control type="text" name="position.name" placeholder="Tìm kiếm..." value={filters.position} onChange={handleFilter} />
+                                    <Form.Control type="text" name="position.name" placeholder="Lọc theo tên chức vụ..." value={filters.position} onChange={handleFilter} />
                                 </th>
                             </tr>
                         </thead>

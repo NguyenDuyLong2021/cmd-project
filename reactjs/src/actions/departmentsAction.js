@@ -1,10 +1,11 @@
-import departmentsApi from "../api/departmentsApi"
+import departmentsApi from '../api/departmentsApi'
+import * as actions from '../constants/ActionDepartment'
 
-// Nạp thông tin phòng ban
-export const fetchDepartments = (data) => {
+// Lấy danh sách phòng ban
+export const fetchDepartments = (departments) => {
     return {
-        type: "FETCH_DEPARTMENTS",
-        payload: data
+        type: actions.FETCH_DEPARTMENTS,
+        payload: departments
     }
 }
 export const fetchDepartmentsRequest = (params) => {
@@ -13,7 +14,10 @@ export const fetchDepartmentsRequest = (params) => {
             .then(response => {
                 dispatch(fetchDepartments(response.data))
             })
-            .catch(error => alert(error))
+            .catch(error => {
+                alert(error)
+                console.log(error)
+            })
     }
 }
 //
@@ -21,7 +25,7 @@ export const fetchDepartmentsRequest = (params) => {
 // Thêm phòng ban
 export const addDepartment = (department) => {
     return {
-        type: "ADD_DEPARTMENT",
+        type: actions.ADD_DEPARTMENT,
         payload: department
     }
 }
@@ -31,15 +35,18 @@ export const addDepartmentRequest = (department) => {
             .then(response => {
                 dispatch(addDepartment(response.data))
             })
-            .catch(error => alert(error))
+            .catch(error => {
+                alert(error)
+                console.log(error)
+            })
     }
 }
 //
 
-// Chỉnh sửa phòng ban
+// Cập nhật thông tin của phòng ban
 export const updateDepartment = (department) => {
     return {
-        type: "UPDATE_DEPARTMENT",
+        type: actions.UPDATE_DEPARTMENT,
         payload: department
     }
 }
@@ -49,7 +56,10 @@ export const updateDepartmentRequest = (department) => {
             .then(response => {
                 dispatch(updateDepartment(response.data))
             })
-            .catch(error => alert(error))
+            .catch(error => {
+                alert(error)
+                console.log(error)
+            })
     }
 }
 //
@@ -57,7 +67,7 @@ export const updateDepartmentRequest = (department) => {
 // Xóa phòng ban
 export const deleteDepartment = (id) => {
     return {
-        type: "DELETE_DEPARTMENT",
+        type: actions.DELETE_DEPARTMENT,
         payload: id
     }
 }
@@ -67,7 +77,10 @@ export const deleteDepartmentRequest = (id) => {
         .then(() => {
             dispatch(deleteDepartment(id))
         })
-        .catch(error => alert(error))
+        .catch(error => {
+            alert(error)
+            console.log(error)
+        })
     }
 }
 //

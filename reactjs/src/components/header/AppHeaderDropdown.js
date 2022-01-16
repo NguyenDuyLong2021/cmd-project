@@ -6,7 +6,7 @@ import { BsBoxArrowRight, BsPersonCircle } from 'react-icons/bs'
 const AppHeaderDropdown = () => {
     return (
         <Dropdown className="col-auto">
-            <Dropdown.Toggle variant="none" id="header-dropdown">
+            <Dropdown.Toggle variant="none">
                 <Image
                     roundedCircle
                     src={defaultAvatar}

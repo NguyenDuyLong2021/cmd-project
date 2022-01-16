@@ -1,4 +1,6 @@
-// Reducer quản lý vai trò
+import * as actions from "../constants/ActionRole"
+
+// Khởi tạo state
 const initialState = {
     data: [],
     pagination: {
@@ -7,35 +9,48 @@ const initialState = {
         _totalItem: 0
     }
 }
+
+// Reducer quản lý danh sách vai trò
 const rolesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "FETCH_ROLES":
+        // Lấy danh sách vai trò
+        case actions.FETCH_ROLES: {
             state = action.payload
-            return {...state}
-        case "ADD_ROLE":
+            return { ...state }
+        }
+
+        // Thêm vai trò
+        case actions.ADD_ROLE: {
             return {
                 ...state,
                 data: [...state.data, action.payload]
             }
-        case "UPDATE_ROLE":
-            const updateRoles = state.data
-            updateRoles.forEach((role, index, array) => {
+        }
+
+        // Cập nhật thông tin vai trò
+        case actions.UPDATE_ROLE: {
+            const listRolesUpdated = state.data
+            listRolesUpdated.forEach((role, index, array) => {
                 if (role.id === action.payload.id) {
                     array[index] = action.payload
                 }
             })
             return {
                 ...state,
-                data: [...updateRoles]
+                data: [...listRolesUpdated]
             }
-        case "DELETE_ROLE":
-            const deleteRoles = state.data.filter(role => role.id !== action.payload)
+        }
+
+        // Xóa vai trò
+        case actions.DELETE_ROLE: {
+            const listRolesDeleted = state.data.filter(role => role.id !== action.payload)
             return {
                 ...state,
-                data: [...deleteRoles]
+                data: [...listRolesDeleted]
             }
+        }
         default:
-            return {...state}
+            return { ...state }
     }
 }
 

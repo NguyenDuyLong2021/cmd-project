@@ -7,10 +7,10 @@ const AppToaster = ({ visible, setVisible, title, content }) => {
     return (
         <ToastContainer>
             <Toast onClose={() => setVisible(false)} show={visible}>
-                <Toast.Header closeButton closeVariant="primary">
+                <Toast.Header closeButton className="bg-gradient">
                     <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-                    <div className="me-auto text-primary">{title}</div>
-                    <small>{strDateTime}</small>
+                    <div className="me-auto text-white">{title}</div>
+                    <small className="text-white">{strDateTime}</small>
                 </Toast.Header>
                 <Toast.Body>
                     {content}

@@ -60,12 +60,9 @@ const Positions = ({ visible, setVisible, department }) => {
         ])
     }
     const handleDelete = (index) => {
-        const start = info.slice(0, index) || []
-        const end = info.slice(index + 1, info.length + 1) || []
-        setInfo([
-            ...start,
-            ...end
-        ])
+        const array = info.filter((e, idx) => index !== idx)
+        console.log(array)
+        setInfo(array)
         setVisibleDelete(false)
         setNotificationDeleteSucces(true)
     }
@@ -147,9 +144,9 @@ const Positions = ({ visible, setVisible, department }) => {
                         {
                             info.map((position, index) => (
                                 <div key={index}>
-                                    <ListGroup.Item className="bg-light">
-                                        <div className="mb-3">
-                                            <Form.Label htmlFor="code">Tên chức vụ:</Form.Label>
+                                    <ListGroup.Item className="bg-light text-body">
+                                        <Form.Group className="mb-3">
+                                            <Form.Label>Tên chức vụ:</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 name="name"
@@ -162,9 +159,9 @@ const Positions = ({ visible, setVisible, department }) => {
                                             <Form.Control.Feedback type="invalid">
                                                 Vui lòng nhập tên chức vụ.
                                             </Form.Control.Feedback>
-                                        </div>
-                                        <div className="mb-3">
-                                            <Form.Label htmlFor="name">Vai trò:</Form.Label>
+                                        </Form.Group>
+                                        <Form.Group className="mb-3">
+                                            <Form.Label>Vai trò:</Form.Label>
                                             <Form.Select
                                                 tabIndex={index}
                                                 value={position.role?.id}
@@ -177,17 +174,18 @@ const Positions = ({ visible, setVisible, department }) => {
                                                     ))
                                                 }
                                             </Form.Select>
-                                        </div>
+                                        </Form.Group>
                                         <div className="row justify-content-center">
                                             <Form.Check
                                                 label="Là trưởng phòng"
                                                 name="is_lead"
+                                                className="col ms-3"
                                                 tabIndex={index}
                                                 disabled={info.some(e => e.is_lead === true) && position.is_lead === false}
                                                 checked={position.is_lead}
                                                 onChange={handleInputChange}
                                             />
-                                            <Button variant="none" onClick={() => setVisibleDelete(true)}>
+                                            <Button variant="none" className="col-auto me-3" onClick={() => setVisibleDelete(true)}>
                                                 <BiTrash />
                                             </Button>
                                         </div>
@@ -195,10 +193,10 @@ const Positions = ({ visible, setVisible, department }) => {
                                     <br />
                                     <Modal
                                         backdrop="static"
-                                        visible={visibleDelete}
-                                        onClose={() => setVisibleDelete(false)}
+                                        show={visibleDelete}
+                                        onHide={() => setVisibleDelete(false)}
                                     >
-                                        <Modal.Header>
+                                        <Modal.Header closeButton className="bg-gradient">
                                             <Modal.Title>XÓA CHỨC VỤ</Modal.Title>
                                         </Modal.Header>
                                         <Modal.Body>
@@ -206,15 +204,13 @@ const Positions = ({ visible, setVisible, department }) => {
                                         </Modal.Body>
                                         <Modal.Footer>
                                             <Button
-                                                color="secondary"
-                                                className="text-white"
+                                                variant="secondary"
                                                 onClick={() => setVisibleDelete(false)}
                                             >
                                                 Hủy
                                             </Button>
                                             <Button
-                                                color="danger"
-                                                className="text-white"
+                                                variant="danger"
                                                 onClick={() => handleDelete(index)}
                                             >
                                                 Đồng ý
@@ -240,8 +236,8 @@ const Positions = ({ visible, setVisible, department }) => {
                     </Form>
                 </Modal.Body>
             </Modal>
-            {notificationUpdateSuccess ? <AppToaster title="Thông báo" content="Cập nhật chức vụ thành công" /> : null}
-            {notificationDeleteSuccess ? <AppToaster title="Thông báo" content="Xóa chức vụ thành công" /> : null}
+            {notificationUpdateSuccess ? <AppToaster visible={notificationUpdateSuccess} setVisible={setNotificationUpdateSuccess} title="Chức vụ" content="Cập nhật chức vụ thành công" /> : null}
+            {notificationDeleteSuccess ? <AppToaster visible={notificationDeleteSuccess} setVisible={setNotificationDeleteSucces} title="Chức vụ" content="Xóa chức vụ thành công" /> : null}
         </>
     )
 }

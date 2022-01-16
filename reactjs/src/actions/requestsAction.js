@@ -1,9 +1,10 @@
 import requestsApi from '../api/requestsApi'
+import * as actions from '../constants/ActionRequest'
 
-// Nạp thông tin đề xuất
+// Lấy danh sách đề xuất
 export const fetchRequests = (requests) => {
     return {
-        type: "FETCH_REQUESTS",
+        type: actions.FETCH_REQUESTS,
         payload: requests
     }
 }
@@ -13,7 +14,10 @@ export const fetchRequestsRequest = (params) => {
             .then(response => {
                 dispatch(fetchRequests(response.data))
             })
-            .catch(error => alert(error))
+            .catch(error => {
+                alert(error)
+                console.log(error)
+            })
     }
 }
 //
@@ -21,7 +25,7 @@ export const fetchRequestsRequest = (params) => {
 // Thêm đề xuất
 export const addRequest = (request) => {
     return {
-        type: "ADD_REQUEST",
+        type: actions.ADD_REQUEST,
         payload: request
     }
 }
@@ -31,15 +35,18 @@ export const addRequestRequest = (request) => {
             .then(response => {
                 dispatch(addRequest(response.data))
             })
-            .catch(error => alert(error))
+            .catch(error => {
+                alert(error)
+                console.log(error)
+            })
     }
 }
 //
 
-// Chỉnh sửa đề xuất
+// Cập nhật thông tin của đề xuất
 export const updateRequest = (request) => {
     return {
-        type: "UPDATE_REQUEST",
+        type: actions.UPDATE_REQUEST,
         payload: request
     }
 }
@@ -49,7 +56,10 @@ export const updateRequestRequest = (request) => {
             .then(response => {
                 dispatch(updateRequest(response.data))
             })
-            .catch(error => alert(error))
+            .catch(error => {
+                alert(error)
+                console.log(error)
+            })
     }
 }
 //
@@ -57,7 +67,7 @@ export const updateRequestRequest = (request) => {
 // Xóa đề xuất
 export const deleteRequest = (id) => {
     return {
-        type: "DELETE_REQUEST",
+        type: actions.DELETE_REQUEST,
         payload: id
     }
 }
@@ -67,7 +77,10 @@ export const deleteRequestRequest = (id) => {
         .then(() => {
             dispatch(deleteRequest(id))
         })
-        .catch(error => alert(error))
+        .catch(error => {
+            alert(error)
+            console.log(error)
+        })
     }
 }
 //

@@ -1,5 +1,8 @@
 import React from 'react'
 
+const Posts = React.lazy(() => import('./views/posts/Posts'))
+const DetailPost = React.lazy(() => import('./views/posts/DetailPost'))
+
 const TodoList = React.lazy(() => import('./views/todo-list/TodoList'))
 const AssignedToMe = React.lazy(() => import('./views/todo-list/assigned-to-me/AssignedToMe'))
 const Requests = React.lazy(() => import('./views/requests/Requests'))
@@ -13,6 +16,16 @@ const routes = [
     {
         path: '/',
         name: 'Home',
+    },
+    {
+        path: 'posts',
+        name: 'Bảng tin',
+        element: Posts
+    },
+    {
+        path: 'posts/:id',
+        name: 'Chi tiết bài viết',
+        element: DetailPost
     },
     {
         path: 'todo-list',

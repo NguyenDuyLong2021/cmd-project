@@ -1,41 +1,56 @@
-// Reducer quản lý đề xuất
+import * as actions from "../constants/ActionRequest"
+
+// Khởi tạo state
 const initialState = {
     data: [],
     pagination: {
-        _page: 0,
-        _limit: 0,
+        _page: 1,
+        _limit: 10,
         _totalItem: 0
     }
 }
+
+// Reducer quản lý danh sách đề xuất
 const requestsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "FETCH_REQUESTS":
+        // Lấy danh sách đề xuất
+        case actions.FETCH_REQUESTS: {
             state = action.payload
-            return {...state}
-        case "ADD_REQUEST":
+            return { ...state }
+        }
+
+        // Thêm đề xuất
+        case actions.ADD_REQUEST: {
             return {
                 ...state,
                 data: [...state.data, action.payload]
             }
-        case "UPDATE_REQUEST":
-            const updateRequests = state.data
-            updateRequests.forEach((request, index, array) => {
+        }
+
+        // Cập nhật thông tin đề xuất
+        case actions.UPDATE_REQUEST: {
+            const listRequestsUpdated = state.data
+            listRequestsUpdated.forEach((request, index, array) => {
                 if (request.id === action.payload.id) {
                     array[index] = action.payload
                 }
             })
             return {
                 ...state,
-                data: [...updateRequests]
+                data: [...listRequestsUpdated]
             }
-        case "DELETE_REQUEST":
-            const deleteRequests = state.data.filter(request => request.id !== action.payload)
+        }
+
+        // Xóa đề xuất
+        case actions.DELETE_REQUEST: {
+            const listRequestsDeleted = state.data.filter(request => request.id !== action.payload)
             return {
                 ...state,
-                data: [...deleteRequests]
+                data: [...listRequestsDeleted]
             }
+        }
         default:
-            return {...state}
+            return { ...state }
     }
 }
 

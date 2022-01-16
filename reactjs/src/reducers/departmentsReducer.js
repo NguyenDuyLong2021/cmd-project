@@ -1,41 +1,56 @@
-// Reducer quản lý phòng ban
+import * as actions from "../constants/ActionDepartment"
+
+// Khởi tạo state
 const initialState = {
     data: [],
     pagination: {
-        _page: 0,
-        _limit: 0,
+        _page: 1,
+        _limit: 10,
         _totalItem: 0
     }
 }
+
+// Reducer quản lý danh sách phòng ban
 const departmentsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "FETCH_DEPARTMENTS":
+        // Lấy danh sách phòng ban
+        case actions.FETCH_DEPARTMENTS: {
             state = action.payload
-            return {...state}
-        case "ADD_DEPARTMENT":
+            return { ...state }
+        }
+
+        // Thêm phòng ban
+        case actions.ADD_DEPARTMENT: {
             return {
                 ...state,
                 data: [...state.data, action.payload]
             }
-        case "UPDATE_DEPARTMENT":
-            const updateDepartments = state.data
-            updateDepartments.forEach((department, index, array) => {
+        }
+
+        // Cập nhật thông tin phòng ban
+        case actions.UPDATE_DEPARTMENT: {
+            const listDepartmentsUpdated = state.data
+            listDepartmentsUpdated.forEach((department, index, array) => {
                 if (department.id === action.payload.id) {
                     array[index] = action.payload
                 }
             })
             return {
                 ...state,
-                data: [...updateDepartments]
+                data: [...listDepartmentsUpdated]
             }
-        case "DELETE_DEPARTMENT":
-            const deleteDepartments = state.data.filter(department => department.id !== action.payload)
+        }
+
+        // Xóa phòng ban
+        case actions.DELETE_DEPARTMENT: {
+            const listDepartmentsDeleted = state.data.filter(department => department.id !== action.payload)
             return {
                 ...state,
-                data: [...deleteDepartments]
+                data: [...listDepartmentsDeleted]
             }
+        }
         default:
-            return {...state}
+            return { ...state }
     }
 }
 

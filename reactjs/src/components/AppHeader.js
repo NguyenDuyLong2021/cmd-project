@@ -7,7 +7,7 @@ import logo from "../assets/brand/logo-full.png"
 const AppHeader = () => {
 
     return (
-        <Navbar bg="light" expand="lg" sticky="top">
+        <Navbar id="navbarHeader" bg="light" expand="lg" sticky="top">
             <Container fluid>
                     <Navbar.Brand>
                         <img

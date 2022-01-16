@@ -1,10 +1,11 @@
 import employeesApi from '../api/employeesApi'
+import * as actions from '../constants/ActionEmployee'
 
-// Nạp thông tin nhân viên
-export const fetchEmployees = (data) => {
+// Lấy danh sách nhân viên
+export const fetchEmployees = (employees) => {
     return {
-        type: "FETCH_EMPLOYEES",
-        payload: data
+        type: actions.FETCH_EMPLOYEES,
+        payload: employees
     }
 }
 export const fetchEmployeesRequest = (params) => {
@@ -13,7 +14,10 @@ export const fetchEmployeesRequest = (params) => {
             .then(response => {
                 dispatch(fetchEmployees(response.data))
             })
-            .catch(error => alert(error))
+            .catch(error => {
+                alert(error)
+                console.log(error)
+            })
     }
 }
 //
@@ -21,7 +25,7 @@ export const fetchEmployeesRequest = (params) => {
 // Thêm nhân viên
 export const addEmployee = (employee) => {
     return {
-        type: "ADD_EMPLOYEE",
+        type: actions.ADD_EMPLOYEE,
         payload: employee
     }
 }
@@ -31,15 +35,18 @@ export const addEmployeeRequest = (employee) => {
             .then(response => {
                 dispatch(addEmployee(response.data))
             })
-            .catch(error => alert(error))
+            .catch(error => {
+                alert(error)
+                console.log(error)
+            })
     }
 }
 //
 
-// Chỉnh sửa nhân viên
+// Cập nhật thông tin của nhân viên
 export const updateEmployee = (employee) => {
     return {
-        type: "UPDATE_EMPLOYEE",
+        type: actions.UPDATE_EMPLOYEE,
         payload: employee
     }
 }
@@ -49,7 +56,10 @@ export const updateEmployeeRequest = (employee) => {
             .then(response => {
                 dispatch(updateEmployee(response.data))
             })
-            .catch(error => alert(error))
+            .catch(error => {
+                alert(error)
+                console.log(error)
+            })
     }
 }
 //
@@ -57,7 +67,7 @@ export const updateEmployeeRequest = (employee) => {
 // Xóa nhân viên
 export const deleteEmployee = (id) => {
     return {
-        type: "DELETE_EMPLOYEE",
+        type: actions.DELETE_EMPLOYEE,
         payload: id
     }
 }
@@ -67,7 +77,10 @@ export const deleteEmployeeRequest = (id) => {
         .then(() => {
             dispatch(deleteEmployee(id))
         })
-        .catch(error => alert(error))
+        .catch(error => {
+            alert(error)
+            console.log(error)
+        })
     }
 }
 //

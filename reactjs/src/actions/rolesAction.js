@@ -1,9 +1,10 @@
 import rolesApi from '../api/rolesApi'
+import * as actions from '../constants/ActionRole'
 
-// Nạp thông tin vai trò
+// Lấy danh sách vai trò
 export const fetchRoles = (roles) => {
     return {
-        type: "FETCH_ROLES",
+        type: actions.FETCH_ROLES,
         payload: roles
     }
 }
@@ -13,7 +14,10 @@ export const fetchRolesRequest = (params) => {
             .then(response => {
                 dispatch(fetchRoles(response.data))
             })
-            .catch(error => alert(error))
+            .catch(error => {
+                alert(error)
+                console.log(error)
+            })
     }
 }
 //
@@ -21,7 +25,7 @@ export const fetchRolesRequest = (params) => {
 // Thêm vai trò
 export const addRole = (role) => {
     return {
-        type: "ADD_ROLE",
+        type: actions.ADD_ROLE,
         payload: role
     }
 }
@@ -31,15 +35,18 @@ export const addRoleRequest = (role) => {
             .then(response => {
                 dispatch(addRole(response.data))
             })
-            .catch(error => alert(error))
+            .catch(error => {
+                alert(error)
+                console.log(error)
+            })
     }
 }
 //
 
-// Chỉnh sửa vai trò
+// Cập nhật thông tin của vai trò
 export const updateRole = (role) => {
     return {
-        type: "UPDATE_ROLE",
+        type: actions.UPDATE_ROLE,
         payload: role
     }
 }
@@ -49,7 +56,10 @@ export const updateRoleRequest = (role) => {
             .then(response => {
                 dispatch(updateRole(response.data))
             })
-            .catch(error => alert(error))
+            .catch(error => {
+                alert(error)
+                console.log(error)
+            })
     }
 }
 //
@@ -57,7 +67,7 @@ export const updateRoleRequest = (role) => {
 // Xóa vai trò
 export const deleteRole = (id) => {
     return {
-        type: "DELETE_ROLE",
+        type: actions.DELETE_ROLE,
         payload: id
     }
 }
@@ -67,7 +77,10 @@ export const deleteRoleRequest = (id) => {
         .then(() => {
             dispatch(deleteRole(id))
         })
-        .catch(error => alert(error))
+        .catch(error => {
+            alert(error)
+            console.log(error)
+        })
     }
 }
 //
