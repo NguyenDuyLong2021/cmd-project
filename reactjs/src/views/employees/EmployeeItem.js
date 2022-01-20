@@ -10,16 +10,15 @@ const EmployeeItem = ({ employee }) => {
         return "" + (dateOfBirth.getDate() < 10 ? "0" : "") + dateOfBirth.getDate() + "/" + (dateOfBirth.getMonth() + 1 < 10 ? "0" : "") + (dateOfBirth.getMonth() + 1) + "/" + dateOfBirth.getFullYear()
     }
     return (
-        <tr>
-            <td>{(employee.user?.is_activated === true) ? (<BsFillCircleFill size={8} />) : (<span className="rounded-circle bg-secondary" style={{ width: ".75rem", height: ".75rem" }} />)}</td>
-            <td>{employee.name}</td>
-            <td>{showDate()}</td>
-            <td>{employee.email}</td>
-            <td>{employee.phone}</td>
-            <td>{employee.department?.name}</td>
-            <td>{employee.position?.name}</td>
-            <td>
-                <Dropdown>
+        <div className="item row align-items-center">
+            {/* <div className="col-auto">{(employee.user?.is_activated === true) ? (<BsFillCircleFill size={8} />) : (<span className="rounautoed-circle bg-secondary" style={{ width: ".75rem", height: ".75rem" }} />)}</div> */}
+            <div className="col-2 text-break ps-5">{employee.name}</div>
+            <div className="col-1 text-break">{showDate()}</div>
+            <div className="col-2 text-break">{employee.email}</div>
+            <div className="col-1 text-break">{employee.phone}</div>
+            <div className="col-2 text-break">{employee.department?.name}</div>
+            <div className="col-2 text-break">{employee.position?.name}</div>
+                <Dropdown className="more col-auto">
                     <Dropdown.Toggle variant="none">
                         <BsThreeDotsVertical />
                     </Dropdown.Toggle>
@@ -31,8 +30,7 @@ const EmployeeItem = ({ employee }) => {
                         <DeleteEmployee id={employee.id} />
                     </Dropdown.Menu>
                 </Dropdown>
-            </td>
-        </tr>
+        </div>
     )
 }
 
