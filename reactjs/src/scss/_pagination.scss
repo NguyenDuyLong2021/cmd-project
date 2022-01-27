@@ -1,6 +1,7 @@
 .pagination {
   display: flex;
   @include list-unstyled();
+  box-shadow: 0px 4px 4px rgba(98, 173, 241, 0.33);
 }
 
 .page-link {

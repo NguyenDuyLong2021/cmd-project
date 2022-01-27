@@ -12,13 +12,13 @@ const AppHeaderDropdown = () => {
                     src={defaultAvatar}
                     style={{
                         maxWidth: "3rem",
-                        maxHeight: "3rem",
+                        maxHeight: "3rem"
                     }}
                     className="me-2"
                 />
                 Nguyễn Võ Song Toàn
             </Dropdown.Toggle>
-            <Dropdown.Menu>
+            <Dropdown.Menu className="animate__animated animate__slideInRight">
                 <Dropdown.Item>
                     <BsPersonCircle />
                     Tài khoản

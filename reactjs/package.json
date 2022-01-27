@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ckeditor/ckeditor5-build-decoupled-document": "^31.1.0",
+    "@ckeditor/ckeditor5-react": "^3.0.3",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -19,6 +21,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-timepicker": "^2.0.2",
+    "react-transition-group": "^4.4.2",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
     "sassy-datepicker": "^0.7.0",

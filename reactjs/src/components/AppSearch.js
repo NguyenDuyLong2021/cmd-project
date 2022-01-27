@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
-import { Form, InputGroup } from 'react-bootstrap'
-
+import { Button, Form, InputGroup } from 'react-bootstrap'
+import { BsSearch } from 'react-icons/bs'
+import { AiOutlineClose } from 'react-icons/ai'
 /*
     Component này có thể được sử dụng lại ở bất cứ đâu
     Truyền vào 2 props:
@@ -21,11 +22,25 @@ const AppSearch = ({ value = "", onSearch }) => {
     }
     return (
         <InputGroup>
-            <InputGroup.Text type="button" onClick={() => {
-                onSearch("")
-                setSearchTerm("")
-            }}>x</InputGroup.Text>
-            <Form.Control ref={typingTimeoutRef} type="text" placeholder="Tìm kiếm..." value={searchTerm || value} onChange={handleSearchTerm} />
+            <Form.Control
+                ref={typingTimeoutRef}
+                type="text"
+                placeholder="Tìm kiếm..."
+                value={searchTerm || value}
+                onChange={handleSearchTerm}
+            />
+            {searchTerm === "" ? (
+                <Button>
+                    <BsSearch />
+                </Button>
+            ) : (
+                <Button onClick={() => {
+                    onSearch("")
+                    setSearchTerm("")
+                }}>
+                    <AiOutlineClose />
+                </Button>
+            )}
         </InputGroup>
     )
 }

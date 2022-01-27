@@ -10,17 +10,19 @@ const AppNavbarNav = () => {
             style={{ maxHeight: '100px' }}
             navbarScroll
         >
-            {_nav.map((navItem, index) => (
-                <NavLink
-                    key={index}
-                    to={navItem.to}
-                    className={({ isActive }) =>
-                        "btn fw-bold mx-5 col-auto " + (isActive ? "bg-gradient text-white" : "btn-none")
-                    }
-                >
-                    {navItem.name.toUpperCase()}
-                </NavLink>
-            ))}
+            {
+                _nav.map((navItem, index) => (
+                    <NavLink
+                        key={index}
+                        to={navItem.to}
+                        className={({ isActive }) =>
+                            "btn fw-bold mx-5 col-auto " + (isActive ? "bg-gradient text-white" : "btn-none")
+                        }
+                    >
+                        {navItem.name.toUpperCase()}
+                    </NavLink>
+                ))
+            }
         </Nav>
     )
 }

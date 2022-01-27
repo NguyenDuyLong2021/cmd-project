@@ -276,7 +276,7 @@ $position-values: (
 // Settings for the `<body>` element.
 
 $body-bg: #edfaf9 !default;
-$body-color: #2f6bb1 !default;
+$body-color: #2F6BB1 !default;
 $body-text-align: null !default;
 
 // Links
@@ -624,7 +624,7 @@ $btn-border-width: $input-btn-border-width !default;
 $btn-font-weight: $font-weight-normal !default;
 $btn-box-shadow: inset 0 1px 0 rgba($white, 0.15), 0 1px 1px rgba($black, 0.075) !default;
 $btn-focus-width: $input-btn-focus-width !default;
-$btn-focus-box-shadow: $input-btn-focus-box-shadow !default;
+$btn-focus-box-shadow: null !default; // $input-btn-focus-box-shadow
 $btn-disabled-opacity: 0.65 !default;
 $btn-active-box-shadow: inset 0 3px 5px rgba($black, 0.125) !default;
 
@@ -1060,8 +1060,8 @@ $pagination-disabled-color: $gray-600 !default;
 $pagination-disabled-bg: $white !default;
 $pagination-disabled-border-color: $gray-300 !default;
 
-$pagination-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-  box-shadow 0.15s ease-in-out !default;
+$pagination-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+  box-shadow 0.3s ease-in-out !default;
 
 $pagination-border-radius-sm: $border-radius-sm !default;
 $pagination-border-radius-lg: $border-radius-lg !default;
