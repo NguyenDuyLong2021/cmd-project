@@ -36,7 +36,9 @@ $grays: (
 // fusv-enable
 
 // scss-docs-start color-variables
-$linear: linear-gradient(264.64deg, #0B7CE3 22.88%, #67F3C9 121.5%) !default;
+$start-linear: #0b7ce3;
+$end-linear: #67f3c9;
+$linear: linear-gradient(to right, $start-linear 25%, $end-linear 125%) !default;
 $blue:    #2B99FF !default;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
