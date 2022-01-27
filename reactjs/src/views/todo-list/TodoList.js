@@ -1,235 +1,82 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as action from "../../actions/todoListAction"
-import ButtonFilter from './ButtonFilter';
-import DateInput from './DateInput';
-import Detail from './Detail';
-import DropdownMenu from './DropdownMenu';
-import FilterAdvanced from './FilterAdvanced';
-import FormCreateTask from './FormCreateTask';
-import ItemTask from './ItemTask';
-import Pagination from './Pagination';
-// import StyledContentLoader from 'styled-content-loader'
-const ve = { page: 1, filter: [], advanced: [] };
-class TodoList extends Component {
-    constructor() {
-        super()
-        this.state = ({ isFocus: false })
-    }
-    // có hiện bộ lọc nâng cao hay không
-    isShowFilterAdvanced = () => {
-        if (this.props.status.isShowFilterAdvanced) {
-            let arr = [<div className="v-modal" tabIndex={0} style={{ zIndex: 2054 }} />, <FilterAdvanced />]
-            return arr.map((item) => item)
-        }
-        return null
-    }
-    // render form tạo việc theo điều kiện
-    isShowCreateTask = () => {
-        if (this.props.status.isShowCreateTask) {
-            let arr = [<div className="v-modal" tabIndex={0} style={{ zIndex: 2054 }} />, <FormCreateTask />]
-            return arr.map((item) => item)
-        }
-        return null
-    }
-    // hiện chi tiết công việc
-    isShowDetailTask = () => {
-        if (this.props.status.isShowDetailTask) {
-            let arr = [<div className="v-modal" tabIndex={0} style={{ zIndex: 2054 }} />, <Detail />]
-            return arr.map((item) => item)
-        }
-        return null
-    }
-    // hiển thị dropdown menu
-    isShowDropdownMenu = () => {
-        if (this.props.status.showDropDownMenu) {
-            let arr = [<div className="v-modal" tabIndex={0} style={{ zIndex: 2054 }} />, <DropdownMenu />]
-            return arr.map((item) => item)
-        }
-        return null
-    }
-    // render list công việc
-    renderListTask = () => {
-        if (this.props.status.listTaskFilter !== undefined) {
-            return this.props.status.listTaskFilter.map((item, id) => {
-                let status = "";
-                switch (item.status) {
-                    case 1:
-                        status = "Hoàn tất"
-                        break;
-                    case 2:
-                        status = "Bị từ chối"
-                        break;
-                    case 3:
-                        status = "Đã hủy"
-                        break;
-                    case 4:
-                        status = "Mới"
-                        break;
-                    case 5:
-                        status = "Đang làm"
-                        break;
-                    case 6:
-                        status = "Chờ xác nhận"
-                        break;
-                    case 7:
-                        status = "Hoàn thành"
-                        break;
-                    case 8:
-                        status = "Qúa hạn"
-                        break;
-                }
-                return <ItemTask key={id} Status={status} nameTask={item.nameTask} id={item.id} dateEnd={item.dateEnd} employees={item.employees} />
-            })
-        }
-    }
-    // click vào sẽ hiện thị giao diện bộ lọc nâng cao
-    showFilterAdvanced = () => {
-        this.props.isShowFilterAdvanced();
-        // window.onscroll = ()=>{window.scrollTo(0,0)}
-        // document.body.style.overflowY="hidden"
-    }
-    // callback lại function isShowFormCreateTask() 
-    showFormCreateTask = () => {
-        this.props.isShowFormCreateTask()
-    }
-
-    // sau khi render xong thi no se lay du lieu defualt
-    componentDidMount() {
-        // this.props.getAllStask()
-        this.props.getTaskByStatus(ve)
-    }
-    //dung de lay thong tin tim kiem moi khi noi dung trong input thay doi
-    changeInforTask = (e) => {
-        this.props.searchTask({ object: "tasks", contain: "nameTask_like", key: e.target.value })
-    }
-    render() {
-        return (
-            <> 
-            q
-                <div className="router-view">
-                    <div className="router-content">
-                        <div className="router-header flex flex-wrap items-center mb-6">
-                            <div className="content-area__heading">
-                                <h2 className="mb-1">Danh sách công việc</h2>
+import { BiSearchAlt } from "react-icons/bi";
+import { BsFillBagPlusFill, BsFillFileEarmarkPostFill } from "react-icons/bs";
+import { AiFillFilter } from "react-icons/ai";
+import ButtonStatus from "./assigned-to-me/ButtonStatus";
+import TaskItem from "./TaskItem";
+import { useState, useEffect } from "react";
+const nameButtonStatus = ["Mới nhất", "Cũ nhất", "Đang làm", "Hoàn thành", "Ưu tiên", "Chờ xác nhận", "Qúa hạn", "Đã hủy"]
+const TodoList = () => {
+    const [switchToTaskMine, setStateMine] = useState(false)
+    return (
+        <div className="container-fluid">
+            <div className="d-flex justify-content-between">
+                <div className="col">
+                    <p className="fw-bold">DANH SÁCH CÔNG VIỆC</p>
+                </div>
+                <div className="col">
+                    <div className="d-flex justify-content-center mx-auto">
+                        <div className="d-inline-flex form-control p-0">
+                            <BiSearchAlt className="mx-auto" size={20} />
+                            <div className="w-100 p-0">
+                                <input className="w-100b" type="text" style={{ border: "none", outline: "none" }} placeholder="" />
                             </div>
                         </div>
-                        <div className="content-area__content">
-                            <div className="vue-back-to-top" style={{ bottom: '5%', right: '30px', display: 'none' }}><button type="button" name="button" className="vs-component vs-button icon-white vs-button-primary vs-button-filled includeIcon includeIconOnly"><span className="vs-button-backgroundx vs-button--background" style={{ opacity: 1, left: '20px', top: '20px', width: '0px', height: '0px', transition: 'width 0.3s ease 0s, height 0.3s ease 0s, opacity 0.3s ease 0s' }} /><i className="vs-icon notranslate icon-scale vs-button--icon  nucleo nucleo-up-arrow null" style={{ order: 0, marginRight: '0px', marginLeft: '0px' }} />{/**/}<span className="vs-button-linex" style={{ top: 'auto', bottom: '-2px', left: '50%', transform: 'translate(-50%)' }} /></button></div>
-                            <div id="todo-list" className="data-list-container">
-                                <div data-v-763f102e className="el-dialog__wrapper custom-dialog todo-list-form-sidebar" style={{ display: 'none' }}>
-                                    <div role="dialog" aria-modal="true" aria-label="Tạo mới công việc " className="el-dialog" style={{ marginTop: '15vh' }}>
-                                        <div className="el-dialog__header">
-                                            <span className="el-dialog__title">Tạo mới công việc</span>
-                                            <button type="button" aria-label="Close" className="el-dialog__headerbtn">
-                                                <i className="el-dialog__close el-icon el-icon-close" />
-                                            </button>
-                                        </div>
-                                        <div className="el-dialog__footer">
-                                            <div data-v-763f102e className="flex justify-center flex-wrap items-center">
-                                                <button data-v-763f102e type="button" name="button" className="vs-component vs-button w-full sm:w-1/3 mb-3 sm:mb-0 sm:mr-6 font-bold vs-button-primary vs-button-border" style={{ background: 'transparent' }}><span className="vs-button-backgroundx vs-button--background" style={{ opacity: 1, left: '20px', top: '20px', width: '0px', height: '0px', transition: 'width 0.3s ease 0s, height 0.3s ease 0s, opacity 0.3s ease 0s' }} />{/**/}<span className="vs-button-text vs-button--text">
-                                                    Lưu và Tạo mới
-                                                </span><span className="vs-button-linex" style={{ top: 'auto', bottom: '-2px', left: '50%', transform: 'translate(-50%)' }} /></button><button data-v-763f102e type="button" name="button" className="vs-component vs-button w-full sm:w-1/3 font-bold vs-button-primary vs-button-filled"><span className="vs-button-backgroundx vs-button--background" style={{ opacity: 1, left: '20px', top: '20px', width: '0px', height: '0px', transition: 'width 0.3s ease 0s, height 0.3s ease 0s, opacity 0.3s ease 0s' }} />{/**/}<span className="vs-button-text vs-button--text">Lưu</span><span className="vs-button-linex" style={{ top: 'auto', bottom: '-2px', left: '50%', transform: 'translate(-50%)' }} /></button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="dropdown-button-container flex justify-end md:hidden lg:hidden xl:hidden">
-                                    <div onClick={this.focusSearch} className={"vs-component vs-con-input-label vs-input input-search mr-3 vs-input-primary", { "isFocus": this.state.isFocus }}>{/**/}
-                                        <div className="vs-con-input">
-                                            <input type="text" className="vs-inputx vs-input--input large hasIcon" style={{ border: '1px solid rgba(0, 0, 0, 0.2)' }} />
-                                            <span className="input-span-placeholder vs-input--placeholder large"> Tìm kiếm </span><i className="vs-icon notranslate icon-scale icon-inputx notranslate vs-input--icon material-icons null">search</i>{/**/}
-                                        </div>
-                                        <span />
-                                    </div>
-                                    <button type="button" className="vs-con-dropdown parent-dropdown" />
-                                    <button type="button" name="button" className="vs-component vs-button btn-drop vs-button-primary vs-button-filled includeIcon includeIconOnly"><span className="vs-button-backgroundx vs-button--background" style={{ opacity: 1, left: '20px', top: '20px', width: '0px', height: '0px', transition: 'width 0.3s ease 0s, height 0.3s ease 0s, opacity 0.3s ease 0s' }} />
-                                        <i className="vs-icon notranslate icon-scale vs-button--icon  material-icons null" style={{ order: 0, marginRight: '0px', marginLeft: '0px' }}>expand_more</i>{/**/}
-                                        <span className="vs-button-linex" style={{ top: 'auto', bottom: '-2px', left: '50%', transform: 'translate(-50%)' }} />
-                                    </button>
-                                </div>
-
-                                <div className="vs-component vs-con-table stack-table todo-list-table vs-table-primary">
-                                    <header className="header-table vs-table--header">
-                                        <div className="w-full">
-                                            <div className="flex flex-grow justify-end">
-                                                <div className="vs-component vs-con-input-label vs-input input-search mr-3 md:block lg:block xl:block hidden vs-input-primary">{/**/}
-                                                    <div className="vs-con-input">
-                                                        <input onChange={this.changeInforTask} type="text" className="vs-inputx vs-input--input large hasIcon" style={{ border: '1px solid rgba(0, 0, 0, 0.2)' }} />
-                                                        <span className="input-span-placeholder vs-input--placeholder large"> Tìm kiếm </span>
-                                                        <i className="vs-icon notranslate icon-scale icon-inputx notranslate vs-input--icon material-icons null">search</i>{/**/}
-                                                    </div>
-                                                    <span />
-                                                </div>
-                                                <div className="md:flex lg:flex xl:flex hidden">
-                                                    <button onClick={this.showFilterAdvanced} type="button" name="button" className="vs-component vs-button w-48 font-bold vs-button-primary vs-button-border" style={{ background: 'transparent' }}>
-                                                        <span className="vs-button-backgroundx vs-button--background" style={{ opacity: 1, left: '20px', top: '20px', width: '0px', height: '0px', transition: 'width 0.3s ease 0s, height 0.3s ease 0s, opacity 0.3s ease 0s' }} />{/**/}
-                                                        <span className="vs-button-text vs-button--text">Bộ lọc</span>
-                                                        <span className="vs-button-linex" style={{ top: 'auto', bottom: '-2px', left: '50%', transform: 'translate(-50%)' }} />
-                                                    </button>
-                                                    <div onClick={this.props.isShowFormCreateTask} className="md:flex lg:flex xl:flex hidden ml-3">
-                                                        <button type="button" name="button" className="vs-component vs-button w-48 font-bold vs-button-primary vs-button-filled">
-                                                            <span className="vs-button-backgroundx vs-button--background" style={{ opacity: 1, left: '20px', top: '20px', width: '0px', height: '0px', transition: 'width 0.3s ease 0s, height 0.3s ease 0s, opacity 0.3s ease 0s' }} />{/**/}
-                                                            <span className="vs-button-text vs-button--text">Tạo việc</span>
-                                                            <span className="vs-button-linex" style={{ top: 'auto', bottom: '-2px', left: '50%', transform: 'translate(-50%)' }} />
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="flex flex-grow justify-between items-center mt-5 pb-5">
-                                                <div className="lg:flex flex-grow justify-start w-full">
-                                                    <ButtonFilter nameButtonFilter="Mới" />
-                                                    <ButtonFilter nameButtonFilter="Đang làm" />
-                                                    <ButtonFilter nameButtonFilter="Chờ xác nhận" />
-                                                    <ButtonFilter nameButtonFilter="Hoàn thành" />
-                                                    <ButtonFilter nameButtonFilter="Đã hủy" />
-                                                    <ButtonFilter nameButtonFilter="Qúa hạn" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </header>
-
-                                    <div className="con-tablex vs-table--content">
-                                        <div className="vs-con-tbody vs-table--tbody ">
-                                            <table className="vs-table vs-table--tbody-table">
-                                                <thead className="vs-table--thead">
-                                                </thead>
-                                                {this.renderListTask()}
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <Pagination />
-                            </div>
+                        <div className="ps-1" >
+                            <button type="button" className="btn btn-primary btn-sm" style={{ whiteSpace: "nowrap" }}>Tìm kiếm</button>
                         </div>
-                    </div >
-                </div >
-                {this.isShowFilterAdvanced()}
-                {this.isShowCreateTask()}
-                {this.isShowDetailTask()}
-                {this.isShowDropdownMenu()}
-                {/* <div className="v-modal" tabIndex={0} style={{ zIndex: 2000 }} /> */}
-                {this.props.status.dateStartDateInput ? <DateInput /> : null}
-                {this.props.status.dateEndDateInput ? <DateInput /> : null}
-                {this.props.status.showDatePickerStartNewTask ? <DateInput /> : null}
-                {this.props.status.showDatePickerCompleteNewTask ? <DateInput /> : null}
-            </>
-        );
-    }
-}
-const mapStateToProps = (state) => {
-    return {
-        status: state.TodoListReducer
-    }
-}
+                    </div>
+                </div>
+                <div className="col">
+                    <div className="d-flex justify-content-evenly">
+                        <div className="mx-1">
+                            <button type="button" className="btn btn-sm" data-mdb-ripple-color="dark"><BsFillBagPlusFill size={20} /> Tạo việc</button>
+                        </div>
+                        <div className="mx-1">
+                            <button type="button" className="btn btn-sm" data-mdb-ripple-color="dark"><BsFillFileEarmarkPostFill size={20} />Báo cáo</button>
+                        </div>
+                        <div className="mx-1">
+                            <button type="button" className="btn btn-sm" data-mdb-ripple-color="dark"><AiFillFilter size={20} /> Bộ lọc</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="row p-4 d-flex flex-row">
+                <div className="d-flex flex-row mb-3" >
+                    <div className="p-2 mx-auto">
+                        <input type="radio" className="btn-check" name="options-outlined" id="all-outline" autoComplete="off" defaultChecked />
+                        <label className="btn btn-outline-darkBlue btn-sm" htmlFor="all-outline">Tất cả</label>
+                    </div>
+                    <div className="p-2 mx-auto">
+                        <input type="radio" className="btn-check" name="options-outlined" id="mine-outlined" autoComplete="off" />
+                        <label className="btn btn-outline-darkBlue btn-sm" htmlFor="mine-outlined">Của tôi</label>
+                    </div>
+                    {
+                        //render button status
+                        nameButtonStatus.map((item, id) => <ButtonStatus key={id} id={id} nameStatus={item} />)
+                    }
+                    <div className="p-2 mx-auto">
+                        <label style={{ whiteSpace: "nowrap" }}>Tổng : 145</label>
+                    </div>
+                </div>
+            </div>
+            <div className="d-flex flex-column mb-1">
+                <div className="row">
+                    <div className="col-1 space--nowrap mx-auto">
+                    </div>
+                    <div className="col-4 space--nowrap mx-auto small ">TÊN CÔNG VIỆC</div>
+                    <div className="col-1 space--nowrap mx-auto small">NGƯỜI GIAO</div>
+                    <div className="col-1 space--nowrap mx-auto small">NGƯỜI LÀM</div>
+                    <div className="col-1 space--nowrap mx-auto small">THỜI GIAN</div>
+                    <div className="col-1 space--nowrap mx-auto small">TÌNH TRẠNG</div>
+                    <div className="col-1 space--nowrap mx-auto small">ĐÁNH GIÁ</div>
+                    <div className="col-1 space--nowrap mx-auto small"></div>
+                </div>
+            </div>
+            <div className="d-flex flex-column">
+                <TaskItem/>
 
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        getTaskByStatus: (page) => { dispatch(action.dispatchLimitedTaskRequest(page)) },
-        getAllStask: () => { dispatch(action.getAllTaskRequest()) },
-        isShowFilterAdvanced: () => { dispatch(action.isShowFilterAdvanced()) },
-        isShowFormCreateTask: () => { dispatch(action.isShowCreateTask()) },
-        isShowDetailTask: () => { dispatch(action.showDetailTask()) },
-        searchTask: (params) => { dispatch(action.searchTask(params)) },
-    }
+            </div>
+        </div>
+    )
 }
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default TodoList
