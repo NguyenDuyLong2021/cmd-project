@@ -4,13 +4,13 @@ import StarRatings from "react-star-ratings"
 const TaskItem = () => {
     const [rating, setRating]= useState(0)
     return (
-        <div className="row bg-white rounded-pill m-4 p-3">
+        <div className="row bg-white rounded-pill m-4 p-3 item">
             <div className="col-1 space--nowrap mx-auto item-label">
             </div>
-            <div className="col-3 space--nowrap mx-auto">
+            <div className="col-4 space--nowrap ms-5">
                 <span className="small">Xử lý hệ thống nước thải</span>
             </div>
-            <div className="col-1 position-relative mx-auto ">
+            <div className="col-1 position-relative">
                 <div className="position-absolute top-50 start-50 translate-middle">
                     <img className="rounded-pill" style={{ width: "30px", height: "30px" }} src="https://randomuser.me/api/portraits/men/46.jpg" alt="Mario Rossi" />
                 </div>
@@ -19,7 +19,7 @@ const TaskItem = () => {
                 <div className="position-absolute top-50 start-50 translate-middle">
                     <img className="rounded-pill" style={{ width: "30px", height: "30px" }} src="https://randomuser.me/api/portraits/men/46.jpg" alt="Mario Rossi" />
                 </div></div>
-            <div className="col-3 space--nowrap mx-auto d-flex justify-content-center">
+            <div className="col-1 space--nowrap mx-auto d-flex justify-content-center">
                 <span className="small">12/01/2022</span>
                 <span>{" - "}</span>
                 <span className="small">25/01/2022</span>
