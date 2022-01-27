@@ -28,7 +28,7 @@ const DeleteEmployee = ({ id }) => {
                 show={visible}
                 onHide={() => setVisible(false)}
             >
-                <Modal.Header closeButton closeVariant="white" className="bg-gradient text-white">
+                <Modal.Header closeButton className="bg-gradient">
                     <Modal.Title>XÓA NHÂN VIÊN</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

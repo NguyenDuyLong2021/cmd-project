@@ -25,7 +25,7 @@ const AppPagination = ({ pagination, onPageChange }) => {
                 listPage.push("...");
                 listPage.push(totalPage);
             }
-            else if (_page > totalPage - 4) {
+            else if (_page > totalPage - 3) {
                 listPage.push(1)
                 listPage.push("...")
                 for (let i = totalPage - 3; i <= totalPage; ++i) {
@@ -43,14 +43,14 @@ const AppPagination = ({ pagination, onPageChange }) => {
             }
         }
         else if (totalPage >= 5) {
-            if (_page <= 3) {
+            if (_page <= 2) {
                 for (let i = 1; i <= 3; ++i) {
                     listPage.push(i)
                 }
                 listPage.push("...")
                 listPage.push(totalPage)
             }
-            else if (_page > totalPage - 3) {
+            else if (_page > totalPage - 2) {
                 listPage.push(1)
                 listPage.push("...")
                 for (let i = totalPage - 2; i <= totalPage; ++i) {
@@ -88,32 +88,40 @@ const AppPagination = ({ pagination, onPageChange }) => {
                 >
                     <BsChevronLeft />
                 </Pagination.Item>
-                {listPageNumber().map((page, index) => {
-                    if (page === _page) {
-                        return (
-                            <Pagination.Item
-                                key={index}
-                                active
-                            >{page}</Pagination.Item>
-                        )
-                    }
-                    else if (page === "...") {
-                        return (
-                            <Pagination.Item
-                                disabled
-                                key={index}
-                            >{page}</Pagination.Item>
-                        )
-                    }
-                    else {
-                        return (
-                            <Pagination.Item
-                                key={index}
-                                onClick={() => handlePageChange(page)}
-                            >{page}</Pagination.Item>
-                        )
-                    }
-                })}
+                {
+                    listPageNumber().map((page, index) => {
+                        if (page === _page) {
+                            return (
+                                <Pagination.Item
+                                    key={index}
+                                    active
+                                >
+                                    {page}
+                                </Pagination.Item>
+                            )
+                        }
+                        else if (page === "...") {
+                            return (
+                                <Pagination.Item
+                                    disabled
+                                    key={index}
+                                >
+                                    {page}
+                                </Pagination.Item>
+                            )
+                        }
+                        else {
+                            return (
+                                <Pagination.Item
+                                    key={index}
+                                    onClick={() => handlePageChange(page)}
+                                >
+                                    {page}
+                                </Pagination.Item>
+                            )
+                        }
+                    })
+                }
                 <Pagination.Item
                     disabled={_page >= totalPage}
                     onClick={() => handlePageChange(_page + 1)}

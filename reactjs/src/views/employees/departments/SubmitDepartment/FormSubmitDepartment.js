@@ -151,8 +151,8 @@ const FormSubmitDepartment = ({ visible, setVisible, department = null }) => {
                         <div className="mb-3">
                             <Form.Label htmlFor="email">Mô tả:</Form.Label>
                             <Form.Control
-                                type="textarea"
-                                rows={5}
+                                as="textarea"
+                                rows={10}
                                 name="description"
                                 placeholder="Nhập mô tả phòng ban..."
                                 value={info.description}
