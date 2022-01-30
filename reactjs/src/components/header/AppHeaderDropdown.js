@@ -20,11 +20,11 @@ const AppHeaderDropdown = () => {
             </Dropdown.Toggle>
             <Dropdown.Menu className="animate__animated animate__slideInRight">
                 <Dropdown.Item>
-                    <BsPersonCircle />
+                    <BsPersonCircle className="me-2" />
                     Tài khoản
                 </Dropdown.Item>
                 <Dropdown.Item>
-                    <BsBoxArrowRight />
+                    <BsBoxArrowRight className="me-2" />
                     Đăng xuất
                 </Dropdown.Item>
             </Dropdown.Menu>

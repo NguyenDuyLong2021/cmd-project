@@ -368,6 +368,8 @@ $border-color: $linear !default;
 $border-radius: 0.5rem !default;
 $border-radius-sm: 0.2rem !default;
 $border-radius-lg: 0.3rem !default;
+$border-radius-xl: 0.5rem !default;
+$border-radius-xxl: 1rem !default;
 $border-radius-pill: 50rem !default;
 // scss-docs-end border-radius-variables
 
@@ -1287,7 +1289,7 @@ $progress-bar-transition: width 0.6s ease !default;
 // List group
 
 // scss-docs-start list-group-variables
-$list-group-color: $gray-900 !default;
+$list-group-color: $body-color !default;
 $list-group-bg: $white !default;
 $list-group-border-color: rgba($black, 0.125) !default;
 $list-group-border-width: $border-width !default;

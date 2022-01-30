@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Pagination } from 'react-bootstrap'
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 
@@ -12,75 +12,211 @@ import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
     2. onPageChange: một function được truyền vào tham số newPage là trang mới khi click vào button
 */
 const AppPagination = ({ pagination, onPageChange }) => {
+    // Lấy các đối tượng từ props pagination
     const { _page, _limit, _totalItem } = pagination
+
+    // Tính toán tổng số trang
     const totalPage = Math.ceil(_totalItem / _limit)
 
-    const listPageNumber = () => {
+    // State lưu chiều rộng hiện tại của trình duyệt
+    const [width, setWidth] = useState(window.innerWidth)
+
+    // Hàm cập nhật state width mỗi khi trình duyệt thay đổi độ rộng
+    const updateWidth = () => {
+        setWidth(window.innerWidth)
+    }
+
+    // Effect có tác dụng thêm hàm cập nhật state width cho event resize
+    useEffect(() => {
+        window.addEventListener('resize', updateWidth)
+        return () => {
+            window.removeEventListener('resize', updateWidth)
+        }
+    }, [])
+
+    // Hàm gọi props onPageChange được truyền vào từ component dùng nó với đối số truyền vào là trang mới cần chuyển hướng
+    const handlePageChange = (newPage) => {
+        onPageChange(newPage)
+    }
+
+    // Hàm này sẽ trả về một mảng lưu những số (hoặc dấu ...) cần hiển thị ra UI tùy thuộc vào chiều rộng của màn hình (đã responsive)
+    const fetchListPage = () => {
+        // Khởi tạo listPage là mảng rỗng
         const listPage = []
-        if (totalPage >= 8) {
-            if (_page < 4) {
-                for (let i = 1; i <= 4; ++i) {
-                    listPage.push(i);
+
+        // Thực hiện push những gì cần hiển thị vào listPage tùy thuộc vào giá trị cửa width
+        if (width < 375) {
+            if (totalPage >= 8) {
+                if (_page < 2) {
+                    for (let i = 1; i <= 2; ++i) {
+                        listPage.push(i)
+                    }
+                    listPage.push("...")
+                    listPage.push(totalPage)
                 }
-                listPage.push("...");
-                listPage.push(totalPage);
+                else if (_page > totalPage - 1) {
+                    listPage.push(1)
+                    listPage.push("...")
+                    for (let i = totalPage - 1; i <= totalPage; ++i) {
+                        listPage.push(i)
+                    }
+                }
+                else {
+                    listPage.push(_page - 1)
+                    listPage.push(_page)
+                    listPage.push(_page + 1)
+                }
             }
-            else if (_page > totalPage - 3) {
-                listPage.push(1)
-                listPage.push("...")
-                for (let i = totalPage - 3; i <= totalPage; ++i) {
-                    listPage.push(i);
+            else if (totalPage >= 5) {
+                if (_page <= 2) {
+                    for (let i = 1; i <= 3; ++i) {
+                        listPage.push(i)
+                    }
+                    listPage.push("...")
+                    listPage.push(totalPage)
+                }
+                else if (_page > totalPage - 2) {
+                    listPage.push(1)
+                    listPage.push("...")
+                    for (let i = totalPage - 2; i <= totalPage; ++i) {
+                        listPage.push(i)
+                    }
+                }
+                else {
+                    listPage.push(1)
+                    listPage.push("...")
+                    for (let i = _page - 1; i <= _page + 1; ++i) {
+                        listPage.push(i)
+                    }
+                    listPage.push("...")
+                    listPage.push(totalPage)
                 }
             }
             else {
-                listPage.push(1)
-                listPage.push("...")
-                for (let i = _page - 2; i <= _page + 2; ++i) {
-                    listPage.push(i);
+                for (let i = 1; i <= totalPage; ++i) {
+                    listPage.push(i)
                 }
-                listPage.push("...")
-                listPage.push(totalPage)
             }
         }
-        else if (totalPage >= 5) {
-            if (_page <= 2) {
-                for (let i = 1; i <= 3; ++i) {
-                    listPage.push(i)
+        else if (width < 576) {
+            if (totalPage >= 8) {
+                if (_page < 3) {
+                    for (let i = 1; i <= 3; ++i) {
+                        listPage.push(i)
+                    }
+                    listPage.push("...")
+                    listPage.push(totalPage)
                 }
-                listPage.push("...")
-                listPage.push(totalPage)
+                else if (_page > totalPage - 2) {
+                    listPage.push(1)
+                    listPage.push("...")
+                    for (let i = totalPage - 2; i <= totalPage; ++i) {
+                        listPage.push(i)
+                    }
+                }
+                else {
+                    listPage.push(1)
+                    listPage.push("...")
+                    for (let i = _page - 1; i <= _page + 1; ++i) {
+                        listPage.push(i)
+                    }
+                    listPage.push("...")
+                    listPage.push(totalPage)
+                }
             }
-            else if (_page > totalPage - 2) {
-                listPage.push(1)
-                listPage.push("...")
-                for (let i = totalPage - 2; i <= totalPage; ++i) {
-                    listPage.push(i);
+            else if (totalPage >= 5) {
+                if (_page <= 2) {
+                    for (let i = 1; i <= 3; ++i) {
+                        listPage.push(i)
+                    }
+                    listPage.push("...")
+                    listPage.push(totalPage)
+                }
+                else if (_page > totalPage - 2) {
+                    listPage.push(1)
+                    listPage.push("...")
+                    for (let i = totalPage - 2; i <= totalPage; ++i) {
+                        listPage.push(i)
+                    }
+                }
+                else {
+                    listPage.push(1)
+                    listPage.push("...")
+                    for (let i = _page - 1; i <= _page + 1; ++i) {
+                        listPage.push(i)
+                    }
+                    listPage.push("...")
+                    listPage.push(totalPage)
                 }
             }
             else {
-                listPage.push(1)
-                listPage.push("...")
-                for (let i = _page - 1; i <= _page + 1; ++i) {
+                for (let i = 1; i <= totalPage; ++i) {
                     listPage.push(i)
                 }
-                listPage.push("...")
-                listPage.push(totalPage)
             }
         }
         else {
-            for (let i = 1; i <= totalPage; ++i) {
-                listPage.push(i)
+            if (totalPage >= 8) {
+                if (_page < 4) {
+                    for (let i = 1; i <= 4; ++i) {
+                        listPage.push(i)
+                    }
+                    listPage.push("...")
+                    listPage.push(totalPage)
+                }
+                else if (_page > totalPage - 3) {
+                    listPage.push(1)
+                    listPage.push("...")
+                    for (let i = totalPage - 3; i <= totalPage; ++i) {
+                        listPage.push(i)
+                    }
+                }
+                else {
+                    listPage.push(1)
+                    listPage.push("...")
+                    for (let i = _page - 2; i <= _page + 2; ++i) {
+                        listPage.push(i)
+                    }
+                    listPage.push("...")
+                    listPage.push(totalPage)
+                }
+            }
+            else if (totalPage >= 5) {
+                if (_page <= 2) {
+                    for (let i = 1; i <= 3; ++i) {
+                        listPage.push(i)
+                    }
+                    listPage.push("...")
+                    listPage.push(totalPage)
+                }
+                else if (_page > totalPage - 2) {
+                    listPage.push(1)
+                    listPage.push("...")
+                    for (let i = totalPage - 2; i <= totalPage; ++i) {
+                        listPage.push(i)
+                    }
+                }
+                else {
+                    listPage.push(1)
+                    listPage.push("...")
+                    for (let i = _page - 1; i <= _page + 1; ++i) {
+                        listPage.push(i)
+                    }
+                    listPage.push("...")
+                    listPage.push(totalPage)
+                }
+            }
+            else {
+                for (let i = 1; i <= totalPage; ++i) {
+                    listPage.push(i)
+                }
             }
         }
         return listPage
     }
 
-    const handlePageChange = (newPage) => {
-        onPageChange(newPage);
-    }
     return (
         <div className="d-table m-auto">
-
             <Pagination className="pt-3 col">
                 <Pagination.Item
                     disabled={_page <= 1}
@@ -89,7 +225,7 @@ const AppPagination = ({ pagination, onPageChange }) => {
                     <BsChevronLeft />
                 </Pagination.Item>
                 {
-                    listPageNumber().map((page, index) => {
+                    fetchListPage().map((page, index) => {
                         if (page === _page) {
                             return (
                                 <Pagination.Item
