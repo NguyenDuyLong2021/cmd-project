@@ -6463,23 +6463,6 @@
       "parent_id": 355,
       "positions": [],
       "id": 355
-    },
-    {
-      "code": "PB20133097",
-      "name": "Test hệ thống",
-      "description": "Test hệ thống",
-      "parent_id": null,
-      "positions": [],
-      "id": 356
-    },
-    {
-      "code": "PBA",
-      "name": "Test hệ thống",
-      "description": "Test hệ thống",
-      "parent_id": 356,
-      "positions": [],
-      "id": 357,
-      "updateAt": 1642336730036
     }
   ],
   "roles": [

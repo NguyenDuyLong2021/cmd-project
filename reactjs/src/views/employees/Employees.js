@@ -129,9 +129,9 @@ const Employees = () => {
             </div>
             <hr />
             <Container fluid>
-                <div className="d-xl-flex d-none">
+                <div className="d-lg-flex d-none">
                     <Row className="col mb-3 justify-content-evenly align-items-center">
-                        <div className="col-2" style={{ paddingLeft: "6rem" }}>
+                        <div className="col-2" style={{ paddingLeft: "3rem" }}>
                             <span
                                 className="fw-bolder cursor-pointer"
                                 onClick={() => handleSort("name")}
@@ -140,7 +140,7 @@ const Employees = () => {
                             </span>
                             {/* <Form.Control type="text" name="name" placeholder="Lọc theo họ và tên..." value={filters.name} onChange={handleFilter} /> */}
                         </div>
-                        <div className="col-1">
+                        <div className="col-1 ps-1">
                             <span
                                 className="fw-bolder cursor-pointer"
                                 onClick={() => handleSort("dob")}
@@ -149,7 +149,7 @@ const Employees = () => {
                             </span>
                             {/* <Form.Control type="text" name="dob" placeholder="Lọc theo ngày sinh..." value={filters.dob} onChange={handleFilter} /> */}
                         </div>
-                        <div className="col-3">
+                        <div className="col-3 ps-1">
                             <span
                                 className="fw-bolder cursor-pointer"
                                 onClick={() => handleSort("email")}
@@ -158,7 +158,7 @@ const Employees = () => {
                             </span>
                             {/* <Form.Control type="text" name="email" placeholder="Lọc theo email..." value={filters.email} onChange={handleFilter} /> */}
                         </div>
-                        <div className="col-1">
+                        <div className="col-1 ps-1">
                             <span
                                 className="fw-bolder cursor-pointer"
                                 onClick={() => handleSort("phone")}
@@ -167,7 +167,7 @@ const Employees = () => {
                             </span>
                             {/* <Form.Control type="text" name="phone" placeholder="Lọc theo số điện spanoại..." value={filters.phone} onChange={handleFilter} /> */}
                         </div>
-                        <div className="col-2">
+                        <div className="col-2 ps-1">
                             <span
                                 className="fw-bolder cursor-pointer"
                                 onClick={() => handleSort("department.name")}
@@ -176,7 +176,7 @@ const Employees = () => {
                             </span>
                             {/* <Form.Control type="text" name="department.name" placeholder="Lọc theo tên phòng ban..." value={filters.department} onChange={handleFilter} /> */}
                         </div>
-                        <div className="col-2">
+                        <div className="col-2 ps-1">
                             <span
                                 className="fw-bolder cursor-pointer"
                                 onClick={() => handleSort("position.name")}
@@ -185,9 +185,10 @@ const Employees = () => {
                             </span>
                             {/* <Form.Control type="text" name="position.name" placeholder="Lọc theo tên chức vụ..." value={filters.position} onChange={handleFilter} /> */}
                         </div>
+                        <div className="col-auto" />
                     </Row>
                 </div>
-                <div className="d-xl-block d-none">
+                <div className="d-lg-block d-none">
                     <Row>
                         {
                             employees.map(employee => (
@@ -203,7 +204,7 @@ const Employees = () => {
                         }
                     </Row>
                 </div>
-                <div className="d-xl-none">
+                <div className="d-lg-none">
                     <Row className="mb-3 justify-content-evenly align-items-center">
                         {
                             employees.map(employee => (

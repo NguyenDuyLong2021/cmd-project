@@ -18,17 +18,20 @@ const EmployeeItem = ({ employee }) => {
         <>
 
             {/* Giao diện hiển thị khi >= xl */}
-            <div className="d-xl-flex d-none item justify-content-evenly align-items-center">
+            <div className="d-lg-flex d-none item justify-content-evenly align-items-center">
                 <div className="item-label" />
                 {/* <div className="col-auto">{(employee.user?.is_activated === true) ? (<BsFillCircleFill size={8} />) : (<span className="rounautoed-circle bg-secondary" style={{ width: ".75rem", height: ".75rem" }} />)}</div> */}
-                <div className="col-2 text-break" style={{ paddingLeft: "6rem" }}>{standardizingName(employee.name)}</div>
+                <div className="col-2 text-break" style={{ paddingLeft: "3rem" }}>{standardizingName(employee.name)}</div>
                 <div className="col-1 text-break">{showDate()}</div>
                 <div className="col-3 text-break">{employee.email}</div>
                 <div className="col-1 text-break">{employee.phone}</div>
                 <div className="col-2 text-break">{employee.department?.name}</div>
                 <div className="col-2 text-break">{employee.position?.name}</div>
-                <Dropdown className="more col-auto p-0">
-                    <Dropdown.Toggle variant="none">
+                <Dropdown>
+                    <Dropdown.Toggle
+                        variant="none"
+                        className="more col-auto p-0"
+                    >
                         <BsThreeDotsVertical />
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="animate__animated animate__zoomIn animate__faster">
@@ -42,7 +45,7 @@ const EmployeeItem = ({ employee }) => {
             </div>
 
             {/* Giao diện hiển thị khi < xl */}
-            <div className="d-xl-none list-group-item row justify-content-evenly align-items-center">
+            <div className="d-lg-none list-group-item row justify-content-evenly align-items-center">
                 <Row className="mb-3 mt-3">
                     <Col className="fw-bold text-break" className="fw-bold">
                         Họ và tên:

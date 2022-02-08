@@ -45,7 +45,7 @@ const AppPagination = ({ pagination, onPageChange }) => {
         const listPage = []
 
         // Thực hiện push những gì cần hiển thị vào listPage tùy thuộc vào giá trị cửa width
-        if (width < 375) {
+        if (width < 576) {
             if (totalPage >= 8) {
                 if (_page < 2) {
                     for (let i = 1; i <= 2; ++i) {
@@ -98,7 +98,7 @@ const AppPagination = ({ pagination, onPageChange }) => {
                 }
             }
         }
-        else if (width < 576) {
+        else if (width < 992) {
             if (totalPage >= 8) {
                 if (_page < 3) {
                     for (let i = 1; i <= 3; ++i) {
@@ -217,7 +217,12 @@ const AppPagination = ({ pagination, onPageChange }) => {
 
     return (
         <div className="d-table m-auto">
-            <Pagination className="pt-3 col">
+            <Pagination
+            className="col"
+            size={
+                width < 576 ? "sm" : (width < 992 ? "" : "lg")
+            }
+            >
                 <Pagination.Item
                     disabled={_page <= 1}
                     onClick={() => handlePageChange(_page - 1)}

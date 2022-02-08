@@ -33,8 +33,16 @@ const DepartmentDetail = ({ department }) => {
                 >
                     <thead>
                         <tr>
-                            <td scope="col">CHỨC VỤ</td>
-                            <td scope="col">VAI TRÒ</td>
+                            <td>
+                                <span className="fw-bolder">
+                                    CHỨC VỤ
+                                </span>
+                            </td>
+                            <td>
+                                <span className="fw-bolder">
+                                    VAI TRÒ
+                                </span>
+                            </td>
                         </tr>
                     </thead>
                     <tbody>

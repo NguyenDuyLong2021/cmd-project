@@ -10,7 +10,7 @@
   white-space: nowrap;
 
   // Generate the caret automatically
-  // @include caret();
+  @include caret();
 }
 
 // The dropdown menu
@@ -78,7 +78,7 @@
   }
 
   .dropdown-toggle {
-    // @include caret(up);
+    @include caret(up);
   }
 }
 
@@ -92,7 +92,7 @@
   }
 
   .dropdown-toggle {
-    // @include caret(end);
+    @include caret(end);
     &::after {
       vertical-align: 0;
     }
@@ -109,7 +109,7 @@
   }
 
   .dropdown-toggle {
-    // @include caret(start);
+    @include caret(start);
     &::before {
       vertical-align: 0;
     }
