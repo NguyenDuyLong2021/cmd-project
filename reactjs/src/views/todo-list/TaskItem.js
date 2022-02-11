@@ -29,7 +29,7 @@ const TaskItem = (props) => {
         }
     }
     return (
-        <div className="row p-2 m-4 item">
+        <div className="row p-2 m-3 item">
             <div className="item-label"></div>
             <div className="col-4 ms-5 position-relative">
                 <span className="small position-absolute top-50 start-0 translate-middle-y">{props.name}</span>
