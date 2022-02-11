@@ -7,7 +7,7 @@ const todoListApi = {
         let url = `${baseUrl}/${params.id}`;
         return axiosClient.get(url)
     },
-    getTaskLimited: async (params) => {
+    getTasks: async (params) => {
         //cai nay dung de phan trang
         let url = `${baseUrl}?_page=${params.page}&_limit=10`
         if (params.filter.length > 0) {

@@ -2,11 +2,24 @@ import { BiSearchAlt } from "react-icons/bi";
 import { BsFillBagPlusFill, BsFillFileEarmarkPostFill } from "react-icons/bs";
 import { AiFillFilter } from "react-icons/ai";
 import ButtonStatus from "./assigned-to-me/ButtonStatus";
+import * as todoListAction from "../../actions/todoListAction"
 import TaskItem from "./TaskItem";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import PaginationCustomize from "./PaginationCustomize";
 const nameButtonStatus = ["Mới nhất", "Cũ nhất", "Đang làm", "Hoàn thành", "Ưu tiên", "Chờ xác nhận", "Qúa hạn", "Đã hủy"]
 const TodoList = () => {
-    const [switchToTaskMine, setStateMine] = useState(false)
+    const dispacth = useDispatch()
+    const [req, setReq]= useState({ page: 1, filter: [], advanced: [] })
+    //dispatch task request
+    const getTasks = () => {
+        const request = todoListAction.dispatchTaskRequest({ page: 1, filter: [], advanced: [] })
+        dispacth(request)
+    }
+    useEffect(() => {
+       getTasks()
+    },[req])
+    const tasks = useSelector(state => state.TodoListReducer.tasks)
     return (
         <div className="container-fluid">
             <div className="d-flex justify-content-between">
@@ -59,22 +72,22 @@ const TodoList = () => {
                     </div>
                 </div>
             </div>
-            <div className="d-flex flex-column mb-1">
-                <div className="row">
-                    <div className="col-1 space--nowrap mx-auto">
-                    </div>
-                    <div className="col-4 space--nowrap mx-auto small ">TÊN CÔNG VIỆC</div>
-                    <div className="col-1 space--nowrap mx-auto small">NGƯỜI GIAO</div>
-                    <div className="col-1 space--nowrap mx-auto small">NGƯỜI LÀM</div>
-                    <div className="col-1 space--nowrap mx-auto small">THỜI GIAN</div>
-                    <div className="col-1 space--nowrap mx-auto small">TÌNH TRẠNG</div>
-                    <div className="col-1 space--nowrap mx-auto small">ĐÁNH GIÁ</div>
-                    <div className="col-1 space--nowrap mx-auto small"></div>
+            <div className="row ms-4 me-4">
+                <div className="col-4 space--nowrap ms-5">
+                    <span style={{ fontSize: "11px" }} className="fw-bold">TÊN CÔNG VIỆC</span>
                 </div>
+                <div className="col-1"><span className="fw-bold" style={{ fontSize: "11px" }}>NGƯỜI GIAO</span></div>
+                <div className="col-1"><span className="fw-bold" style={{ fontSize: "11px" }}>NGƯỜI LÀM</span></div>
+                <div className="col-2 position-relative me-5"><span className="fw-bold position-absolute top-50 end-0 translate-middle-y" style={{ fontSize: "11px" }}>THỜI GIAN</span></div>
+                <div className="col-1 position-relative ms-5"><span className="fw-bold position-absolute top-50 end-0 translate-middle-y" style={{ fontSize: "11px" }}>TÌNH TRẠNG</span></div>
+                <div className="col-1 position-relative ms-2"><span className="fw-bold position-absolute top-50 end-0 translate-middle-y" style={{ fontSize: "11px" }}>ĐÁNH GIÁ</span></div>
             </div>
             <div className="d-flex flex-column">
-                <TaskItem/>
-
+                {tasks.map((item, key)=>  <TaskItem  key={key} name={item.name} avartarCreater={item.employees.avatar} avartarEmployee={item.employees.avatar}
+                nameCreater={item.creater.last_name +" "+item.creater.first_name} nameEmployee={item.employees.name} properties={item.properties} />)} 
+            </div>
+            <div className="row">
+                <PaginationCustomize />
             </div>
         </div>
     )

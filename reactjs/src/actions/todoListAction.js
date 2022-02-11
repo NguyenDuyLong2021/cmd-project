@@ -162,3 +162,21 @@ export const dispatchSearchTask = (data) => { return { type: types.DISPATCH_TASK
 export const changeNameTaskSearch=(nameTask)=>{return {type: types.CHANGE_NAME_TASK_SEARCH, nameTask}}
 
 
+//renew
+
+//get request tasks
+export const dispatchTaskRequest = (data) => {
+    return (dispatch) => {
+        const fetchTasksList = async () => {
+            try {
+                const response = await todoListApi.getTasks(data)
+                dispatch(dispatchTasks(response))
+            } catch (error) {
+                console.log("Can not load...!", error)
+            }
+        }
+        fetchTasksList()
+    }
+}
+//dispatch tasks to todolist reducer
+export const dispatchTasks = (tasks) => { return { type: types.DISPATCH_TASKS, tasks } }

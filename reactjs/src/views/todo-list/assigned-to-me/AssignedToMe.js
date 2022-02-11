@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ButtonFilter from '../ButtonFilter';
-import Pagination from '../Pagination';
 
 class AssignedToMe extends Component {
     render() {
@@ -99,7 +98,6 @@ class AssignedToMe extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <Pagination />
                         </div>
                     </div>
                 </div >

@@ -1,7 +1,8 @@
 .pagination {
   display: flex;
   @include list-unstyled();
-  box-shadow: 0px 4px 4px rgba(98, 173, 241, 0.33);
+  // box-shadow: 0px 4px 4px rgba(98, 173, 241, 0.33);
+  background-color: $pagination-bg;
 }
 
 .page-link {
@@ -10,7 +11,8 @@
   color: $pagination-color;
   text-decoration: if($link-decoration == none, null, none);
   background-color: $pagination-bg;
-  border: $pagination-border-width solid $pagination-border-color;
+  border-radius: $pagination-border-radius;
+  // border: $pagination-border-width solid $pagination-border-color;
   @include transition($pagination-transition);
 
   &:hover {
@@ -18,7 +20,7 @@
     color: $pagination-hover-color;
     text-decoration: if($link-hover-decoration == underline, none, null);
     background-color: $pagination-hover-bg;
-    border-color: $pagination-hover-border-color;
+    // border-color: $pagination-hover-border-color;
   }
 
   &:focus {
@@ -26,7 +28,7 @@
     color: $pagination-focus-color;
     background-color: $pagination-focus-bg;
     outline: $pagination-focus-outline;
-    box-shadow: $pagination-focus-box-shadow;
+    // box-shadow: $pagination-focus-box-shadow;
   }
 }
 
@@ -38,8 +40,10 @@
   &.active .page-link {
     z-index: 3;
     color: $pagination-active-color;
-    @include gradient-bg($pagination-active-bg);
-    border-color: $pagination-active-border-color;
+    // @include gradient-bg($linear2);
+    // border-color: $pagination-active-border-color;
+    background-color:null;
+    background-image: $linear2;
   }
 
   &.disabled .page-link {
