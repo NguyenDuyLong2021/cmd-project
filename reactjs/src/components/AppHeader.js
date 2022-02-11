@@ -3,6 +3,7 @@ import { Container, Navbar } from 'react-bootstrap'
 import AppNavbarNav from './AppNavbarNav'
 import AppHeaderDropdown from './header/AppHeaderDropdown'
 import logo from "../assets/brand/logo-full.png"
+import { NavLink } from 'react-router-dom'
 
 const AppHeader = () => {
 
@@ -15,18 +16,18 @@ const AppHeader = () => {
         >
             <Container fluid>
                 <Navbar.Brand>
-                    <img
-                        src={logo}
-                        width="120"
-                        height="50"
-                        className="d-inline-block align-top"
-                        alt="Cảnh Báo Sớm Logo"
-                    />
+                    <NavLink to="/">
+                        <img
+                            src={logo}
+                            width="120"
+                            height="50"
+                            className="d-inline-block align-top"
+                            alt="Cảnh Báo Sớm Logo"
+                        />
+                    </NavLink>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
-                <Navbar.Collapse
-                    className="row flex-lg-row flex-sm-column"
-                    id="navbarScroll">
+                <Navbar.Collapse id="navbarScroll">
                     <AppNavbarNav />
                     <AppHeaderDropdown />
                 </Navbar.Collapse>

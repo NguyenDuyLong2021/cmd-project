@@ -1,7 +1,4 @@
-import React, { Component, useState } from 'react';
-import { connect } from 'react-redux';
-import * as action from "../../actions/todoListAction"
-import IconNumeberPagination from './IconNumeberPagination';
+import React, {useState } from 'react';
 import Pagination from 'react-bootstrap/Pagination'
 
 const PaginationCustomize = () => {
@@ -30,7 +27,7 @@ const PaginationCustomize = () => {
         setPageCurrent(parseInt(selectedIndex))
     }
     return (
-        <Pagination size="sm" className='w-auto mx-auto rounded-pill p-1'>
+        <Pagination size="sm" className='w-auto mx-auto rounded-pill'>
             <Pagination.First />
             {/* <Pagination.Ellipsis /> */}
 

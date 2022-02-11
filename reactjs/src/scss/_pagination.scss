@@ -1,17 +1,20 @@
 .pagination {
   display: flex;
+  padding: .25rem .5rem;
+  border-radius: 2rem;
   @include list-unstyled();
-  // box-shadow: 0px 4px 4px rgba(98, 173, 241, 0.33);
-  background-color: $pagination-bg;
+  background-color: $white;
 }
 
 .page-link {
   position: relative;
   display: block;
   color: $pagination-color;
+  font-weight: bolder;
   text-decoration: if($link-decoration == none, null, none);
   background-color: $pagination-bg;
   border-radius: $pagination-border-radius;
+  margin: 0rem 1rem;
   // border: $pagination-border-width solid $pagination-border-color;
   @include transition($pagination-transition);
 
@@ -40,10 +43,8 @@
   &.active .page-link {
     z-index: 3;
     color: $pagination-active-color;
-    // @include gradient-bg($linear2);
-    // border-color: $pagination-active-border-color;
-    background-color:null;
-    background-image: $linear2;
+    background-image: linear-gradient(180deg, $start-linear 0%, $end-linear 100%);;
+    border-color: $pagination-active-border-color;
   }
 
   &.disabled .page-link {

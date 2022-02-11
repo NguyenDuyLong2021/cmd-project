@@ -36,7 +36,7 @@ const DepartmentItem = ({ department, level }) => {
                         <Dropdown.Toggle variant="none" className="text-white">
                             <BiDotsHorizontalRounded size={20} />
                         </Dropdown.Toggle>
-                        <Dropdown.Menu>
+                        <Dropdown.Menu className="animate__animated animate__zoomIn animate__faster">
                             <ButtonShowPositions department={department} />
                             <EditDepartment department={department} />
                             <DeleteDepartment id={department.id} />
