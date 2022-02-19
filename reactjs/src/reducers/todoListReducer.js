@@ -9,7 +9,7 @@ let initialState = {
     // selectedDropdown: null, timeStartNewStart: null, timeCompleteNewStask: null
     // , showDatePickerStartNewTask: false, showDatePickerCompleteNewTask: false, department: [], itemNeedFilterAdvanced: []
     // , nameTaskSearch:null
-    tasks: [], totalTask: 0
+    tasks: [], totalTask: 0, startDateNewTask: null, endDateNewTask: null, listEmployeeSearch: []
 };
 // const todoListReducer = (state = initialState, action) => {
 //     switch (action.type) {
@@ -116,6 +116,24 @@ const todoListReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.DISPATCH_TASKS: {
             return { ...state, tasks: action.tasks.data.data, totalTask: action.tasks.data.pagination._totalItem };
+        }
+        case types.START_DATE_NEW_TASK: {
+            var date = action.date.slice(0, 10)
+            var moment = action.date.slice(11)
+            var d = new Date(moment), hour = d.getHours(), min = d.getMinutes();
+            console.log(date + " " + [hour, min].join(":"))
+            return { ...state, startDateNewTask: date + " " + [hour, min].join(":") }
+        }
+        case types.END_DATE_NEW_TASK: {
+            var date = action.date.slice(0, 10)
+            var moment = action.date.slice(11)
+            var d = new Date(moment), hour = d.getHours(), min = d.getMinutes();
+            console.log(date + " " + [hour, min].join(":"))
+            return { ...state, endDateNewTask: date + " " + [hour, min].join(":") }
+        }
+        case types.SAVE_LIST_EMPLOYEE_SEARCH:{
+            console.log(action.data.data.data)
+            return {...state, listEmployeeSearch: action.data.data.data}
         }
         default:
             return state;

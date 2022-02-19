@@ -1,118 +1,115 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as action from "../../actions/todoListAction"
-import DatePicker from 'sassy-datepicker';
-import { Timepicker } from 'react-timepicker';
-import 'react-timepicker/timepicker.css'
-let distance = 0;
-class DateInput extends Component {
-    constructor() {
-        super()
-        this.state = ({ isChoseTime: false, dateChose: null, timeChose: null })
+import { useState } from "react";
+import { Modal, Button } from "react-bootstrap"
+import * as todoListAction from "../../actions/todoListAction"
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import TimePicker from 'rc-time-picker';
+import moment from 'moment';
+import 'rc-time-picker/assets/index.css';
+import { useDispatch, useSelector } from "react-redux"
+const formatTime = "hh:mm"
+const DateInput = (props) => {
+    const [times, setTimes] = useState({ time: {}, date: "", cleanDate: false })
+    const [openTime, setOpenTime] = useState(false)
+    const [openModal, setOpenModal] = useState(true)
+    const dispacth = useDispatch()
+    //dispatch task request
+    const dispatchDateNewTask = () => {
+        let dateNewTask
+        let v =times.date + new Date(times.time)
+        switch (props.typenamedate) {
+            case "START_DATE_NEW_TASK": {
+                dateNewTask = todoListAction.startDateNewTask(v)
+                break
+            }
+            case "END_DATE_NEW_TASK":{
+                dateNewTask = todoListAction.endDateNewTask(v)
+            }
+        }
+        dispacth(dateNewTask)
     }
-    componentDidMount() {
-        // console.log("Độ rộng màn hình" + window.screen.width)
-        // console.log("Độ rộng của lọc nâng cao" + document.getElementById("filterAdvanced").clientWidth)
+    // add button ok in bottom panel time picker
+    const addButtonOk = () => {
+        return <Button onClick={() => setOpenTime(!openTime)} variant="primary" size="sm" className="m-5 mt-1 mb-1">OK</Button>
     }
-    //dung de check xem la dang chon date input hay dang chon time input
-    choseTime = () => {
-        this.setState({ isChoseTime: true })
+    const clearDate = () => {
+        setTimes(oldState => {
+            return { ...oldState, date: "", cleanDate: false }
+        });
     }
     //xu ly su kien khi thay doi ngay thang nam
-    choseDate = () => {
-        this.setState({ isChoseTime: false })
+    const onChangeDate = (str) => {
+        var date = new Date(str),
+            mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+            day = ("0" + date.getDate()).slice(-2);
+        setTimes(oldState => {
+            return { ...oldState, date: [day, mnth, date.getFullYear()].join("-"), cleanDate: true }
+        });
     }
-    //xu ly su kien khi thay doi gio
-    onChangeHour = (hour, mminute) => {
-        let result = `${hour}:${mminute}:00.000Z`
-        this.setState({ timeChose: result })
-    }
-    //xu ly su kien khi thay doi ngay thang nam
-    onChangeDate = (date) => {
-        let result = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
-        this.setState({ dateChose: result })
+    //xu ly su kien khi thay doi gio phut
+    const onChangeTime = (str) => {
+        setTimes(oldState => {
+            return { ...oldState, time: str }
+        })
     }
     //lay thoi gian hien tai
-    timeCurrent = () => {
-        let date = new Date();
-        let time = `${date.getHours()}:${date.getMinutes()}:00.000Z`
-        let dates = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`
-        this.setState({ ...this.state, timeChose: time, dateChose: dates })
+    const timeCurrent = () => {
+        var date = new Date(),
+            mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+            day = ("0" + date.getDate()).slice(-2)
+        setTimes(oldState => {
+            return {
+                ...oldState, time: moment(), date: [day, mnth, date.getFullYear()].join("-"), cleanDate: true
+            }
+        })
     }
-    //submit gio bat dau
-    submitStartDate = () => {
-        if (this.props.status.dateStartDateInput) {
-            this.props.updateStartDateFilterAdvanced(this.state.dateChose+ "T" + this.state.timeChose)
-        }
-        if (this.props.status.dateEndDateInput) {
-            this.props.updateEndDateFilterAdvanced(this.state.dateChose + "T" + this.state.timeChose)
-        }
-        if (this.props.status.showDatePickerStartNewTask) {
-            this.props.timeStartNewTask(this.state.dateChose + "T" + this.state.timeChose)
-        }
-        if(this.props.status.showDatePickerCompleteNewTask){
-            this.props.timeStartCompleteTask(this.state.dateChose + "T" + this.state.timeChose)
-        }
-    }
-    //return distance from left to date picker by position
-    distanceToLeft = () => {
-        // if (this.props.status.dateStartDateInput) {
-        //     distance = window.screen.width - document.getElementById("filterAdvanced").clientWidth + 20
-        // }
-        // else if (this.props.status.dateEndDateInput) {
-        //     distance = window.screen.width - (document.getElementById("filterAdvanced").clientWidth / 2) - 20
-        // }
-        // else if (this.props.status.showDatePickerStartNewTask) {
-        //     distance = 100
-        // }
-        distance = 100
-        return distance
-    }
-    render() {
-        return (
-            <div id="date-picker" className="el-picker-panel el-date-picker el-popper has-time" style={{ position: 'fixed', top: '129px', left: `${this.distanceToLeft()}px`, zIndex: 2003 }} x-placement="bottom-start">
-                <div className="el-picker-panel__body-wrapper"><div className="el-picker-panel__body">
-                    <div className="el-date-picker__time-header">
-                        <span className="el-date-picker__editor-wrap">
-                            <div className="el-input el-input--small">
-                                <input onClick={this.choseDate} value={this.state.dateChose} type="text" autoComplete="off" placeholder="Chọn ngày" className="el-input__inner" />
-                            </div>
-                        </span>
-                        <span className="el-date-picker__editor-wrap">
-                            <div className="el-input el-input--small">
-                                <input onClick={this.choseTime} value={this.state.timeChose} type="text" autoComplete="off" placeholder="Chọn giờ" className="el-input__inner" />
-                            </div>
-                        </span>
+    return (
+        <>
+            <Modal scrollable show={false}
+                {...props}
+                size="sm"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                onExit={dispatchDateNewTask}
+            >
+                <Modal.Body>
+                    <div className="col d-flex flex-column border border-primary rounded mt-1" >
+                        <div className="d-flex flex-row">
+                            <span className="rc-time-picker m-1 w-75 border border-primary">
+                                <input placeholder="Chọn ngày" className="rc-time-picker-input" type="text" value={times.date} readOnly={true} />
+                                <span className="rc-time-picker-icon" />
+                                {!times.cleanDate ? null : <a role="button" onClick={clearDate} className="rc-time-picker-clear" title="clear" tabIndex={0}>
+                                    <i className="rc-time-picker-clear-icon" /></a>}
+                            </span>
+                            <TimePicker placeholder="Chọn giờ" value={JSON.stringify(times.time) == JSON.stringify({}) ? null : times.time} format={formatTime} onOpen={() => setOpenTime(!openTime)} open={openTime} className="m-1 w-75 border border-primary" use12Hours={true} showSecond={false} addon={addButtonOk}
+                                onChange={(time) => onChangeTime(time)} inputReadOnly={true} />
+                        </div>
+                        <div className="d-flex flex-row">
+                            <Calendar placeholder={"cdcsdcdscd"} navigationAriaLabel="vdvdsv" locale='vi' className={"mx-auto"} onChange={(date) => onChangeDate(date)} calendarType={"ISO 8601"} />
+                        </div>
                     </div>
-                    {!this.state.isChoseTime ? <DatePicker onChange={this.onChangeDate} /> : <Timepicker onChange={this.onChangeHour} />}
-                </div>
-                </div>
-                <div className="el-picker-panel__footer" style={{}}>
-                    <button onClick={this.timeCurrent} type="button" className="el-button el-picker-panel__link-btn el-button--text el-button--mini">{/**/}{/**/}<span>
-                        Hiện tại
-                    </span></button>
-                    <button onClick={this.submitStartDate} type="button" className="el-button el-picker-panel__link-btn el-button--default el-button--mini is-plain">{/**/}{/**/}<span>
-                        OK
-                    </span>
-                    </button>
-                </div>
-                <div x-arrow className="popper__arrow" style={{ left: '35px' }} />
-            </div>
-        );
-    }
-}
-const mapStateToProps = (state) => {
-    return {
-        status: state.TodoListReducer
-    }
-}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={timeCurrent}>Hiện tại</Button>
+                    <Button onClick={props.onHide}>Ok</Button>
+                </Modal.Footer>
+            </Modal>
+        </>
 
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        updateStartDateFilterAdvanced: (date) => { dispatch(action.updateDateStartFilterAdvanced(date)) },
-        updateEndDateFilterAdvanced: (date) => { dispatch(action.updateDateEndFilterAdvanced(date)) },
-        timeStartNewTask:(date)=>{dispatch(action.timeStartNewTask(date))},
-        timeStartCompleteTask:(date)=>{dispatch(action.timeStartCompleteTask(date))}
-    }
+    );
 }
-export default connect(mapStateToProps, mapDispatchToProps)(DateInput);
+// const mapStateToProps = (state) => {
+//     return {
+//         status: state.TodoListReducer
+//     }
+// }
+
+// const mapDispatchToProps = (dispatch, props) => {
+//     return {
+//         updateStartDateFilterAdvanced: (date) => { dispatch(action.updateDateStartFilterAdvanced(date)) },
+//         updateEndDateFilterAdvanced: (date) => { dispatch(action.updateDateEndFilterAdvanced(date)) },
+//         timeStartNewTask:(date)=>{dispatch(action.timeStartNewTask(date))},
+//         timeStartCompleteTask:(date)=>{dispatch(action.timeStartCompleteTask(date))}
+//     }
+// }
+export default DateInput;

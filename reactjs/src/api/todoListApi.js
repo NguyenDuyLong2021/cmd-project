@@ -52,7 +52,7 @@ const todoListApi = {
     //search by params
     searchByParams: (params) => {
         let url = `/${params.object}?${params.contain}=${params.key}&_limit=10&_page=${params.page}`;
-        return axiosClient.get(url)
+        return axiosClient.get(url,{params})
     },
     newtTask: (params) => {
         const url = "/tasks"
