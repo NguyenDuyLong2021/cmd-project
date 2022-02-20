@@ -21,7 +21,6 @@ const PaginationCustomize = () => {
         }
         return listPaginationItem.map(item => item)
     }
-    console.log("hay za")
     const clickPaginationItem = (event) => {
         const selectedIndex = event.target.getAttribute("data-key");;
         setPageCurrent(parseInt(selectedIndex))

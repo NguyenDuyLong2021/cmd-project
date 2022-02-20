@@ -3,7 +3,6 @@ import { MdMoreVert } from "react-icons/md"
 import StarRatings from "react-star-ratings"
 const TaskItem = (props) => {
     const [rating, setRating] = useState(0)
-    console.log(JSON.parse(props.properties))
     const status = (indexStatus) => {
         switch (indexStatus) {
             case 1:

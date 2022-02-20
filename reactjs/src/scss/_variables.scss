@@ -275,6 +275,8 @@ $position-values: (
   0: 0,
   50: 50%,
   100: 100%,
+  120: 120%,
+  200: 200%,
 ) !default;
 // scss-docs-end position-map
 
@@ -374,8 +376,8 @@ $border-color: $linear !default;
 
 // scss-docs-start border-radius-variables
 $border-radius: 0.5rem !default;
-$border-radius-sm: 0.2rem !default;
-$border-radius-lg: 0.3rem !default;
+$border-radius-sm: 0.5rem !default;
+$border-radius-lg: 1rem !default;
 $border-radius-xl: 0.5rem !default;
 $border-radius-xxl: 1rem !default;
 $border-radius-pill: 50rem !default;
@@ -1309,7 +1311,7 @@ $list-group-item-padding-x: $spacer !default;
 $list-group-item-bg-scale: -80% !default;
 $list-group-item-color-scale: 40% !default;
 
-$list-group-hover-bg: $gray-100 !default;
+$list-group-hover-bg: $teal !default;
 $list-group-active-color: $component-active-color !default;
 $list-group-active-bg: $component-active-bg !default;
 $list-group-active-border-color: $list-group-active-bg !default;
@@ -1317,7 +1319,7 @@ $list-group-active-border-color: $list-group-active-bg !default;
 $list-group-disabled-color: $gray-600 !default;
 $list-group-disabled-bg: $list-group-bg !default;
 
-$list-group-action-color: $gray-700 !default;
+$list-group-action-color: $white !default;
 $list-group-action-hover-color: $list-group-action-color !default;
 
 $list-group-action-active-color: $body-color !default;

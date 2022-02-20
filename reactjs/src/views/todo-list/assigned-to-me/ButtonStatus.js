@@ -1,7 +1,6 @@
 import { useState } from "react"
 
-function ButtonStatus(props) {
-    console.log("được render lại nè")
+const ButtonStatus = (props) => {
     const [active, setActive] = useState(false)
     return (
         <div className="p-2 mx-auto">
