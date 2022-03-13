@@ -8,51 +8,52 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import PaginationCustomize from "./PaginationCustomize";
 import NewTask from "./NewTask";
+import Detail from "./Detail";
+import AppPagination from "../../components/AppPagination";
 const nameButtonStatus = ["Mới nhất", "Cũ nhất", "Đang làm", "Hoàn thành", "Ưu tiên", "Chờ xác nhận", "Qúa hạn", "Đã hủy"]
 const TodoList = () => {
     const dispacth = useDispatch()
-    const [req, setReq] = useState({ page: 1, filter: [], advanced: [] })
+    const page = useSelector(state => state.TodoListReducer.pageCurrent)
+    const filter = useSelector(state => state.TodoListReducer.filter)
     const [modalNewTask, showModalNewTask] = useState(false)
-    //dispatch task request
-    const getTasks = () => {
-        const request = todoListAction.dispatchTaskRequest({ page: 1, filter: [], advanced: [] })
-        dispacth(request)
-    }
-    useEffect(() => {
-        getTasks()
-    }, [req])
     // get task
     const tasks = useSelector(state => state.TodoListReducer.tasks)
+    const positionModalOption = useSelector(state => state.TodoListReducer.posionModalOption)
+    // is show detail task
+    const isShowDetailTask = useSelector(state => state.TodoListReducer.isShowDetailTask)
+    useEffect(() => {
+        dispacth(todoListAction.dispatchTaskRequest({ page, filter }))
+    }, [page, filter])
+    const closeDetailTask = () => {
+        const request = todoListAction.showDetailTask()
+        dispacth(request)
+    }
     return (
         <>
             <div className="container-fluid">
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between ps-4 pe-4">
                     <div className="col">
-                        <p className="fw-bold">DANH SÁCH CÔNG VIỆC</p>
+                        <h3 className="fw-bigBold">DANH SÁCH CÔNG VIỆC</h3>
                     </div>
                     <div className="col">
-                        <div className="d-flex justify-content-center mx-auto">
-                            <div className="d-inline-flex form-control p-0">
-                                <BiSearchAlt className="mx-auto" size={20} />
-                                <div className="w-100 p-0">
-                                    <input className="w-100b" type="text" style={{ border: "none", outline: "none" }} placeholder="" />
-                                </div>
+                        <div className="d-flex justify-content-center h-80">
+                            <div className="d-inline-flex form-control" style={{ borderRadius: "4px" }}>
+                                <BiSearchAlt className="mx-auto h-100" size={20} />
+                                <input className="w-100" type="search" style={{ border: "none", outline: "none", color: "#2F6BB1", fontSize: "14px" }} placeholder="" />
                             </div>
-                            <div className="ps-1" >
-                                <button type="button" className="btn btn-primary btn-sm" style={{ whiteSpace: "nowrap" }}>Tìm kiếm</button>
-                            </div>
+                            <button type="button" className="btn btn-primary btn-sm fw-bigBold ms-2" style={{ whiteSpace: "nowrap" }}>Tìm kiếm</button>
                         </div>
                     </div>
                     <div className="col">
                         <div className="d-flex justify-content-evenly">
                             <div className="mx-1">
-                                <button type="button" className="btn btn-sm" onClick={() => showModalNewTask(true)} data-mdb-ripple-color="dark"><BsFillBagPlusFill size={20} /> Tạo việc</button>
+                                <button type="button" className="btn btn-sm fs-5 fw-bold" onClick={() => showModalNewTask(true)} data-mdb-ripple-color="dark"><BsFillBagPlusFill size={20} /> Tạo việc</button>
                             </div>
                             <div className="mx-1">
-                                <button type="button" className="btn btn-sm" data-mdb-ripple-color="dark"><BsFillFileEarmarkPostFill size={20} />Báo cáo</button>
+                                <button type="button" className="btn btn-sm fs-5 fw-bold" data-mdb-ripple-color="dark"><BsFillFileEarmarkPostFill size={20} />Báo cáo</button>
                             </div>
                             <div className="mx-1">
-                                <button type="button" className="btn btn-sm" data-mdb-ripple-color="dark"><AiFillFilter size={20} /> Bộ lọc</button>
+                                <button type="button" className="btn btn-sm fs-5 fw-bold" data-mdb-ripple-color="dark"><AiFillFilter size={20} /> Bộ lọc</button>
                             </div>
                         </div>
                     </div>
@@ -61,34 +62,39 @@ const TodoList = () => {
                     <div className="d-flex flex-row mb-3" >
                         <div className="p-2 mx-auto">
                             <input type="radio" className="btn-check" name="options-outlined" id="all-outline" autoComplete="off" defaultChecked />
-                            <label className="btn btn-outline-darkBlue btn-sm" htmlFor="all-outline">Tất cả</label>
+                            <label className="btn btn-outline-primary btn-sm fs-7 fw-bold" htmlFor="all-outline">Tất cả</label>
                         </div>
                         <div className="p-2 mx-auto">
                             <input type="radio" className="btn-check" name="options-outlined" id="mine-outlined" autoComplete="off" />
-                            <label className="btn btn-outline-darkBlue btn-sm" htmlFor="mine-outlined">Của tôi</label>
+                            <label className="btn btn-outline-primary btn-sm fs-7 fw-bold" htmlFor="mine-outlined">Của tôi</label>
                         </div>
                         {
                             //render button status
                             nameButtonStatus.map((item, id) => <ButtonStatus key={id} id={id} nameStatus={item} />)
                         }
                         <div className="p-2 mx-auto">
-                            <label style={{ whiteSpace: "nowrap" }}>Tổng : 145</label>
+                            <label style={{ whiteSpace: "nowrap" }} className="fs-5 fw-bold">Tổng : 145</label>
                         </div>
                     </div>
                 </div>
                 <div className="row ms-4 me-4">
                     <div className="col-4 space--nowrap ms-5">
-                        <span style={{ fontSize: "11px" }} className="fw-bold">TÊN CÔNG VIỆC</span>
+                        <span style={{ fontSize: "11px" }} className="fw-bigBold fs-7">TÊN CÔNG VIỆC</span>
                     </div>
-                    <div className="col-1"><span className="fw-bold" style={{ fontSize: "11px" }}>NGƯỜI GIAO</span></div>
-                    <div className="col-1"><span className="fw-bold" style={{ fontSize: "11px" }}>NGƯỜI LÀM</span></div>
-                    <div className="col-2 position-relative me-5"><span className="fw-bold position-absolute top-50 end-0 translate-middle-y" style={{ fontSize: "11px" }}>THỜI GIAN</span></div>
-                    <div className="col-1 position-relative ms-5"><span className="fw-bold position-absolute top-50 end-0 translate-middle-y" style={{ fontSize: "11px" }}>TÌNH TRẠNG</span></div>
-                    <div className="col-1 position-relative ms-2"><span className="fw-bold position-absolute top-50 end-0 translate-middle-y" style={{ fontSize: "11px" }}>ĐÁNH GIÁ</span></div>
+                    <div className="col-1"><span className="fw-bigBold fs-7 space--nowrap" style={{ fontSize: "11px" }}>NGƯỜI GIAO</span></div>
+                    <div className="col-1"><span className="fw-bigBold fs-7 space--nowrap" style={{ fontSize: "11px" }}>NGƯỜI LÀM</span></div>
+                    <div className="col-2 position-relative me-5"><span className="fw-bigBold fs-7 position-absolute top-50 end-0 translate-middle-y" style={{ fontSize: "11px" }}>THỜI GIAN</span></div>
+                    <div className="col-1 position-relative ms-5"><span className="fw-bigBold fs-7 position-absolute top-50 end-0 translate-middle-y" style={{ fontSize: "11px" }}>TÌNH TRẠNG</span></div>
+                    <div className="col-1 position-relative ms-2"><span className="fw-bigBold fs-7 position-absolute top-50 end-0 translate-middle-y" style={{ fontSize: "11px" }}>ĐÁNH GIÁ</span></div>
                 </div>
                 <div className="d-flex flex-column">
-                    {tasks.map((item, key) => <TaskItem key={key} name={item.name} avartarCreater={item.employees.avatar} avartarEmployee={item.employees.avatar}
-                        nameCreater={item.creater.last_name + " " + item.creater.first_name} nameEmployee={item.employees.name} properties={item.properties} />)}
+                    {tasks.map((item, key) => <TaskItem key={key} name={item.title} id={item.taskId}
+                        //  avartarCreater={item.employees.avatar} avartarEmployee={item.employees.avatar}
+                        nameCreater={item.creatorName} nameEmployee={item.recieverName} status={item.statusName}
+                    // properties={item.properties} 
+                    />
+                    )
+                    }
                 </div>
                 <div className="row">
                     <PaginationCustomize />
@@ -96,6 +102,8 @@ const TodoList = () => {
             </div>
             <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <NewTask show={modalNewTask} onHide={() => showModalNewTask(false)} />
+                {/* {renderDetailTask()} */}
+                <Detail show={isShowDetailTask} onHide={closeDetailTask} />
             </div>
         </>
     );

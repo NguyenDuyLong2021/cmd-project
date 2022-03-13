@@ -40,24 +40,25 @@ $start-linear: #0b7ce3;
 $end-linear: #67f3c9;
 $linear: linear-gradient(to right, $start-linear 25%, $end-linear 125%) !default;
 $linear2: linear-gradient($start-linear 25%, $end-linear 125%) !default;
-$blue:    #2B99FF !default;
-$indigo:  #6610f2 !default;
-$purple:  #6f42c1 !default;
-$pink:    #d63384 !default;
-$red:     #dc3545 !default;
-$orange:  #fd7e14 !default;
-$yellow:  #ffc107 !default;
-$green:   #198754 !default;
-$teal:    #34BEAE !default;
-$cyan:    #0dcaf0 !default;
-$hover-btn-bg: #67F3C9 !default;
-$darkBlue: #2F6BB1 !default;
+$blue: #2391f5 !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #d63384 !default;
+$red: #b10f1f !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #27B5A4 !default;
+$teal: #34beae !default;
+$cyan: #0dcaf0 !default;
+$hover-btn-bg: #DDFFF9 !default;
+$darkBlue: #2391F5 !default;
+$grayBlue: #96baec !default;
 // scss-docs-end color-variables
 
 // scss-docs-start colors-map
 $colors: (
   "linear": $linear,
-  "linear2":$linear2,
+  "linear2": $linear2,
   "blue": $blue,
   "indigo": $indigo,
   "purple": $purple,
@@ -71,32 +72,36 @@ $colors: (
   "white": $white,
   "gray": $gray-600,
   "gray-dark": $gray-800,
+  "grayBlue": $grayBlue,
 ) !default;
 // scss-docs-end colors-map
 
 // scss-docs-start theme-color-variables
-$primary:       $blue !default;
-$secondary:     $gray-600 !default;
-$success:       $green !default;
-$info:          $cyan !default;
-$warning:       $yellow !default;
-$danger:        $red !default;
-$light:         $gray-100 !default;
-$dark:          $gray-900 !default;
+$primary: $blue !default;
+$secondary: $gray-600 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: $gray-900 !default;
 $darkBlue: $darkBlue !default;
+$grayBlue: $grayBlue !default;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
-  "primary":          $primary,
-  "secondary":        $secondary,
-  "success":          $success,
-  "info":             $info,
-  "warning":          $warning,
-  "danger":           $danger,
-  "light":            $light,
-  "dark":             $dark,
-  "darkBlue":         $darkBlue 
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+  "darkBlue": $darkBlue,
+  "blue": $blue,
+  "grayBlue": $grayBlue,
 ) !default;
 // scss-docs-end theme-colors-map
 
@@ -285,7 +290,7 @@ $position-values: (
 // Settings for the `<body>` element.
 
 $body-bg: #edfaf9 !default;
-$body-color: #2F6BB1 !default;
+$body-color: #2f6bb1 !default;
 $body-text-align: null !default;
 
 // Links
@@ -381,11 +386,11 @@ $border-radius-lg: 1rem !default;
 $border-radius-xl: 0.5rem !default;
 $border-radius-xxl: 1rem !default;
 $border-radius-pill: 50rem !default;
-$border-radius-circle : 50% !default;
+$border-radius-circle: 50% !default;
 // scss-docs-end border-radius-variables
 
 // scss-docs-start box-shadow-variables
-$box-shadow: 0 0.5rem 1rem rgba($black, 0.15) !default;
+$box-shadow: 0 0rem 0.5rem rgba($blue, 0.15) !default;
 $box-shadow-sm: 0 0.125rem 0.25rem rgba($black, 0.075) !default;
 $box-shadow-lg: 0 1rem 3rem rgba($black, 0.175) !default;
 $box-shadow-inset: inset 0 1px 2px rgba($black, 0.075) !default;
@@ -432,29 +437,33 @@ $font-family-code: var(--#{$variable-prefix}font-monospace) !default;
 
 // $font-size-root affects the value of `rem`, which is used for as well font sizes, paddings, and margins
 // $font-size-base affects the font size of the body text
-$font-size-root:              null !default;
-$font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
-$font-size-sm:                $font-size-base * .775 !default;
-$font-size-lg:                $font-size-base * 1.25 !default;
+$font-size-root: null !default;
+$font-size-base: 0.7rem !default; // Assumes the browser default, typically `16px`
+$font-size-sm: $font-size-base * 0.775 !default;
+$font-size-lg: $font-size-base * 1.25 !default;
 
-$font-weight-lighter:         lighter !default;
-$font-weight-light:           300 !default;
-$font-weight-normal:          500 !default;
-$font-weight-bold:            700 !default;
-$font-weight-bolder:          bolder !default;
+$font-weight-lighter: lighter !default;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-normaler: 500 !default;
+$font-weight-bold: 600 !default;
+$font-weight-bold-big: 700 !default;
+$font-weight-bolder: bolder !default;
 
-$font-weight-base:            $font-weight-normal !default;
+$font-weight-base: $font-weight-normal !default;
 
-$line-height-base:            1.5 !default;
-$line-height-sm:              1.25 !default;
-$line-height-lg:              2 !default;
+$line-height-base: 1.5 !default;
+$line-height-sm: 1.25 !default;
+$line-height-lg: 2 !default;
 
-$h1-font-size:                $font-size-base * 2.5 !default;
-$h2-font-size:                $font-size-base * 2 !default;
-$h3-font-size:                $font-size-base * 1.75 !default;
-$h4-font-size:                $font-size-base * 1.5 !default;
-$h5-font-size:                $font-size-base * 1.25 !default;
-$h6-font-size:                $font-size-base !default;
+$h1-font-size: $font-size-base * 2.5 !default;
+$h2-font-size: $font-size-base * 2 !default;
+$h3-font-size: $font-size-base + 0.4 !default;
+$h4-font-size: $font-size-base + 0.3 !default;
+$h5-font-size: $font-size-base + 0.2 !default;
+$h6-font-size: $font-size-base + 0.15 !default;
+$h7-font-size: $font-size-base + 0.1 !default;
+$h8-font-size: $font-size-base !default;
 // scss-docs-end font-variables
 
 // scss-docs-start font-sizes
@@ -465,6 +474,8 @@ $font-sizes: (
   4: $h4-font-size,
   5: $h5-font-size,
   6: $h6-font-size,
+  7: $h7-font-size,
+  8: $h8-font-size,
 ) !default;
 // scss-docs-end font-sizes
 

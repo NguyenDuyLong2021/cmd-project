@@ -9,7 +9,8 @@ let initialState = {
     // selectedDropdown: null, timeStartNewStart: null, timeCompleteNewStask: null
     // , showDatePickerStartNewTask: false, showDatePickerCompleteNewTask: false, department: [], itemNeedFilterAdvanced: []
     // , nameTaskSearch:null
-    tasks: [], totalTask: 0, startDateNewTask: null, endDateNewTask: null, listEmployeeSearch: []
+    tasks: [], totalTask: 0, startDateNewTask: null, endDateNewTask: null, listEmployeeSearch: [],
+    taskDetail: {}, posionModalOption: {}, pageCurrent: 1, filter: {}
 };
 // const todoListReducer = (state = initialState, action) => {
 //     switch (action.type) {
@@ -115,25 +116,38 @@ let initialState = {
 const todoListReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.DISPATCH_TASKS: {
-            return { ...state, tasks: action.tasks.data.data, totalTask: action.tasks.data.pagination._totalItem };
+            return {
+                ...state, tasks: action.tasks.data.data.taskList,
+                totalTask: action.tasks.data.data.pagination.totalItem
+            };
         }
         case types.START_DATE_NEW_TASK: {
             var date = action.date.slice(0, 10)
             var moment = action.date.slice(11)
             var d = new Date(moment), hour = d.getHours(), min = d.getMinutes();
-            console.log(date + " " + [hour, min].join(":"))
             return { ...state, startDateNewTask: date + " " + [hour, min].join(":") }
         }
         case types.END_DATE_NEW_TASK: {
             var date = action.date.slice(0, 10)
             var moment = action.date.slice(11)
             var d = new Date(moment), hour = d.getHours(), min = d.getMinutes();
-            console.log(date + " " + [hour, min].join(":"))
             return { ...state, endDateNewTask: date + " " + [hour, min].join(":") }
         }
-        case types.SAVE_LIST_EMPLOYEE_SEARCH:{
-            console.log(action.data.data.data)
-            return {...state, listEmployeeSearch: action.data.data.data}
+        case types.SAVE_LIST_EMPLOYEE_SEARCH: {
+            return { ...state, listEmployeeSearch: action.data.data.data }
+        }
+        case types.IS_SHOW_DETAIL_TASK: {
+            return { ...state, isShowDetailTask: !state.isShowDetailTask }
+        }
+        case types.DISPATCH_TASK_DETAIL: {
+            return { ...state, taskDetail: action.task.data.data[0] }
+        }
+        case types.GET_POSITION_MODAL_OPTION_TASK: {
+            return { ...state, posionModalOption: action.position }
+        }
+        //  set lai so trang hien tai
+        case types.PAGE_CURRENT:{
+            return { ...state, pageCurrent: action.page }
         }
         default:
             return state;

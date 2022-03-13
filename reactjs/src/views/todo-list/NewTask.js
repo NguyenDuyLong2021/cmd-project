@@ -1,20 +1,41 @@
 import { useRef, useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Modal, Button } from "react-bootstrap"
-import { IoMdArrowDropdown } from "react-icons/io"
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io"
 import { Spinner } from 'react-bootstrap'
 import { FaUserAlt } from "react-icons/fa";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CgAttachment } from "react-icons/cg"
 import DateInput from "./DateInput";
 import * as todoListAction from "../../actions/todoListAction"
-
+import "../../../node_modules/@ckeditor/ckeditor5-editor-classic/theme/classiceditor.css"
+const editorConfiguration = {
+    heading: {
+        options: [
+            { model: 'paragraph', title: 'Normal', class: 'ck-heading_paragraph' },
+            { model: 'heading3', view: 'h3', title: 'Heading 1', class: 'ck-heading_heading3' },
+            { model: 'heading2', view: 'h1', title: 'Heading 2', class: 'ck-heading_heading2' },
+            { model: 'heading1', view: 'h2', title: 'Heading 3', class: 'ck-heading_heading1' },
+            // {
+            // 	model: 'headingFancy',
+            // 	view: {
+            // 		name: 'h2',
+            // 		classes: 'fancy'
+            // 	},
+            // 	title: 'Heading 2 (fancy)',
+            // 	class: 'ck-heading_heading2_fancy',
+            // 	converterPriority: 'high'
+            // }
+        ]
+    }
+}
 const NewTask = (props) => {
     const [showListEmployees, setShowListEmployees] = useState(false)
     const [showListEmployeesInvolve, setShowListEmployeesInvolve] = useState(false)
     const [showDateStart, setShowDateStart] = useState(false)
     const [showDateEnd, setShowDateEnd] = useState(false)
-    const [employee, setEmployee] = useState(null)
+    const [employee, setEmployee] = useState("")
     const [showRepeatUnit, setShowRepeatUnit] = useState(false)
     const [levelPrioritize, setLevelPrioritize] = useState(0)
     const [daysOfWeek, setDaysOfWeek] = useState([])
@@ -31,20 +52,20 @@ const NewTask = (props) => {
     const dispacth = useDispatch()
     //set color prioritize level 
     const setColorPrioritizeLevel = (index) => {
-        const arrayColor = ["#2F6BB1", "#198754", "#34BEAE", "#67F3C9"]
+        const arrayColor = ["#2F6BB1", "#0DD2DE", "#3CEBC1", "#75FFD6"]
         const nameLev = ["Thấp", "Bình thường", "Ưu tiên", "Rất ưu tiên"]
         let els = []
         for (let i = 0; i <= index; i++) {
             els.push(<div key={i} className="col-sm-3 d-flex flex-column w-25">
-                <button style={{ backgroundColor: i <= levelPrioritize ? arrayColor[i] : null }} onClick={() => setLevelPrioritize(i)} className="btn btn-outline-primary w-100"></button>
-                <span className="text-center">{nameLev[i]}</span>
+                <button style={{ backgroundColor: i <= levelPrioritize ? arrayColor[i] : null, borderColor: i <= levelPrioritize ? arrayColor[i] : null }} onClick={() => setLevelPrioritize(i)} className="btn btn-outline-primary w-100"></button>
+                <span className="text-center fs-5">{nameLev[i]}</span>
             </div>)
         }
         if (index < arrayColor.length) {
             for (let i = index + 1; i < arrayColor.length; i++) {
                 els.push(<div key={i} className="col-sm-3 d-flex flex-column w-25">
                     <button style={{ backgroundColor: i <= levelPrioritize ? arrayColor[i] : null }} onClick={() => setLevelPrioritize(i)} className="btn btn-outline-primary w-100"></button>
-                    <span className="text-center">{nameLev[i]}</span>
+                    <span className="text-center fs-5">{nameLev[i]}</span>
                 </div>)
             }
         }
@@ -53,7 +74,6 @@ const NewTask = (props) => {
     //processing actions of components select list dropdown with input
     useEffect(() => {
         const handleClickOutside = (event) => {
-            console.log(event.target === inputEplsRef)
             if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
                 setShowListEmployees(false)
             }
@@ -126,7 +146,7 @@ const NewTask = (props) => {
     const renderRepeatByUnit = () => {
         switch (repeatUnit) {
             case "Ngày": return null
-            case "Tuần":return renderOfWeek()
+            case "Tuần": return renderOfWeek()
             case "Tháng": {
                 return <>
                     <div className="col-sm-3">
@@ -182,7 +202,7 @@ const NewTask = (props) => {
         <>
             <Modal scrollable
                 {...props}
-                size="lg"
+                size="lg    "
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
@@ -194,13 +214,13 @@ const NewTask = (props) => {
                 <Modal.Body>
                     <div>
                         <div className="row ms-5 me-5 mb-2">
-                            <span className="fw-bold pe-0 ps-0">Tên công việc</span>
+                            <span className="fw-bold pe-0 ps-0 fs-4">Tên công việc</span>
                             <div className="d-flex form-control">
-                                <input style={{ border: "none", outline: "none" }} className={"ps-2 w-100"}></input>
+                                <input style={{ border: "none", outline: "none" }} className={"ps-2 w-100 text-blue"}></input>
                             </div>
                         </div>
                         <div className="row ms-5 me-5 mb-2 position-relative">
-                            <span className="fw-bold pe-0 ps-0">Người được giao</span>
+                            <span className="fw-bold pe-0 ps-0 fs-4">Người được giao</span>
                             <div className="d-flex form-control rounded-top" onClick={() => setShowListEmployees(!showListEmployees)} >
                                 <input value={employee} ref={inputEplsRef} type={"search"} onChange={searchEmployees} style={{ border: "none", outline: "none" }} className={"ps-2 w-100"}></input>
                                 <IoMdArrowDropdown size={20} />
@@ -212,43 +232,43 @@ const NewTask = (props) => {
                             {
                                 showListEmployees ?
 
-                                    <ul ref={wrapperRef} className="list-group pe-0 position-absolute position-absolute top-100 start-0 bg-white" role={"listbox"} style={{ overflowY: "scroll", maxHeight: listEmployeeSearch.length === 0 ? "40px" : "200px" }}>
+                                    <ul ref={wrapperRef} className="list-group pe-0 position-absolute position-absolute top-100 start-0 bg-white" role={"listbox"} style={{ overflowY: "auto", maxHeight: listEmployeeSearch.length === 0 ? "40px" : "200px" }}>
                                         {listEmployeeSearch.length === 0 ? <li role={"option"} className="list-group-item list-group-item-action disabled">
                                             Hãy nhập tên nhân viên của bạn
                                         </li> : listEmployeeSearch.map((item, id) => <li onClick={() => setEmployee(item.display_name)} key={id} role={"option"} className="list-group-item list-group-item-action">
-                                            <span className="mx-auto"> <FaUserAlt size={15} className="me-2" /> </span> {item.display_name}
+                                            <span className="mx-auto text-blue"> <FaUserAlt size={15} className="me-2" /> </span> {item.display_name}
                                         </li>)}
                                     </ul>
                                     : null
                             }
                         </div>
                         <div className="row ms-5 me-5 justify-content-md-center">
-                            <span className="fw-bold pe-0 ps-0">Mức độ ưu tiên</span>
+                            <span className="fw-bold pe-0 ps-0 fs-4">Mức độ ưu tiên</span>
                             <div className="row d-flex flex-wrap p-0">
                                 {setColorPrioritizeLevel(levelPrioritize)}
                             </div>
                         </div>
                         <div className="row ms-5 me-5 mb-2">
-                            <span className="fw-bold pe-0 ps-0">Mô tả</span>
+                            <span className="fw-bold pe-0 ps-0 fs-4">Mô tả</span>
                             <div className="p-0" >
                                 <div id="editor" >
                                     <CKEditor
                                         editor={ClassicEditor}
                                         data="<p>Hello from CKEditor 5!</p>"
-                                        // config={editorConfiguration}
+                                        config={editorConfiguration}
                                         onReady={editor => {
                                             // You can store the "editor" and use when it is needed.
-                                            console.log('Editor is ready to use!', editor);
+                                            // console.log('Editor is ready to use!', editor);
                                         }}
                                         onChange={(event, editor) => {
                                             const data = editor.getData();
-                                            console.log({ event, editor, data });
+                                            // console.log({ event, editor, data });
                                         }}
                                         onBlur={(event, editor) => {
-                                            console.log('Blur.', editor);
+                                            // console.log('Blur.', editor);
                                         }}
                                         onFocus={(event, editor) => {
-                                            console.log('Focus.', editor);
+                                            // console.log('Focus.', editor);
                                         }}
                                     />
                                 </div>
@@ -256,17 +276,15 @@ const NewTask = (props) => {
                         </div>
                         <div className="row ms-5 me-5 mb-2">
                             <div className="col-sm p-2">
-                                <span className="col-5 fw-bold p0 mb-2">Thời gian từ ngày</span>
+                                <span className="col-5 fw-bold p0 mb-2 fs-4">Thời gian từ ngày</span>
                                 <div className="col d-flex form-control p-0 ps-2" onClick={() => setShowDateStart(!showDateStart)}>
-                                    <input readOnly value={startNewDateTask == null ? "" : startNewDateTask} style={{ border: "none", outline: "none" }} className={"w-100 p-0"}></input>
-                                    <IoMdArrowDropdown size={20} />
+                                    <input readOnly value={startNewDateTask == null ? "" : startNewDateTask} style={{ border: "none", outline: "none" }} className={"w-100 p-0 text-blue"}></input>
                                 </div>
                             </div>
                             <div className="col-sm p-2" >
-                                <span className="fw-bold pe-0 ps-0 mb-2">Đến ngày</span>
+                                <span className="fw-bold pe-0 ps-0 mb-2 fs-4">Đến ngày</span>
                                 <div className="col d-flex form-control p-0 ps-2" onClick={() => setShowDateEnd(!showDateEnd)}>
-                                    <input readOnly value={endNewDateTask == null ? "" : endNewDateTask} style={{ border: "none", outline: "none" }} className={"w-100 p-0"}></input>
-                                    <IoMdArrowDropdown size={20} />
+                                    <input readOnly value={endNewDateTask == null ? "" : endNewDateTask} style={{ border: "none", outline: "none" }} className={"w-100 p-0 text-blue"}></input>
                                 </div>
                             </div>
                         </div>
@@ -275,43 +293,54 @@ const NewTask = (props) => {
                                 <div className="col-sm d-flex flex-col me-2">
                                     <div className="d-flex flex-row me-2">
                                         <input style={{ width: "15px", height: "15px", margin: "auto" }} className="mx-auto" type={"radio"}></input>
-                                        <label style={{ whiteSpace: "nowrap", margin: "auto" }} className="fw-bold ps-1">Lặp lại</label>
+                                        <label style={{ whiteSpace: "nowrap", margin: "auto" }} className="fw-bold ps-1 fs-4">Lặp lại</label>
                                     </div>
                                     <span className="ms-2 w-100">
                                         <input className="form-control w-100 p-1" placeholder="Nhập số lần" type={"text"} />
                                     </span>
                                 </div>
-                                <div className="col-sm d-flex flex-col ms-2 position-relative w-100">
-                                    <label className="fw-bold me-2">trên</label>
-                                    <div className="d-flex form-control w-75 p-1 position-relative" onClick={() => setShowRepeatUnit(!showRepeatUnit)}>
-                                        <input value={repeatUnit} onChange={setRepeatUnit} style={{ border: "none", outline: "none" }} className={"ps-2 w-100"}></input>
-                                        <IoMdArrowDropdown size={20} />
-                                        {showRepeatUnit ? <ul className="list-group position-absolute top-100 start-0 bg-primary w-75">
-                                            <li className="list-group-item list-group-item-action" onClick={() => setRepeatUnit("Ngày")}>Ngày</li>
-                                            <li className="list-group-item list-group-item-action" onClick={() => setRepeatUnit("Tuần")}>Tuần</li>
-                                            <li className="list-group-item list-group-item-action" onClick={() => setRepeatUnit("Tháng")}>Tháng</li>
-                                            <li className="list-group-item list-group-item-action" onClick={() => setRepeatUnit("Năm")}>Năm</li>
-                                        </ul> : null}
+                                <div className="col-sm d-flex flex-col ms-2 w-100">
+                                    <label className="fw-bold me-2 fs-4">trên</label>
+                                    <div className="d-flex flex-column">
+                                        <div className="d-flex flex-row form-control w-100 p-1" onClick={() => setShowRepeatUnit(!showRepeatUnit)}>
+                                            <input value={repeatUnit} onChange={setRepeatUnit} style={{ border: "none", outline: "none" }} className={"ps-2 w-100 text-blue"}></input>
+                                            <IoMdArrowDropdown className={`${showRepeatUnit ? "rolated-top" : "rolated-bottom"}`} size={25} />
+                                        </div>
+                                        {showRepeatUnit ?
+                                            <div className="position-relative bg-white">
+                                                <div className="d-flex flex-row position-absolute top-0 start-0 w-100 border border-primary translation">
+                                                    <ul className="list-group w-100" style={{ border: "none" }}>
+                                                        <li className="list-group-item list-group-item-action" onClick={() => setRepeatUnit("Ngày")}>Ngày</li>
+                                                        <li className="list-group-item list-group-item-action" onClick={() => setRepeatUnit("Tuần")}>Tuần</li>
+                                                        <li className="list-group-item list-group-item-action" onClick={() => setRepeatUnit("Tháng")}>Tháng</li>
+                                                        <li className="list-group-item list-group-item-action" onClick={() => setRepeatUnit("Năm")}>Năm</li>
+                                                    </ul>
+                                                    {/* <div className="d-flex flex-column-reverse bg-white">
+                                                        <div ><IoMdArrowDropup size={20} className={`${showRepeatUnit ? "rolated-top" : "rolated-bottom"}`} /></div>
+                                                    </div> */}
+                                                </div>
+                                            </div>
+                                            : null}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="row d-flex flex-col ms-5 me-5 mb-4">
-                                        {renderRepeatByUnit()}
+                            {renderRepeatByUnit()}
                         </div>
                         <div className="row d-flex flex-col ms-5 me-5 mb-2">
                             <div className="col-sm d-flex flex-col me-2">
                                 <div className="d-flex flex-row me-2">
-                                    <input style={{ width: "15px", height: "15px", margin: "auto" }} className="mx-auto" type={"radio"}></input>
-                                    <label style={{ whiteSpace: "nowrap", margin: "auto" }} className="fw-bold ps-1 text-break">Công việc con thực hiện tuần tự</label>
+                                    <input style={{ width: "15px", height: "15px", margin: "auto", color: "#2F6BB1" }} className="mx-auto fs-4" type={"radio"}></input>
+                                    <label style={{ whiteSpace: "nowrap", margin: "auto" }} className="fw-bold ps-1 text-break fs-4">Công việc con thực hiện tuần tự</label>
                                 </div>
                             </div>
                         </div>
                         <div className="row ms-5 me-5 mb-2 mt-3">
                             <div className="col-sm p-2 position-relative">
-                                <span className="col-5 fw-bold p0 mb-2">Đối tượng liên quan</span>
+                                <span className="col-5 fw-bold p0 mb-2 fs-4">Đối tượng liên quan</span>
                                 <div className="col d-flex form-control p-0 ps-2" onClick={() => setShowListEmployeesInvolve(!showListEmployeesInvolve)}>
-                                    <input type={"search"} onChange={searchEmployees} style={{ border: "none", outline: "none" }} className={"w-100 p-0 ps-1 pe-2"}></input>
+                                    <input type={"search"} onChange={searchEmployees} style={{ border: "none", outline: "none", color: "#2F6BB1" }} className={"w-100 p-0 ps-1 pe-2"}></input>
                                 </div>
                                 {
                                     showListEmployeesInvolve ?
@@ -325,13 +354,33 @@ const NewTask = (props) => {
                                         </ul>
                                         : null
                                 }
+                                <ul className="p-3">
+                                    <li>Có thể nhập mã hoặc tên của đề xuất /thiết bị/ công việc/ nhân viên/ chức vụ/ phòng ban</li>
+                                    <li>Có thể chọn nhiều đối tượng</li>
+                                </ul>
                             </div>
                             <div className="col-sm p-2" >
-                                <span className="fw-bold pe-0 ps-0 mb-2">Mẫu báo cáo</span>
+                                <span className="fw-bold pe-0 ps-0 mb-2 fs-4">Mẫu báo cáo</span>
                                 <div className="col d-flex form-control p-0 ps-2" >
                                     <input type="search" style={{ border: "none", outline: "none" }} className={"w-100 p-0 ps-1 pe-2"}></input>
                                 </div>
+                                <div className="pt-3 d-flex flex-row">
+                                    <h3 className="fw-bold">Đính kèm: </h3>
+                                    <span style={{ width: "20px", height: "30px" }} className="border border-warning">
+                                        <label htmlFor="file-input">
+                                            <CgAttachment size={30} />
+                                        </label>
 
+                                        <input onChange={(e) => console.log(e.target.files[0])} style={{ display: "none" }} id="file-input" type="file" />
+                                    </span>
+
+                                    {/* <label for="file-input">
+                                        <img src="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Downloads-icon.png" />
+                                    </label>
+
+                                    <input style={{ display: "none" }} id="file-input" type="file" /> */}
+
+                                </div>
                             </div>
                         </div>
                     </div>
