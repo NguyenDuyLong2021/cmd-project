@@ -7,6 +7,7 @@ import TimePicker from 'rc-time-picker';
 import moment from 'moment';
 import 'rc-time-picker/assets/index.css';
 import { useDispatch, useSelector } from "react-redux"
+import "../../../node_modules/rc-time-picker/assets/index.css"
 const formatTime = "hh:mm"
 const DateInput = (props) => {
     const [times, setTimes] = useState({ time: {}, date: "", cleanDate: false })
@@ -81,7 +82,7 @@ const DateInput = (props) => {
                                 {!times.cleanDate ? null : <a role="button" onClick={clearDate} className="rc-time-picker-clear" title="clear" tabIndex={0}>
                                     <i className="rc-time-picker-clear-icon" /></a>}
                             </span>
-                            <TimePicker placeholder="Chọn giờ" value={JSON.stringify(times.time) == JSON.stringify({}) ? null : times.time} format={formatTime} onOpen={() => setOpenTime(!openTime)} open={openTime} className="m-1 w-75 border border-primary" use12Hours={true} showSecond={false} addon={addButtonOk}
+                            <TimePicker placeholder="Chọn giờ" value={JSON.stringify(times.time) == JSON.stringify({}) ? null : times.time} format={formatTime} onOpen={() => setOpenTime(!openTime)} open={openTime} className="m-1 w-75 border border-primary" use12Hours={false} showSecond={false} addon={addButtonOk}
                                 onChange={(time) => onChangeTime(time)} inputReadOnly={true} />
                         </div>
                         <div className="d-flex flex-row">

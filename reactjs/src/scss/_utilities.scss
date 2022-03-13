@@ -139,8 +139,18 @@ $utilities: map-merge(
       property: width,
       class: w,
       values: (
+        10:10%,
+        15:15%,
+        18:18%,
         25: 25%,
+        30:30%,
+        35:35%,
+        40:40%,
         50: 50%,
+        55:55%,
+        60:60%,
+        64:64%,
+        65:65%,
         75: 75%,
         100: 100%,
         auto: auto
@@ -165,9 +175,21 @@ $utilities: map-merge(
       property: height,
       class: h,
       values: (
+        10:10%,
+        15:15%,
+        18:18%,
         25: 25%,
+        30:30%,
+        35:35%,
+        40:40%,
         50: 50%,
+        55:55%,
+        60:60%,
+        64:64%,
+        65:65%,
         75: 75%,
+        80: 80%,
+        85: 85%, 
         100: 100%,
         auto: auto
       )
@@ -449,8 +471,10 @@ $utilities: map-merge(
         light: $font-weight-light,
         lighter: $font-weight-lighter,
         normal: $font-weight-normal,
+        normaler :$font-weight-normaler,
         bold: $font-weight-bold,
-        bolder: $font-weight-bolder
+        bolder: $font-weight-bolder,
+        bigBold:$font-weight-bold-big
       )
     ),
     "line-height": (

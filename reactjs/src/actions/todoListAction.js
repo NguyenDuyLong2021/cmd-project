@@ -191,3 +191,25 @@ export const search = (params) => {
 }
 // save data employees searched to store redux
 export const saveEmployeeSearch = (data) => { return { type: types.SAVE_LIST_EMPLOYEE_SEARCH, data } }
+// is show detail task
+export const showDetailTask = () => { return { type: types.IS_SHOW_DETAIL_TASK } }
+//get data detail a task
+export const getTaskDetailRequest = (params) => {
+    return (dispatch) => {
+        const fetchTasksDetail = async () => {
+            try {
+                const response = await todoListApi.getDetailTask(params)
+                await dispatch(dispatchTaskDetail(response))
+            } catch (error) {
+                console.log("Can not load...!", error)
+            }
+        }
+        fetchTasksDetail()
+    }
+}
+// dispatch detail task
+export const dispatchTaskDetail = (task) => { return { type: types.DISPATCH_TASK_DETAIL, task } }
+//get position modal option task
+export const getPositionModalTask =(position)=>{return {type: types.GET_POSITION_MODAL_OPTION_TASK, position}}
+// set so trang hien tai 
+export const pageCurrent = (page) => { return { type: types.PAGE_CURRENT, page } }
