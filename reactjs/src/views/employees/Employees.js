@@ -15,7 +15,7 @@ import { BiArrowFromTop } from 'react-icons/bi'
 const queryString = require('query-string')
 
 const Employees = () => {
-    const employees = useSelector(state => state.employees.data)
+    const employees = useSelector(state => state.employees.employees)
     const pagination = useSelector(state => state.employees.pagination)
 
     const dispatch = useDispatch()
@@ -23,10 +23,7 @@ const Employees = () => {
     const navigation = useNavigate()
 
     const [filters, setFilters] = useState({
-        _page: 1,
-        _limit: 10,
-        _sort: null,
-        _order: null
+
     })
 
     useEffect(() => {
@@ -48,13 +45,13 @@ const Employees = () => {
     const handlePageChange = newPage => {
         setFilters({
             ...filters,
-            _page: newPage
+            page: newPage
         })
     }
     const handleSearchTerm = (searchTerm) => {
         setFilters({
             ...filters,
-            _page: 1,
+            page: 1,
             q: searchTerm
         })
     }
@@ -65,25 +62,25 @@ const Employees = () => {
         })
     }
     const handleSort = (sortBy) => {
-        if (filters._order === null) {
+        if (filters.order === null) {
             setFilters({
                 ...filters,
-                _sort: sortBy,
-                _order: "asc"
+                sort: sortBy,
+                order: "asc"
             })
         }
-        else if (filters._order === "asc") {
+        else if (filters.order === "asc") {
             setFilters({
                 ...filters,
-                _sort: sortBy,
-                _order: "desc"
+                sort: sortBy,
+                order: "desc"
             })
         }
         else {
             setFilters({
                 ...filters,
-                _sort: null,
-                _order: null
+                sort: null,
+                order: null
             })
         }
     }
@@ -129,96 +126,100 @@ const Employees = () => {
             </div>
             <hr />
             <Container fluid>
-                <div className="d-lg-flex d-none">
-                    <Row className="col mb-3 justify-content-evenly align-items-center">
-                        <div className="col-2" style={{ paddingLeft: "3rem" }}>
-                            <span
-                                className="fw-bolder cursor-pointer"
-                                onClick={() => handleSort("name")}
-                            >
-                                HỌ VÀ TÊN {filters._sort === "name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
-                            </span>
-                            {/* <Form.Control type="text" name="name" placeholder="Lọc theo họ và tên..." value={filters.name} onChange={handleFilter} /> */}
-                        </div>
-                        <div className="col-1 ps-1">
-                            <span
-                                className="fw-bolder cursor-pointer"
-                                onClick={() => handleSort("dob")}
-                            >
-                                NGÀY SINH {filters._sort === "dob" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "dob" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
-                            </span>
-                            {/* <Form.Control type="text" name="dob" placeholder="Lọc theo ngày sinh..." value={filters.dob} onChange={handleFilter} /> */}
-                        </div>
-                        <div className="col-3 ps-1">
-                            <span
-                                className="fw-bolder cursor-pointer"
-                                onClick={() => handleSort("email")}
-                            >
-                                EMAIL {filters._sort === "email" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "email" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
-                            </span>
-                            {/* <Form.Control type="text" name="email" placeholder="Lọc theo email..." value={filters.email} onChange={handleFilter} /> */}
-                        </div>
-                        <div className="col-1 ps-1">
-                            <span
-                                className="fw-bolder cursor-pointer"
-                                onClick={() => handleSort("phone")}
-                            >
-                                SĐT {filters._sort === "phone" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "phone" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
-                            </span>
-                            {/* <Form.Control type="text" name="phone" placeholder="Lọc theo số điện spanoại..." value={filters.phone} onChange={handleFilter} /> */}
-                        </div>
-                        <div className="col-2 ps-1">
-                            <span
-                                className="fw-bolder cursor-pointer"
-                                onClick={() => handleSort("department.name")}
-                            >
-                                PHÒNG BAN {filters._sort === "department.name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "department.name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
-                            </span>
-                            {/* <Form.Control type="text" name="department.name" placeholder="Lọc theo tên phòng ban..." value={filters.department} onChange={handleFilter} /> */}
-                        </div>
-                        <div className="col-2 ps-1">
-                            <span
-                                className="fw-bolder cursor-pointer"
-                                onClick={() => handleSort("position.name")}
-                            >
-                                CHỨC VỤ {filters._sort === "position.name" && filters._order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters._sort === "position.name" && filters._order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
-                            </span>
-                            {/* <Form.Control type="text" name="position.name" placeholder="Lọc theo tên chức vụ..." value={filters.position} onChange={handleFilter} /> */}
-                        </div>
-                        <div className="col-auto" />
-                    </Row>
-                </div>
-                <div className="d-lg-block d-none">
-                    <Row>
-                        {
-                            employees.map(employee => (
-                                <EmployeeItem key={employee.id} employee={employee} />
-                            ))
-                        }
-                        {
-                            employees.length === 0 ? (
-                                <Card.Body align="center">
-                                    Không có dữ liệu
-                                </Card.Body>
-                            ) : null
-                        }
-                    </Row>
-                </div>
-                <div className="d-lg-none">
-                    <Row className="mb-3 justify-content-evenly align-items-center">
-                        {
-                            employees.map(employee => (
-                                <EmployeeItem key={employee.id} employee={employee} />
-                            ))
-                        }
-                        {
-                            employees.length === 0 ? (
-                                <Card.Body align="center">
-                                    Không có dữ liệu
-                                </Card.Body>
-                            ) : null
-                        }
-                    </Row>
+                <div style={{
+                    // overflowX: "scroll"
+                }}>
+                    <div className="d-lg-flex d-none">
+                        <Row className="col mb-3 justify-content-evenly align-items-center">
+                            <div className="col-2" style={{ paddingLeft: "3rem" }}>
+                                <span
+                                    className="fw-bolder cursor-pointer"
+                                    onClick={() => handleSort("name")}
+                                >
+                                    HỌ VÀ TÊN {filters.sort === "name" && filters.order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters.sort === "name" && filters.order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
+                                </span>
+                                {/* <Form.Control type="text" name="name" placeholder="Lọc theo họ và tên..." value={filters.name} onChange={handleFilter} /> */}
+                            </div>
+                            <div className="col-1 ps-1">
+                                <span
+                                    className="fw-bolder cursor-pointer"
+                                    onClick={() => handleSort("dob")}
+                                >
+                                    NGÀY SINH {filters.sort === "dob" && filters.order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters.sort === "dob" && filters.order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
+                                </span>
+                                {/* <Form.Control type="text" name="dob" placeholder="Lọc theo ngày sinh..." value={filters.dob} onChange={handleFilter} /> */}
+                            </div>
+                            <div className="col-3 ps-1">
+                                <span
+                                    className="fw-bolder cursor-pointer"
+                                    onClick={() => handleSort("email")}
+                                >
+                                    EMAIL {filters.sort === "email" && filters.order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters.sort === "email" && filters.order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
+                                </span>
+                                {/* <Form.Control type="text" name="email" placeholder="Lọc theo email..." value={filters.email} onChange={handleFilter} /> */}
+                            </div>
+                            <div className="col-1 ps-1">
+                                <span
+                                    className="fw-bolder cursor-pointer"
+                                    onClick={() => handleSort("phone")}
+                                >
+                                    SĐT {filters.sort === "phone" && filters.order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters.sort === "phone" && filters.order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
+                                </span>
+                                {/* <Form.Control type="text" name="phone" placeholder="Lọc theo số điện spanoại..." value={filters.phone} onChange={handleFilter} /> */}
+                            </div>
+                            <div className="col-2 ps-1">
+                                <span
+                                    className="fw-bolder cursor-pointer"
+                                    onClick={() => handleSort("department.name")}
+                                >
+                                    PHÒNG BAN {filters.sort === "department.name" && filters.order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters.sort === "department.name" && filters.order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
+                                </span>
+                                {/* <Form.Control type="text" name="department.name" placeholder="Lọc theo tên phòng ban..." value={filters.department} onChange={handleFilter} /> */}
+                            </div>
+                            <div className="col-2 ps-1">
+                                <span
+                                    className="fw-bolder cursor-pointer"
+                                    onClick={() => handleSort("position.name")}
+                                >
+                                    CHỨC VỤ {filters.sort === "position.name" && filters.order === "asc" ? <AiOutlineSortAscending size={20} /> : null} {filters.sort === "position.name" && filters.order === "desc" ? <AiOutlineSortDescending size={20} /> : null}
+                                </span>
+                                {/* <Form.Control type="text" name="position.name" placeholder="Lọc theo tên chức vụ..." value={filters.position} onChange={handleFilter} /> */}
+                            </div>
+                            <div className="col-auto" />
+                        </Row>
+                    </div>
+                    <div className="d-lg-block d-none">
+                        <Row>
+                            {
+                                employees.map(employee => (
+                                    <EmployeeItem key={employee.id} employee={employee} />
+                                ))
+                            }
+                            {
+                                employees.length === 0 ? (
+                                    <Card.Body align="center">
+                                        Không có dữ liệu
+                                    </Card.Body>
+                                ) : null
+                            }
+                        </Row>
+                    </div>
+                    <div className="d-lg-none">
+                        <Row className="mb-3 justify-content-evenly align-items-center">
+                            {
+                                employees.map(employee => (
+                                    <EmployeeItem key={employee.id} employee={employee} />
+                                ))
+                            }
+                            {
+                                employees.length === 0 ? (
+                                    <Card.Body align="center">
+                                        Không có dữ liệu
+                                    </Card.Body>
+                                ) : null
+                            }
+                        </Row>
+                    </div>
                 </div>
                 <AppPagination
                     pagination={pagination}

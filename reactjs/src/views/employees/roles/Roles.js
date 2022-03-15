@@ -13,8 +13,6 @@ const Roles = ({ visible, setVisible }) => {
     const dispatch = useDispatch()
 
     const [filters, setFilters] = useState({
-        _page: 1,
-        _limit: 10,
         q: ""
     })
 
@@ -28,13 +26,13 @@ const Roles = ({ visible, setVisible }) => {
     const handlePageChange = newPage => {
         setFilters({
             ...filters,
-            _page: newPage
+            page: newPage
         })
     }
     const handleSearchTerm = searchTerm => {
         setFilters({
             ...filters,
-            _page: 1,
+            page: 1,
             q: searchTerm
         })
     }
@@ -60,7 +58,7 @@ const Roles = ({ visible, setVisible }) => {
                     </div>
                     <Accordion flush alwaysOpen>
                         {
-                            roles.map(role => (
+                            roles?.map(role => (
                                 <Accordion.Item eventKey={role.id} key={role.id}>
                                     <RoleItem role={role} />
                                 </Accordion.Item>

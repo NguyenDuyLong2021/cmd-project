@@ -25,8 +25,10 @@ const PostItem = ({ post }) => {
                                 {post.title}
                             </Link>
                         </Card.Title>
-                        <small></small>
-                        <small className="">
+                        <small
+                        className=""
+                        style={{ textAlign: "justify" }}
+                        >
                             {(htmlEntities(post.content)).slice(0, 500)}
                         </small>
                     </Row>

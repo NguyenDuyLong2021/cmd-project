@@ -3,7 +3,7 @@ import queryString from 'query-string'
 
 // Thiết lập cấu hình mặc định cho http request
 const axiosClient = axios.create({
-    baseURL: "http://27.74.244.150:9090",
+    baseURL: "http://27.74.244.150:9090/",
     headers: {
         'content-type': 'application/json',
     },

@@ -11,22 +11,21 @@ const EmployeeItem = ({ employee }) => {
         return result.join(' ');
     }
     const showDate = () => {
-        const dateOfBirth = new Date(employee.dob)
+        const dateOfBirth = new Date(employee.dateOfBirth)
         return "" + (dateOfBirth.getDate() < 10 ? "0" : "") + dateOfBirth.getDate() + "/" + (dateOfBirth.getMonth() + 1 < 10 ? "0" : "") + (dateOfBirth.getMonth() + 1) + "/" + dateOfBirth.getFullYear()
     }
     return (
         <>
 
             {/* Giao diện hiển thị khi >= xl */}
-            <div className="d-lg-flex d-none item justify-content-evenly align-items-center">
+            <div className="d-lg-flex d-none item justify-content-evenly align-items-center mb-3">
                 <div className="item-label" />
-                {/* <div className="col-auto">{(employee.user?.is_activated === true) ? (<BsFillCircleFill size={8} />) : (<span className="rounautoed-circle bg-secondary" style={{ width: ".75rem", height: ".75rem" }} />)}</div> */}
                 <div className="col-2 text-break" style={{ paddingLeft: "3rem" }}>{standardizingName(employee.name)}</div>
                 <div className="col-1 text-break">{showDate()}</div>
                 <div className="col-3 text-break">{employee.email}</div>
-                <div className="col-1 text-break">{employee.phone}</div>
+                <div className="col-1 text-break">{employee.phoneNumber}</div>
                 <div className="col-2 text-break">{employee.department?.name}</div>
-                <div className="col-2 text-break">{employee.position?.name}</div>
+                <div className="col-2 text-break">{employee.positionList[0].name}</div>
                 <Dropdown>
                     <Dropdown.Toggle
                         variant="none"
@@ -47,7 +46,7 @@ const EmployeeItem = ({ employee }) => {
             {/* Giao diện hiển thị khi < xl */}
             <div className="d-lg-none list-group-item row justify-content-evenly align-items-center">
                 <Row className="mb-3 mt-3">
-                    <Col className="fw-bold text-break" className="fw-bold">
+                    <Col className="fw-bold text-break">
                         Họ và tên:
                     </Col>
                     <Col className="text-break">
@@ -75,7 +74,7 @@ const EmployeeItem = ({ employee }) => {
                         Số điện thoại:
                     </Col>
                     <Col className="text-break">
-                        {employee.phone}
+                        {employee.phoneNumber}
                     </Col>
                 </Row>
                 <Row className="mb-3">

@@ -6,7 +6,7 @@ import { Button, Form, Modal } from 'react-bootstrap'
 import { addPostRequest, updatePostRequest } from '../../../actions/postsAction'
 import { useDispatch } from 'react-redux'
 
-const FormSubmitPost = ({ visible, setVisible, post = null }) => {
+const FormSubmitPost = ({ visible, setVisible, data = null }) => {
     const [info, setInfo] = useState({
         title: "",
         thumbnail: "",
@@ -17,12 +17,12 @@ const FormSubmitPost = ({ visible, setVisible, post = null }) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (post?.id) {
+        if (data?.id) {
             setInfo({
-                ...post
+                ...data
             })
         }
-    }, [post])
+    }, [data])
 
     /* Các hàm thay đổi giá trị của state info mỗi khi người dùng nhập/chọn dữ liệu mới */
     const handleInputChange = (e) => {
@@ -59,10 +59,16 @@ const FormSubmitPost = ({ visible, setVisible, post = null }) => {
             e.preventDefault()
             e.stopPropagation()
             if (info.id) {
-                dispatch(updatePostRequest(info))
+                dispatch(updatePostRequest({
+                    ...info,
+                    updated_at: new Date()
+                }))
             }
             else {
-                dispatch(addPostRequest(info))
+                dispatch(addPostRequest({
+                    ...info,
+                    created_at: new Date()
+                }))
             }
             setVisible(false)
         }
@@ -81,7 +87,7 @@ const FormSubmitPost = ({ visible, setVisible, post = null }) => {
                 className="bg-gradient"
             >
                 <Modal.Title>
-                    {post?.id ? "CHỈNH SỬA BÀI VIẾT" : "ĐĂNG BÀI VIẾT MỚI"}
+                    {data?.id ? "CHỈNH SỬA BÀI VIẾT" : "ĐĂNG BÀI VIẾT MỚI"}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -104,7 +110,7 @@ const FormSubmitPost = ({ visible, setVisible, post = null }) => {
                             Vui lòng nhập tiêu đề bài viết.
                         </Form.Control.Feedback>
                     </div>
-                    <hr />
+                    {/* <hr />
                     <div className="mb-3">
                         <Form.Label htmlFor="thumbnail">Thumbnail:</Form.Label>
                         <Form.Control
@@ -117,13 +123,13 @@ const FormSubmitPost = ({ visible, setVisible, post = null }) => {
                         <Form.Control.Feedback type="invalid">
                             Vui lòng chọn thumbnail.
                         </Form.Control.Feedback>
-                    </div>
+                    </div> */}
                     <hr />
                     <div className="mb-3">
                         <Form.Label htmlFor="content">Nội dung bài viết:</Form.Label>
                         <CKEditor
                             editor={ClassicEditor}
-                            data="<p>Hello from CKEditor 5!</p>"
+                            data={info.content}
                             onChange={(event, editor) => {
                                 handleCkEditorChange(event, editor)
                             }}
@@ -135,7 +141,7 @@ const FormSubmitPost = ({ visible, setVisible, post = null }) => {
                             size="lg"
                             type="submit"
                         >
-                            {(post?.id) ? "Cập nhật thông tin" : "Đăng bài viết"}
+                            {(data?.id) ? "Cập nhật bài viết" : "Đăng bài viết"}
                         </Button>
                     </Modal.Footer>
                 </Form>

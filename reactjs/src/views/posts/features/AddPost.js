@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import FormSubmitPost from './FormSubmitPost'
 
-const ButtonAddPost = () => {
+const AddPost = () => {
     const [visible, setVisible] = useState(false)
     return (
         <>
@@ -20,4 +20,4 @@ const ButtonAddPost = () => {
     )
 }
 
-export default ButtonAddPost
+export default AddPost

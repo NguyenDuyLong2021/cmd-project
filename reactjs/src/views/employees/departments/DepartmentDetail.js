@@ -6,7 +6,7 @@ const DepartmentDetail = ({ department }) => {
     const departments = useSelector(state => state.departments.data)
     let parentName = ""
     departments.forEach(dp => {
-        if (dp.id === department.parent_id) {
+        if (dp.id === department.fatherDepartmentId) {
             parentName = dp.name
         }
     })
@@ -47,7 +47,7 @@ const DepartmentDetail = ({ department }) => {
                     </thead>
                     <tbody>
                         {
-                            department.positions.map((position, index) => (
+                            department.positionList.map((position, index) => (
                                 <tr key={index}>
                                     <td>{position.name}</td>
                                     <td>{position?.role.name}</td>

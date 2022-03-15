@@ -16,7 +16,7 @@ const RoleItem = ({ role }) => {
                         <DeleteRole id={role.id} />
                     </div>
                 </ListGroup.Item>
-                {
+                {/* {
                     role.positions?.length === 0 ? <div className="list-group-item bg-light">Vai trò này chưa có chức vụ nào nắm giữ</div> : (
                         <Table
                             striped
@@ -42,7 +42,7 @@ const RoleItem = ({ role }) => {
                             </tbody>
                         </Table>
                     )
-                }
+                } */}
             </Accordion.Body>
         </>
     )

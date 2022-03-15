@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import { Container, Spinner } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import './style.css'
 
@@ -11,10 +11,7 @@ const AppContent = () => {
     const location = useLocation()
 
     return (
-        <Container
-            fluid
-            className="mt-3"
-        >
+        <div className="container-fluid mt-3">
             <Suspense fallback={<Spinner
                 animation="border"
                 variant="primary"
@@ -43,7 +40,7 @@ const AppContent = () => {
                     </CSSTransition>
                 </TransitionGroup>
             </Suspense>
-        </Container>
+        </div>
     )
 }
 

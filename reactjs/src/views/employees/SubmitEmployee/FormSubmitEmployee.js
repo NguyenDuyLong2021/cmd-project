@@ -10,9 +10,9 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
     /* Quản lý các state */
     const [info, setInfo] = useState({
         // State lưu thông tin của nhân viên khi người dùng nhập dữ liệu
-        code: "",
+        uniqueNumber: "",
         name: "",
-        dob: "",
+        dateOfBirth: "",
         email: "",
         phone: "",
         department: {
@@ -20,7 +20,7 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
             name: "",
             code: ""
         },
-        position: {
+        positionList: {
             id: "",
             name: ""
         },
@@ -91,17 +91,17 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
         setInfo({
             ...info,
             department,
-            position: {
+            positionList: {
                 id: "",
                 name: ""
             },
         })
     }
-    const handlePositionChange = (position) => {
+    const handlePositionChange = (positionList) => {
         setVisiblePosition(false);
         setInfo({
             ...info,
-            position
+            positionList
         })
     }
     const handleUserChange = (e) => {
@@ -141,7 +141,7 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
     //
     let SelectPositionElement = null
     if (visiblePosition) {
-        if (info.department?.id && !info.department?.positions.length) {
+        if (info.department?.id && !info.department?.positionLists.length) {
             SelectPositionElement = <ListGroup.Item className="bg-light" align="center">Phòng ban hiện chưa có chức vụ nào!</ListGroup.Item>
         }
         else if (!info.department.id) {
@@ -150,8 +150,8 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
         else {
             SelectPositionElement = <SelectPosition
                 visible={visiblePosition}
-                currentPosition={info.position}
-                data={info.department.positions}
+                currentPosition={info.positionList}
+                data={info.department.positionLists}
                 onPositionChange={handlePositionChange}
             />
         }
@@ -184,7 +184,7 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                                 type="text"
                                 name="code"
                                 placeholder="Nhập mã nhân viên..."
-                                value={info.code}
+                                value={info.uniqueNumber}
                                 onChange={handleInputChange}
                                 required
                             />
@@ -209,12 +209,12 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                         </div>
                         <hr />
                         <div className="mb-3">
-                            <Form.Label htmlFor="dob">Ngày sinh:</Form.Label>
+                            <Form.Label htmlFor="dateOfBirth">Ngày sinh:</Form.Label>
                             <Form.Control
                                 type="date"
-                                name="dob"
+                                name="dateOfBirth"
                                 placeholder="Nhập ngày sinh..."
-                                value={info.dob || ""}
+                                value={info.dateOfBirth || ""}
                                 onChange={handleInputChange}
                                 required
                             />
@@ -278,13 +278,13 @@ const FormSubmitEmployee = ({ visible, setVisible, employee = null }) => {
                         </div>
                         <hr />
                         <div className="mb-3">
-                            <Form.Label htmlFor="position">Chức vụ:</Form.Label>
+                            <Form.Label htmlFor="positionList">Chức vụ:</Form.Label>
                             <div ref={refSelectPosition}>
                                 <Form.Control
                                     type="text"
-                                    name="position"
+                                    name="positionList"
                                     placeholder="Chọn chức vụ của nhân viên..."
-                                    value={info.position?.name}
+                                    value={info.positionList?.name}
                                     onChange={handleInputChange}
                                     onClick={() => setVisiblePosition(!visiblePosition)}
                                     required
