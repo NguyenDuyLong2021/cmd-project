@@ -12,7 +12,7 @@ export const fetchRolesRequest = (params) => {
     return (dispatch) => {
         rolesApi.getAll(params)
             .then(response => {
-                dispatch(fetchRoles(response.data))
+                dispatch(fetchRoles(response.data.data))
             })
             .catch(error => {
                 alert(error)

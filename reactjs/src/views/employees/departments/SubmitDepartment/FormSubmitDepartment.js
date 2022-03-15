@@ -17,8 +17,8 @@ const FormSubmitDepartment = ({ visible, setVisible, department = null }) => {
         code: "",
         name: "",
         description: "",
-        parent_id: null,
-        positions: []
+        fatherDepartmentId: null,
+        positionList: []
     })
     const [visibleDepartment, setVisibleDepartment] = useState(false)
     const [currentParentDepartmentName, setCurrentParentDepartmentName] = useState("")
@@ -40,7 +40,7 @@ const FormSubmitDepartment = ({ visible, setVisible, department = null }) => {
     useEffect(() => {
         if (department?.id) {
             setInfo(department)
-            setCurrentParentDepartmentName(departments.find(dp => dp.id === department.parent_id)?.name || "")
+            setCurrentParentDepartmentName(departments.find(dp => dp.id === department.fatherDepartmentId)?.name || "")
         }
     }, [department])
 
@@ -56,7 +56,7 @@ const FormSubmitDepartment = ({ visible, setVisible, department = null }) => {
         setCurrentParentDepartmentName(department.name)
         setInfo({
             ...info,
-            parent_id: department.id
+            fatherDepartmentId: department.id
         })
     }
     const handleChangeParrent = (e) => {
@@ -76,10 +76,10 @@ const FormSubmitDepartment = ({ visible, setVisible, department = null }) => {
         if (form.checkValidity() === true) {
             e.preventDefault()
             e.stopPropagation()
-            if (info.parent_id === "") {
+            if (info.fatherDepartmentId === "") {
                 setInfo({
                     ...info,
-                    parent_id: null
+                    fatherDepartmentId: null
                 })
             }
             if (info.id) {
@@ -95,7 +95,7 @@ const FormSubmitDepartment = ({ visible, setVisible, department = null }) => {
     }
     //
 
-    const currentDepartment = departments.find(dp => dp.id === info.parent_id)
+    const currentDepartment = departments.find(dp => dp.id === info.fatherDepartmentId)
     return (
         <>
             <Modal

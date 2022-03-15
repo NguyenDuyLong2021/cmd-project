@@ -6,17 +6,18 @@ import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 /*
     Component này có thể được sử dụng lại ở bất cứ đâu
     Truyền vào 2 props:
-    1. pagination: một đối tượng chứa 2 thuộc tính:
-    + _page: trang hiện tại
-    + _totalItem: tổng số Item của danh sách
+    1. pagination: một đối tượng chứa 3 thuộc tính:
+    + page: trang hiện tại
+    + limit: số dòng trên mỗi trang
+    + totalItem: tổng số Item của danh sách
     2. onPageChange: một function được truyền vào tham số newPage là trang mới khi click vào button
 */
 const AppPagination = ({ pagination, onPageChange }) => {
     // Lấy các đối tượng từ props pagination
-    const { _page, _limit, _totalItem } = pagination
+    const { page, limit, totalItem } = pagination
 
     // Tính toán tổng số trang
-    const totalPage = Math.ceil(_totalItem / _limit)
+    const totalPage = Math.ceil(totalItem / limit)
 
     // State lưu chiều rộng hiện tại của trình duyệt
     const [width, setWidth] = useState(window.innerWidth)
@@ -47,14 +48,14 @@ const AppPagination = ({ pagination, onPageChange }) => {
         // Thực hiện push những gì cần hiển thị vào listPage tùy thuộc vào giá trị cửa width
         if (width < 576) {
             if (totalPage >= 8) {
-                if (_page < 2) {
+                if (page < 2) {
                     for (let i = 1; i <= 2; ++i) {
                         listPage.push(i)
                     }
                     listPage.push("...")
                     listPage.push(totalPage)
                 }
-                else if (_page > totalPage - 1) {
+                else if (page > totalPage - 1) {
                     listPage.push(1)
                     listPage.push("...")
                     for (let i = totalPage - 1; i <= totalPage; ++i) {
@@ -62,20 +63,20 @@ const AppPagination = ({ pagination, onPageChange }) => {
                     }
                 }
                 else {
-                    listPage.push(_page - 1)
-                    listPage.push(_page)
-                    listPage.push(_page + 1)
+                    listPage.push(page - 1)
+                    listPage.push(page)
+                    listPage.push(page + 1)
                 }
             }
             else if (totalPage >= 5) {
-                if (_page <= 2) {
+                if (page <= 2) {
                     for (let i = 1; i <= 3; ++i) {
                         listPage.push(i)
                     }
                     listPage.push("...")
                     listPage.push(totalPage)
                 }
-                else if (_page > totalPage - 2) {
+                else if (page > totalPage - 2) {
                     listPage.push(1)
                     listPage.push("...")
                     for (let i = totalPage - 2; i <= totalPage; ++i) {
@@ -85,7 +86,7 @@ const AppPagination = ({ pagination, onPageChange }) => {
                 else {
                     listPage.push(1)
                     listPage.push("...")
-                    for (let i = _page - 1; i <= _page + 1; ++i) {
+                    for (let i = page - 1; i <= page + 1; ++i) {
                         listPage.push(i)
                     }
                     listPage.push("...")
@@ -100,14 +101,14 @@ const AppPagination = ({ pagination, onPageChange }) => {
         }
         else if (width < 992) {
             if (totalPage >= 8) {
-                if (_page < 3) {
+                if (page < 3) {
                     for (let i = 1; i <= 3; ++i) {
                         listPage.push(i)
                     }
                     listPage.push("...")
                     listPage.push(totalPage)
                 }
-                else if (_page > totalPage - 2) {
+                else if (page > totalPage - 2) {
                     listPage.push(1)
                     listPage.push("...")
                     for (let i = totalPage - 2; i <= totalPage; ++i) {
@@ -117,7 +118,7 @@ const AppPagination = ({ pagination, onPageChange }) => {
                 else {
                     listPage.push(1)
                     listPage.push("...")
-                    for (let i = _page - 1; i <= _page + 1; ++i) {
+                    for (let i = page - 1; i <= page + 1; ++i) {
                         listPage.push(i)
                     }
                     listPage.push("...")
@@ -125,14 +126,14 @@ const AppPagination = ({ pagination, onPageChange }) => {
                 }
             }
             else if (totalPage >= 5) {
-                if (_page <= 2) {
+                if (page <= 2) {
                     for (let i = 1; i <= 3; ++i) {
                         listPage.push(i)
                     }
                     listPage.push("...")
                     listPage.push(totalPage)
                 }
-                else if (_page > totalPage - 2) {
+                else if (page > totalPage - 2) {
                     listPage.push(1)
                     listPage.push("...")
                     for (let i = totalPage - 2; i <= totalPage; ++i) {
@@ -142,7 +143,7 @@ const AppPagination = ({ pagination, onPageChange }) => {
                 else {
                     listPage.push(1)
                     listPage.push("...")
-                    for (let i = _page - 1; i <= _page + 1; ++i) {
+                    for (let i = page - 1; i <= page + 1; ++i) {
                         listPage.push(i)
                     }
                     listPage.push("...")
@@ -157,14 +158,14 @@ const AppPagination = ({ pagination, onPageChange }) => {
         }
         else {
             if (totalPage >= 8) {
-                if (_page < 4) {
+                if (page < 4) {
                     for (let i = 1; i <= 4; ++i) {
                         listPage.push(i)
                     }
                     listPage.push("...")
                     listPage.push(totalPage)
                 }
-                else if (_page > totalPage - 3) {
+                else if (page > totalPage - 3) {
                     listPage.push(1)
                     listPage.push("...")
                     for (let i = totalPage - 3; i <= totalPage; ++i) {
@@ -174,7 +175,7 @@ const AppPagination = ({ pagination, onPageChange }) => {
                 else {
                     listPage.push(1)
                     listPage.push("...")
-                    for (let i = _page - 2; i <= _page + 2; ++i) {
+                    for (let i = page - 2; i <= page + 2; ++i) {
                         listPage.push(i)
                     }
                     listPage.push("...")
@@ -182,14 +183,14 @@ const AppPagination = ({ pagination, onPageChange }) => {
                 }
             }
             else if (totalPage >= 5) {
-                if (_page <= 2) {
+                if (page <= 2) {
                     for (let i = 1; i <= 3; ++i) {
                         listPage.push(i)
                     }
                     listPage.push("...")
                     listPage.push(totalPage)
                 }
-                else if (_page > totalPage - 2) {
+                else if (page > totalPage - 2) {
                     listPage.push(1)
                     listPage.push("...")
                     for (let i = totalPage - 2; i <= totalPage; ++i) {
@@ -199,7 +200,7 @@ const AppPagination = ({ pagination, onPageChange }) => {
                 else {
                     listPage.push(1)
                     listPage.push("...")
-                    for (let i = _page - 1; i <= _page + 1; ++i) {
+                    for (let i = page - 1; i <= page + 1; ++i) {
                         listPage.push(i)
                     }
                     listPage.push("...")
@@ -224,14 +225,14 @@ const AppPagination = ({ pagination, onPageChange }) => {
             }
             >
                 <Pagination.Item
-                    disabled={_page <= 1}
-                    onClick={() => handlePageChange(_page - 1)}
+                    disabled={page <= 1}
+                    onClick={() => handlePageChange(page - 1)}
                 >
                     <BsChevronLeft />
                 </Pagination.Item>
                 {
                     fetchListPage().map((page, index) => {
-                        if (page === _page) {
+                        if (page === page) {
                             return (
                                 <Pagination.Item
                                     key={index}
@@ -264,8 +265,8 @@ const AppPagination = ({ pagination, onPageChange }) => {
                     })
                 }
                 <Pagination.Item
-                    disabled={_page >= totalPage}
-                    onClick={() => handlePageChange(_page + 1)}
+                    disabled={page >= totalPage}
+                    onClick={() => handlePageChange(page + 1)}
                 >
                     <BsChevronRight />
                 </Pagination.Item>

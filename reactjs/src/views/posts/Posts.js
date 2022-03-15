@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap'
 import Slider from './Slider'
 import { fetchPostsRequest } from '../../actions/postsAction'
 import PostItem from './PostItem'
-import ButtonAddPost from './SubmitPost/ButtonAddPost'
+import AddPost from './features/AddPost'
 
 const Posts = () => {
     const posts = useSelector(state => state.posts.data)
@@ -28,7 +28,7 @@ const Posts = () => {
                     <AppSearch value={filters.q} onSearch={handleSearchTerm} />
                 </div> */}
                 <div className="col-auto">
-                    <ButtonAddPost />
+                    <AddPost />
                 </div>
             </div>
             </Container>

@@ -4,9 +4,9 @@ import * as actions from "../constants/ActionRequest"
 const initialState = {
     data: [],
     pagination: {
-        _page: 1,
-        _limit: 10,
-        _totalItem: 0
+        page: 1,
+        limit: 10,
+        totalItem: 0
     }
 }
 

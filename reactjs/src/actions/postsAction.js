@@ -12,7 +12,7 @@ export const fetchPostsRequest = (params) => {
     return (dispatch) => {
         postsApi.getAll(params)
             .then(response => {
-                dispatch(fetchPosts(response.data))
+                dispatch(fetchPosts(response.data.data))
             })
             .catch(error => {
                 alert(error)

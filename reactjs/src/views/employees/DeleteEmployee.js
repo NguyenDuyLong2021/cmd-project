@@ -3,15 +3,12 @@ import { Button, Dropdown, Modal } from 'react-bootstrap'
 import { BiTrash } from 'react-icons/bi'
 import { useDispatch } from 'react-redux'
 import * as actions from '../../actions/employeesAction'
-import AppToaster from '../../components/AppToaster'
 
 const DeleteEmployee = ({ id }) => {
     const dispatch = useDispatch()
     const [visible, setVisible] = useState(false)
-    const [visibleNotificationDeleteSuccess, setVisibleNotificationDeleteSuccess] = useState(false)
     const handleDelete = (id) => {
         dispatch(actions.deleteEmployeeRequest(id))
-        setVisibleNotificationDeleteSuccess(true)
         setVisible(false)
     }
 
@@ -49,12 +46,6 @@ const DeleteEmployee = ({ id }) => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <AppToaster
-                visible={visibleNotificationDeleteSuccess}
-                setVisible={setVisibleNotificationDeleteSuccess}
-                title="Nhân viên"
-                content="Xóa nhân viên thành công"
-            />
         </>
     )
 }

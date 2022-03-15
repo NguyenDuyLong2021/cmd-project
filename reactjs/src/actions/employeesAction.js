@@ -12,7 +12,7 @@ export const fetchEmployeesRequest = (params) => {
     return (dispatch) => {
         employeesApi.getAll(params)
             .then(response => {
-                dispatch(fetchEmployees(response.data))
+                dispatch(fetchEmployees(response.data.data))
             })
             .catch(error => {
                 alert(error)

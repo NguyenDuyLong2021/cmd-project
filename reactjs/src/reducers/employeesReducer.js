@@ -2,11 +2,11 @@ import * as actions from "../constants/ActionEmployee"
 
 // Khởi tạo state
 const initialState = {
-    data: [],
+    employees: [],
     pagination: {
-        _page: 1,
-        _limit: 10,
-        _totalItem: 0
+        page: 1,
+        limit: 10,
+        totalItem: 0
     }
 }
 
@@ -23,13 +23,13 @@ const employeesReducer = (state = initialState, action) => {
         case actions.ADD_EMPLOYEE: {
             return {
                 ...state,
-                data: [...state.data, action.payload]
+                employees: [...state.employees, action.payload]
             }
         }
 
         // Cập nhật thông tin nhân viên
         case actions.UPDATE_EMPLOYEE: {
-            const listEmployeesUpdated = state.data
+            const listEmployeesUpdated = state.employees
             listEmployeesUpdated.forEach((employee, index, array) => {
                 if (employee.id === action.payload.id) {
                     array[index] = action.payload
@@ -37,16 +37,16 @@ const employeesReducer = (state = initialState, action) => {
             })
             return {
                 ...state,
-                data: [...listEmployeesUpdated]
+                employees: [...listEmployeesUpdated]
             }
         }
 
         // Xóa nhân viên
         case actions.DELETE_EMPLOYEE: {
-            const listEmployeesDeleted = state.data.filter(employee => employee.id !== action.payload)
+            const listEmployeesDeleted = state.employees.filter(employee => employee.id !== action.payload)
             return {
                 ...state,
-                data: [...listEmployeesDeleted]
+                employees: [...listEmployeesDeleted]
             }
         }
         default:

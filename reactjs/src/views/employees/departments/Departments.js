@@ -27,7 +27,7 @@ const Departments = ({ visible, setVisible }) => {
     // Chuỗi lệnh hiển thị tên phòng ban phân cấp
     const departmentsElement = []
     const recursiveDepartmentChild = (department_parent, level) => {
-        departments.forEach((department_child) => {
+        departments?.forEach((department_child) => {
             if (department_parent.id === department_child.parent_id) {
                 departmentsElement.push(
                     <DepartmentItem
@@ -41,7 +41,7 @@ const Departments = ({ visible, setVisible }) => {
         })
     }
     const traverseDepartment = () => {
-        departments.forEach((department) => {
+        departments?.forEach((department) => {
             if (!department.parent_id) {
                 departmentsElement.push(
                     <DepartmentItem
@@ -70,7 +70,10 @@ const Departments = ({ visible, setVisible }) => {
                         <Modal.Title>PHÒNG BAN</Modal.Title>
                     </div>
                     <div className="col-auto">
-                        <button className="btn-close" onClick={() => setVisible(false)} />
+                        <button
+                            className="btn-close"
+                            onClick={() => setVisible(false)}
+                        />
                     </div>
                 </div>
                 <Modal.Body>

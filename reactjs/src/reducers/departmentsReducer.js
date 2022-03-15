@@ -2,12 +2,7 @@ import * as actions from "../constants/ActionDepartment"
 
 // Khởi tạo state
 const initialState = {
-    data: [],
-    pagination: {
-        _page: 1,
-        _limit: 10,
-        _totalItem: 0
-    }
+    data: []
 }
 
 // Reducer quản lý danh sách phòng ban
